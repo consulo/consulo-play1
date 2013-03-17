@@ -28,7 +28,6 @@ public class PlayJavaFacetEditorPanel extends JPanel
 	public PlayJavaFacetEditorPanel(PlayJavaFacet facet, PlayJavaFacetConfiguration configuration)
 	{
 		$$$setupUI$$$();
-
 		playPath.addBrowseFolderListener(null, "Choose play framework", null, new FileChooserDescriptor(false, true, false, false, false, false)
 		{
 			@Override
