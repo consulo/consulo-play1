@@ -17,7 +17,9 @@ import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.roots.libraries.Library;
 import com.intellij.openapi.roots.libraries.LibraryTable;
+import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.util.text.StringUtil;
+import com.intellij.vcsUtil.VcsUtil;
 
 /**
  * @author VISTALL
@@ -65,9 +67,11 @@ public class PlayJavaFacetEditorTab extends FacetEditorTab
 							final Library library = libraryTableModifiableModel.createLibrary(playName);
 
 							final Library.ModifiableModel libraryModifiableModel = library.getModifiableModel();
-							libraryModifiableModel.addRoot("jar://" + configuration.playPath + "/framework/" + playName + ".jar!/", OrderRootType.CLASSES);
-							libraryModifiableModel.addJarDirectory("file://" + configuration.playPath + "/framework/src", true, OrderRootType.SOURCES);
-							libraryModifiableModel.addJarDirectory("file://" + configuration.playPath + "/framework/lib", true, OrderRootType.CLASSES);
+							final String path = FileUtil.toSystemDependentName(configuration.playPath);
+
+							libraryModifiableModel.addRoot("jar://" + path + "/framework/" + playName + ".jar!/", OrderRootType.CLASSES);
+							libraryModifiableModel.addJarDirectory(VcsUtil.getVirtualFile(path + "/framework/lib"), false, OrderRootType.CLASSES);
+							libraryModifiableModel.addJarDirectory(VcsUtil.getVirtualFile(path + "/framework/src"), true, OrderRootType.SOURCES);
 
 							libraryModifiableModel.commit();
 							libraryTableModifiableModel.commit();
