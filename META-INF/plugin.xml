@@ -4,11 +4,18 @@
 	<version>1.0</version>
 	<vendor email="vistall.valeriy@gmail.com" url="http://napile.org">Napile</vendor>
 
+	<depends>org.intellij.groovy</depends>
+
 	<idea-version since-build="129.000"/>
 
 	<extensions defaultExtensionNs="com.intellij">
 		<facetType implementation="org.napile.playJava4idea.facet.PlayJavaFacetType" />
 
 		<configurationType implementation="org.napile.playJava4idea.run.PlayJavaConfigurationType"/>
+
+		<lang.substitutor language="HTML" implementationClass="org.napile.playJava4idea.template.base.PlayHtmlLanguageSubstitutor" />
+
+		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateParserDefinition" />
+		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory" />
 	</extensions>
 </idea-plugin>
