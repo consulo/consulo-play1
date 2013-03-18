@@ -27,4 +27,6 @@ public interface PlayJavaConstants
 	Pattern JAR_PATTERN = Pattern.compile("play-1.\\d(.\\d)?.jar");
 
 	String PLAY_PLAY = "play.Play";
+
+	String PLAY_MVC_CONTROLLER = "play.mvc.Controller";
 }

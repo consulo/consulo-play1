@@ -27,6 +27,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
+import com.intellij.psi.util.InheritanceUtil;
 
 /**
  * @author VISTALL
@@ -34,6 +35,11 @@ import com.intellij.psi.PsiClass;
  */
 public class PlayJavaUtil
 {
+	public static boolean isSuperController(@Nullable PsiClass psiClass)
+	{
+		return psiClass != null && InheritanceUtil.isInheritor(psiClass, PlayJavaConstants.PLAY_MVC_CONTROLLER);
+	}
+
 	@Nullable
 	public static PlayJavaFacet findPlayFacet(VirtualFile virtualFile, Project project)
 	{

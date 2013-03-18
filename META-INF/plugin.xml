@@ -27,6 +27,7 @@
 	<extensions defaultExtensionNs="com.intellij">
 		<facetType implementation="org.napile.playJava4idea.facet.PlayJavaFacetType" />
 
+		<codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.napile.playJava4idea.template.base.editor.PlayBaseTemplateLineMarkerProvider" />
 		<configurationType implementation="org.napile.playJava4idea.run.PlayJavaConfigurationType"/>
 		<colorSettingsPage implementation="org.napile.playJava4idea.template.base.editor.highlight.PlayBaseTemplateColorSettingsPage" />
 		<lang.substitutor language="HTML" implementationClass="org.napile.playJava4idea.template.base.PlayHtmlLanguageSubstitutor" />
