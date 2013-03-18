@@ -16,6 +16,8 @@
 
 package org.napile.playJava4idea.template.base.parser.lexer;
 
+import java.lang.reflect.Constructor;
+
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.napile.playJava4idea.template.base.PlayBaseTemplateLanguage;
@@ -30,14 +32,37 @@ import com.intellij.psi.tree.IElementType;
  */
 public class PlayBaseTemplateElementType extends IElementType
 {
+	private final Constructor<? extends PlayBaseTemplateElement> constructor;
+
 	public PlayBaseTemplateElementType(@NotNull @NonNls String debugName)
 	{
+		this(debugName, PlayBaseTemplateElement.class);
+	}
+
+	public PlayBaseTemplateElementType(@NotNull @NonNls String debugName, Class<? extends PlayBaseTemplateElement> clazz)
+	{
 		super(debugName, PlayBaseTemplateLanguage.INSTANCE);
+
+		try
+		{
+			constructor = clazz.getConstructor(ASTNode.class);
+		}
+		catch(NoSuchMethodException e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 
 	public PsiElement createPsiElement(ASTNode node)
 	{
-		return new PlayBaseTemplateElement(node);
+		try
+		{
+			return constructor.newInstance(node);
+		}
+		catch(Exception e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 
 }

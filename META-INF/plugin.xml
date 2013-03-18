@@ -28,9 +28,10 @@
 		<facetType implementation="org.napile.playJava4idea.facet.PlayJavaFacetType" />
 
 		<configurationType implementation="org.napile.playJava4idea.run.PlayJavaConfigurationType"/>
-
+		<colorSettingsPage implementation="org.napile.playJava4idea.template.base.editor.highlight.PlayBaseTemplateColorSettingsPage" />
 		<lang.substitutor language="HTML" implementationClass="org.napile.playJava4idea.template.base.PlayHtmlLanguageSubstitutor" />
-
+		<editorHighlighterProvider filetype="Play" implementationClass="org.napile.playJava4idea.template.base.editor.highlight.PlayBaseTemplateEditorHighlighterProvider" />
+		<fileTypeFactory implementation="org.napile.playJava4idea.template.base.PlayBaseTemplateFileTypeFactory" />
 		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateParserDefinition" />
 		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory" />
 	</extensions>

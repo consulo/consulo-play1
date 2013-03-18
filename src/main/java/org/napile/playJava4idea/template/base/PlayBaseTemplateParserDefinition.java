@@ -17,12 +17,13 @@
 package org.napile.playJava4idea.template.base;
 
 import org.jetbrains.annotations.NotNull;
+import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokenSets;
 import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
 import org.napile.playJava4idea.template.base.parser.lexer.PlayBaseTemplateElementType;
+import org.napile.playJava4idea.template.base.parser.lexer.PlayBaseTemplateLexer;
 import org.napile.playJava4idea.template.base.psi.PlayBaseTemplateFile;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
-import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiParser;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.project.Project;
@@ -43,21 +44,13 @@ public class PlayBaseTemplateParserDefinition implements ParserDefinition
 	@Override
 	public Lexer createLexer(Project project)
 	{
-		return null;
+		return new PlayBaseTemplateLexer();
 	}
 
 	@Override
 	public PsiParser createParser(Project project)
 	{
-		return new PsiParser()
-		{
-			@NotNull
-			@Override
-			public ASTNode parse(IElementType root, PsiBuilder builder)
-			{
-				return builder.getTreeBuilt();
-			}
-		};
+		return PlayBaseTemplateParser.INSTANCE;
 	}
 
 	@Override
@@ -70,21 +63,21 @@ public class PlayBaseTemplateParserDefinition implements ParserDefinition
 	@Override
 	public TokenSet getWhitespaceTokens()
 	{
-		return TokenSet.EMPTY;
+		return PlayBaseTemplateTokenSets.WHITESPACE_SET;
 	}
 
 	@NotNull
 	@Override
 	public TokenSet getCommentTokens()
 	{
-		return TokenSet.EMPTY;
+		return PlayBaseTemplateTokenSets.COMMENT_SET;
 	}
 
 	@NotNull
 	@Override
 	public TokenSet getStringLiteralElements()
 	{
-		return TokenSet.EMPTY;
+		return PlayBaseTemplateTokenSets.STRING_SET;
 	}
 
 	@NotNull
