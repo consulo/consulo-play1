@@ -48,7 +48,7 @@ public class PlayTemplateLexerTest
 		IElementType elementType = null;
 		while((elementType = adapter.getTokenType()) != null)
 		{
-			System.out.println(elementType + " " + adapter.getTokenText());
+			System.out.println("Element [" + elementType + "], text [" + adapter.getTokenText().replace("\n", "") + "]");
 
 			adapter.advance();
 		}

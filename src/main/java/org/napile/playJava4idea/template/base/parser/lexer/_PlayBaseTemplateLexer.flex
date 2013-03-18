@@ -23,12 +23,8 @@ LineTerminator = \r|\n|\r\n
 
 "{" {return PlayBaseTemplateTokens.LBRACE;}
 "}" {return PlayBaseTemplateTokens.RBRACE;}
-"<" {return PlayBaseTemplateTokens.LT;}
-">" {return PlayBaseTemplateTokens.GT;}
 "," {return PlayBaseTemplateTokens.COMMA;}
-"." {return PlayBaseTemplateTokens.DOT;}
 "/" {return PlayBaseTemplateTokens.DIV;}
-"\\" {return PlayBaseTemplateTokens.SLASH;}
 
 "#" {return PlayBaseTemplateTokens.SHARP;}
 "*" {return PlayBaseTemplateTokens.ASTERISK;}

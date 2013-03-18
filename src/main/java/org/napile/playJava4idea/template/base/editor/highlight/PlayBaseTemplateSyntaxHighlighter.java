@@ -44,7 +44,6 @@ public class PlayBaseTemplateSyntaxHighlighter extends SyntaxHighlighterBase imp
 		fillMap(map, DefaultLanguageHighlighterColors.STRING, STRING);
 
 		fillMap(map, DefaultLanguageHighlighterColors.COMMA, COMMA);
-		fillMap(map, DefaultLanguageHighlighterColors.DOT, DOT);
 		fillMap(map, DefaultLanguageHighlighterColors.BRACES, LBRACE, RBRACE);
 
 		fillMap(map, PlayBaseTemplateColors.PLAY_TAG_START, PlayBaseTemplateTokenSets.TAG_START_SET.getTypes());

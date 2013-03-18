@@ -136,7 +136,7 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 				{
 					advanceLexer(baseLexer);
 
-					mergeWordsUntil(baseLexer, TokenSet.create(DIV));
+					mergeWordsUntil(baseLexer, TokenSet.create(RBRACE));
 
 					if(baseLexer.getTokenType() == RBRACE)
 					{
@@ -145,7 +145,7 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 				}
 				else
 				{
-					mergeWordsUntil(baseLexer, TokenSet.create(DIV));
+					mergeWordsUntil(baseLexer, TokenSet.create(DIV, RBRACE));
 
 					if(baseLexer.getTokenType() == DIV)
 					{

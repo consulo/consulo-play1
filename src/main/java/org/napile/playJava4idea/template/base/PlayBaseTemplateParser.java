@@ -44,11 +44,11 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 			final IElementType tokenType = builder.getTokenType();
 			if(tokenType == SHARP)
 			{
-				advanceNonSimple(builder, TAG, DIV, RBRACE);
+				advanceTag(builder, TAG);
 			}
 			else if(tokenType == PERC)
 			{
-				advanceNonSimple(builder, SCRIPT, RBRACE, PERC);
+				advanceScript(builder, SCRIPT);
 			}
 			else if(tokenType == DOLLAR)
 			{
@@ -92,30 +92,67 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 		m.done(token);
 	}
 
-	private void advanceNonSimple(PsiBuilder builder, IElementType done, PlayBaseTemplatePrattTokenType end1, PlayBaseTemplatePrattTokenType end2)
+	private void advanceTag(PsiBuilder builder, IElementType done)
 	{
 		PsiBuilder.Marker m = builder.mark();
 		builder.advanceLexer(); // start symbol
 		builder.advanceLexer(); // {
 
-		skipUntil(builder, TokenSet.create(end1));
-
-		if(builder.getTokenType() == end1)
+		if(builder.getTokenType() == DIV)
 		{
-			builder.advanceLexer(); // / or }
+			builder.advanceLexer();
 
-			if(builder.getTokenType() == end2)
+			if(builder.getTokenType() == TEMPLATE_TEXT)
 			{
 				builder.advanceLexer();
 			}
 			else
 			{
-				builder.error(end2.getExpectedText(null));
+				builder.error("Expected tag name");
 			}
+
+			expectOrError(builder, RBRACE);
 		}
 		else
 		{
-			builder.error(end1.getExpectedText(null));
+			skipUntil(builder, TokenSet.create(DIV, RBRACE));
+
+			if(builder.getTokenType() == DIV)
+			{
+				builder.advanceLexer();
+			}
+
+			expectOrError(builder, RBRACE);
+		}
+
+		m.done(done);
+	}
+
+	private static boolean expectOrError(PsiBuilder builder, PlayBaseTemplatePrattTokenType node)
+	{
+		if(builder.getTokenType() == node)
+		{
+			builder.advanceLexer();
+			return true;
+		}
+		else
+		{
+			builder.error(node.getExpectedText(null));
+			return false;
+		}
+	}
+
+	private void advanceScript(PsiBuilder builder, IElementType done)
+	{
+		PsiBuilder.Marker m = builder.mark();
+		builder.advanceLexer(); // start symbol
+		builder.advanceLexer(); // {
+
+		skipUntil(builder, TokenSet.create(RBRACE));
+
+		if(expectOrError(builder, RBRACE))
+		{
+			expectOrError(builder, PERC);
 		}
 
 		m.done(done);
