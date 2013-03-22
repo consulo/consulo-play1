@@ -66,7 +66,10 @@ public class PlayBaseTemplateLineMarkerProvider extends RelatedItemLineMarkerPro
 				}
 
 				final Module moduleForPsiElement = ModuleUtil.findModuleForPsiElement(element);
-				assert moduleForPsiElement != null;
+				if(moduleForPsiElement == null)
+				{
+					return;
+				}
 
 				ModuleRootManager rootManager = ModuleRootManager.getInstance(moduleForPsiElement);
 				PsiManager manager = PsiManager.getInstance(element.getProject());
