@@ -34,10 +34,6 @@ public class PlayBaseTemplateEditorHighlighterProvider implements EditorHighligh
 	@Override
 	public EditorHighlighter getEditorHighlighter(@Nullable Project project, @NotNull FileType fileType, @Nullable VirtualFile virtualFile, @NotNull EditorColorsScheme colors)
 	{
-		if(virtualFile == null || project == null)
-		{
-			return null;
-		}
 		return new PlayBaseTemplateEditorHighlighter(colors, project, virtualFile);
 	}
 }
