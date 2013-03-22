@@ -17,6 +17,7 @@
 package org.napile.playJava4idea.template.base.editor.highlight;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.lang.StdLanguages;
 import com.intellij.openapi.editor.colors.EditorColorsScheme;
@@ -34,7 +35,7 @@ import com.intellij.psi.templateLanguages.TemplateDataHighlighterWrapper;
  */
 public class PlayBaseTemplateEditorHighlighter extends LayeredLexerEditorHighlighter
 {
-	public PlayBaseTemplateEditorHighlighter(@NotNull EditorColorsScheme scheme, @NotNull Project project, @NotNull VirtualFile virtualFile)
+	public PlayBaseTemplateEditorHighlighter(@NotNull EditorColorsScheme scheme, @Nullable Project project, @Nullable VirtualFile virtualFile)
 	{
 		super(new PlayBaseTemplateSyntaxHighlighter(), scheme);
 
