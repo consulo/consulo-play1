@@ -17,6 +17,7 @@
 package org.napile.playJava4idea.template.base.parser;
 
 import org.napile.playJava4idea.template.base.PlayBaseTemplateLanguage;
+import org.napile.playJava4idea.template.base.groovy.file.PlayBaseTemplateGroovyElementType;
 import org.napile.playJava4idea.template.base.parser.lexer.PlayBaseTemplateElementType;
 import com.intellij.psi.templateLanguages.TemplateDataElementType;
 import com.intellij.psi.tree.IElementType;
@@ -33,6 +34,7 @@ public interface PlayBaseTemplateTokens extends PlayBaseTemplateSimplyTokens
 	TemplateDataElementType TEMPLATE_DATA = new TemplateDataElementType("TEMPLATE_DATA", PlayBaseTemplateLanguage.INSTANCE, TEMPLATE_TEXT, OUTER_ELEMENT_TYPE);
 
 	IFileElementType PLAY_BASE_TEMPLATE_FILE = new IFileElementType("PLAY_BASE_TEMPLATE_FILE", PlayBaseTemplateLanguage.INSTANCE);
+	IFileElementType PLAY_BASE_TEMPLATE_GROOVY_FILE = new PlayBaseTemplateGroovyElementType("PLAY_BASE_TEMPLATE_GROOVY_FILE");
 
 	PlayBaseTemplateElementType COMMENT = new PlayBaseTemplateElementType("COMMENT");
 

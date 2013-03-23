@@ -22,7 +22,9 @@ import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.plugins.groovy.GroovyFileType;
 import org.napile.playJava4idea.template.base.PlayBaseTemplateLanguage;
+import org.napile.playJava4idea.template.base.groovy.file.PlayBaseTemplateGroovyFileImpl;
 import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.lang.Language;
 import com.intellij.lang.LanguageParserDefinitions;
@@ -61,6 +63,11 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 			return file;
 		}
 
+		if(lang == GroovyFileType.GROOVY_LANGUAGE)
+		{
+			return new PlayBaseTemplateGroovyFileImpl(this);
+		}
+
 		throw new UnsupportedOperationException("This is not supported: " + lang);
 	}
 
@@ -68,6 +75,7 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 	@NotNull
 	public Set<Language> getLanguages()
 	{
+		//TODO [VISTALL] uncomment then groovy ill supported
 		return new HashSet<Language>(Arrays.asList(PlayBaseTemplateLanguage.INSTANCE, StdLanguages.HTML/*, GroovyFileType.GROOVY_LANGUAGE*/));
 	}
 

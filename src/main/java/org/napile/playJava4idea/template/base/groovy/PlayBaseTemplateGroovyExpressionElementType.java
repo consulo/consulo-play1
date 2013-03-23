@@ -32,13 +32,12 @@ import com.intellij.psi.tree.ILazyParseableElementType;
  * @author VISTALL
  * @since 19:12/23.03.13
  */
-public class GroovyExpressionElementType extends ILazyParseableElementType
+public class PlayBaseTemplateGroovyExpressionElementType extends ILazyParseableElementType
 {
-	public GroovyExpressionElementType(@NotNull @NonNls String debugName)
+	public PlayBaseTemplateGroovyExpressionElementType(@NotNull @NonNls String debugName)
 	{
 		super(debugName);
 	}
-
 
 	@Override
 	public ASTNode parseContents(ASTNode chameleon)
