@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea;
+package org.napile.playJava4idea.conf;
 
-import java.util.regex.Pattern;
+import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.fileTypes.FileTypeConsumer;
+import com.intellij.openapi.fileTypes.FileTypeFactory;
 
 /**
  * @author VISTALL
- * @since 16:35/17.03.13
+ * @since 19:58/23.03.13
  */
-public interface PlayJavaConstants
+public class PlayJavaConfFileTypeFactory extends FileTypeFactory
 {
-	Pattern JAR_PATTERN = Pattern.compile("play-1.\\d(.\\d)?.jar");
-
-	String PLAY_PLAY = "play.Play";
-
-	String PLAY_MVC_CONTROLLER = "play.mvc.Controller";
-
-	String APPLICATION_CONF = "application.conf";
+	@Override
+	public void createFileTypes(@NotNull FileTypeConsumer consumer)
+	{
+		consumer.consume(PlayJavaConfFileType.INSTANCE, "");
+	}
 }

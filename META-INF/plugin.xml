@@ -21,6 +21,7 @@
 	<vendor email="vistall.valeriy@gmail.com" url="http://napile.org">Napile</vendor>
 
 	<depends>org.intellij.groovy</depends>
+	<depends>com.intellij.properties</depends>
 
 	<idea-version since-build="129.000"/>
 
@@ -31,9 +32,14 @@
 		<configurationType implementation="org.napile.playJava4idea.run.PlayJavaConfigurationType"/>
 		<colorSettingsPage implementation="org.napile.playJava4idea.template.base.editor.highlight.PlayBaseTemplateColorSettingsPage" />
 		<lang.substitutor language="HTML" implementationClass="org.napile.playJava4idea.template.base.PlayHtmlLanguageSubstitutor" />
+
 		<editorHighlighterProvider filetype="Play" implementationClass="org.napile.playJava4idea.template.base.editor.highlight.PlayBaseTemplateEditorHighlighterProvider" />
+		<braceMatcher filetype="Play" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateBraceMatcher" />
 		<fileTypeFactory implementation="org.napile.playJava4idea.template.base.PlayBaseTemplateFileTypeFactory" />
+		<fileTypeFactory implementation="org.napile.playJava4idea.conf.PlayJavaConfFileTypeFactory" />
+		<programRunner implementation="org.napile.playJava4idea.run.PlayJavaGenericDebuggerRunner" />
 		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateParserDefinition" />
+		<lang.commenter language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateCommenter" />
 		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory" />
 	</extensions>
 </idea-plugin>
