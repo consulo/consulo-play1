@@ -37,4 +37,11 @@ public interface PlayBaseTemplateTokens extends PlayBaseTemplateSimplyTokens
 	PlayBaseTemplateElementType COMMENT = new PlayBaseTemplateElementType("COMMENT");
 
 	PlayBaseTemplateElementType TAG_NAME = new PlayBaseTemplateElementType("TAG_NAME");
+
+	// ${ }
+	PlayBaseTemplateElementType EXPRESSION_START = new PlayBaseTemplateElementType("EXPRESSION_START");
+
+
+
+	PlayBaseTemplateElementType EXPRESSION_END = new PlayBaseTemplateElementType("EXPRESSION_END");
 }

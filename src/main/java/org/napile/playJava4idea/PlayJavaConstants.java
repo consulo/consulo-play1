@@ -31,4 +31,8 @@ public interface PlayJavaConstants
 	String PLAY_MVC_CONTROLLER = "play.mvc.Controller";
 
 	String APPLICATION_CONF = "application.conf";
+
+	String CONF__APPLICATION_CONF = "conf/" + APPLICATION_CONF;
+
+	String JPDA_PORT = "jpda.port";
 }

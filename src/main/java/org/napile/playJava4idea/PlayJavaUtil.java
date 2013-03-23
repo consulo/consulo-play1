@@ -18,15 +18,18 @@ package org.napile.playJava4idea;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.napile.playJava4idea.conf.PlayJavaConfFileType;
 import org.napile.playJava4idea.facet.PlayJavaFacet;
 import org.napile.playJava4idea.facet.PlayJavaFacetType;
 import com.intellij.facet.FacetManager;
+import com.intellij.lang.properties.psi.PropertiesFile;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiManager;
 import com.intellij.psi.util.InheritanceUtil;
 
 /**
@@ -38,6 +41,36 @@ public class PlayJavaUtil
 	public static boolean isSuperController(@Nullable PsiClass psiClass)
 	{
 		return psiClass != null && InheritanceUtil.isInheritor(psiClass, PlayJavaConstants.PLAY_MVC_CONTROLLER);
+	}
+
+	@Nullable
+	public static PropertiesFile getApplicationConf(@Nullable Module module)
+	{
+		if(module == null)
+		{
+			return null;
+		}
+
+		VirtualFile moduleFile = module.getModuleFile();
+		if(moduleFile == null)
+		{
+			return null;
+		}
+
+		moduleFile = moduleFile.getParent();
+		if(moduleFile == null)
+		{
+			return null;
+		}
+
+		final VirtualFile confVirtualFile = moduleFile.findFileByRelativePath(PlayJavaConstants.CONF__APPLICATION_CONF);
+
+		if(confVirtualFile == null || confVirtualFile.getFileType() != PlayJavaConfFileType.INSTANCE)
+		{
+			return null;
+		}
+
+		return (PropertiesFile) PsiManager.getInstance(module.getProject()).findFile(confVirtualFile);
 	}
 
 	@Nullable
