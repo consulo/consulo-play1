@@ -14,29 +14,17 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea;
+package org.napile.playJava4idea.route.psi;
 
-import java.util.regex.Pattern;
+import com.intellij.psi.tree.TokenSet;
 
 /**
  * @author VISTALL
- * @since 16:35/17.03.13
+ * @since 13:15/24.03.13
  */
-public interface PlayJavaConstants
+public interface PlayRouteElementTokenSets extends PlayRouteElementTypes
 {
-	Pattern JAR_PATTERN = Pattern.compile("play-1.\\d(.\\d)?.jar");
+	TokenSet COMMENT_SET = TokenSet.create(COMMENT);
 
-	String PLAY_PLAY = "play.Play";
-
-	String PLAY_MVC_CONTROLLER = "play.mvc.Controller";
-
-	String CONF = "conf";
-
-	String ROUTES = "routes";
-
-	String APPLICATION_CONF = "application.conf";
-
-	String CONF__APPLICATION_CONF = CONF + "/" + APPLICATION_CONF;
-
-	String JPDA_PORT = "jpda.port";
+	TokenSet WHITESPACE_SET = TokenSet.create(WHITE_SPACE);
 }

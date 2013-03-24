@@ -81,6 +81,6 @@ public class PlayJavaConfFileType extends LanguageFileType implements FileTypeId
 	@Override
 	public boolean isMyFileType(VirtualFile file)
 	{
-		return file.getName().equalsIgnoreCase(PlayJavaConstants.APPLICATION_CONF) && file.getParent().getName().equalsIgnoreCase("conf");
+		return file.getName().equalsIgnoreCase(PlayJavaConstants.APPLICATION_CONF) && file.getParent().getName().equalsIgnoreCase(PlayJavaConstants.CONF);
 	}
 }

@@ -14,55 +14,46 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea.template.base.editor.highlight;
+package org.napile.playJava4idea.route.editor.highlight;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.jetbrains.annotations.NotNull;
 import org.napile.playJava4idea.editor.highlight.PlayJavaColors;
-import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokenSets;
-import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
-import org.napile.playJava4idea.template.base.parser.lexer.PlayBaseTemplateLexer;
+import org.napile.playJava4idea.route.psi.PlayRouteElementTypes;
+import org.napile.playJava4idea.route.psi.lexer.PlayRouteLexer;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
-import com.intellij.openapi.editor.XmlHighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 
 /**
  * @author VISTALL
- * @since 19:45/18.03.13
+ * @since 13:20/24.03.13
  */
-public class PlayBaseTemplateSyntaxHighlighter extends SyntaxHighlighterBase implements PlayBaseTemplateTokens
+public class PlayRouteHighlighter extends SyntaxHighlighterBase implements PlayRouteElementTypes
 {
-	private static final Map<IElementType,TextAttributesKey> map = new HashMap<IElementType, TextAttributesKey>();
+	private Map<IElementType, TextAttributesKey> elementToKeys = new HashMap<IElementType, TextAttributesKey>();
 
-	static
+	public PlayRouteHighlighter()
 	{
-		fillMap(map, DefaultLanguageHighlighterColors.LINE_COMMENT, COMMENT);
-		fillMap(map, DefaultLanguageHighlighterColors.STRING, STRING);
-
-		fillMap(map, DefaultLanguageHighlighterColors.COMMA, COMMA);
-		fillMap(map, DefaultLanguageHighlighterColors.BRACES, LBRACE, RBRACE);
-
-		SyntaxHighlighterBase.fillMap(map, PlayJavaColors.PLAY_TAG_START, PlayBaseTemplateTokenSets.TAG_START_SET.getTypes());
-
-		fillMap(map, XmlHighlighterColors.HTML_TAG_NAME, TAG_NAME);
+		elementToKeys.put(COMMENT, DefaultLanguageHighlighterColors.LINE_COMMENT);
+		elementToKeys.put(METHOD_TYPE, PlayJavaColors.ROUTE_METHOD);
 	}
 
 	@NotNull
 	@Override
 	public Lexer getHighlightingLexer()
 	{
-		return new PlayBaseTemplateLexer();
+		return new PlayRouteLexer();
 	}
 
 	@NotNull
 	@Override
 	public TextAttributesKey[] getTokenHighlights(IElementType tokenType)
 	{
-		return pack(map.get(tokenType));
+		return pack(elementToKeys.get(tokenType));
 	}
 }

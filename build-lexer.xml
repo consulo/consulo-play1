@@ -59,4 +59,7 @@
 	<target name="lexer">
 		<flex flexfile="${home}/src/main/java/org/napile/playJava4idea/template/base/parser/lexer/_PlayBaseTemplateLexer.flex" destdir="${home}/src/main/java/org/napile/playJava4idea/template/base/parser/lexer/"/>
 	</target>
+	<target name="route-lexer">
+		<flex flexfile="${home}/src/main/java/org/napile/playJava4idea/route/psi/lexer/_PlayRouteLexer.flex" destdir="${home}/src/main/java/org/napile/playJava4idea/route/psi/lexer/"/>
+	</target>
 </project>

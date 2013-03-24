@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea.template.base.editor.highlight;
+package org.napile.playJava4idea.route;
 
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
-import com.intellij.openapi.editor.colors.TextAttributesKey;
+import com.intellij.lang.Language;
 
 /**
  * @author VISTALL
- * @since 20:28/18.03.13
+ * @since 21:45/23.03.13
  */
-public interface PlayBaseTemplateColors
+public class PlayRouteLanguage extends Language
 {
-	TextAttributesKey PLAY_TAG_START = TextAttributesKey.createTextAttributesKey("PLAY_TAG_START", DefaultLanguageHighlighterColors.MARKUP_TAG);
+	public static final Language INSTANCE = new PlayRouteLanguage();
+
+	protected PlayRouteLanguage()
+	{
+		super("PLAY-ROUTE");
+	}
 }

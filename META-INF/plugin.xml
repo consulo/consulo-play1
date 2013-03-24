@@ -28,18 +28,24 @@
 	<extensions defaultExtensionNs="com.intellij">
 		<facetType implementation="org.napile.playJava4idea.facet.PlayJavaFacetType" />
 
-		<codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.napile.playJava4idea.template.base.editor.PlayBaseTemplateLineMarkerProvider" />
-		<configurationType implementation="org.napile.playJava4idea.run.PlayJavaConfigurationType"/>
-		<colorSettingsPage implementation="org.napile.playJava4idea.template.base.editor.highlight.PlayBaseTemplateColorSettingsPage" />
-		<lang.substitutor language="HTML" implementationClass="org.napile.playJava4idea.template.base.PlayHtmlLanguageSubstitutor" />
-
+		<codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.napile.playJava4idea.editor.PlayBaseTemplateLineMarkerProvider" />
+		<colorSettingsPage implementation="org.napile.playJava4idea.editor.highlight.PlayJavaColorSettingsPage" />
 		<editorHighlighterProvider filetype="Play" implementationClass="org.napile.playJava4idea.template.base.editor.highlight.PlayBaseTemplateEditorHighlighterProvider" />
 		<braceMatcher filetype="Play" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateBraceMatcher" />
-		<fileTypeFactory implementation="org.napile.playJava4idea.template.base.PlayBaseTemplateFileTypeFactory" />
-		<fileTypeFactory implementation="org.napile.playJava4idea.conf.PlayJavaConfFileTypeFactory" />
-		<programRunner implementation="org.napile.playJava4idea.run.PlayJavaGenericDebuggerRunner" />
+		<!--Play Base Template Lang-->
+		<lang.substitutor language="HTML" implementationClass="org.napile.playJava4idea.template.base.PlayHtmlLanguageSubstitutor" />
 		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateParserDefinition" />
 		<lang.commenter language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateCommenter" />
+
+		<lang.parserDefinition language="PLAY-ROUTE" implementationClass="org.napile.playJava4idea.route.PlayRouteParserDefinition" />
+		<lang.syntaxHighlighterFactory key="PLAY-ROUTE" implementationClass="org.napile.playJava4idea.route.editor.highlight.PlayRouteSyntaxHighlighterFactory" />
+		<!--File factories-->
 		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory" />
+		<fileTypeFactory implementation="org.napile.playJava4idea.template.base.PlayBaseTemplateFileTypeFactory" />
+		<fileTypeFactory implementation="org.napile.playJava4idea.conf.PlayJavaConfFileTypeFactory" />
+		<fileTypeFactory implementation="org.napile.playJava4idea.route.PlayRouteFileTypeFactory" />
+		<!--Runners-->
+		<programRunner implementation="org.napile.playJava4idea.run.PlayJavaGenericDebuggerRunner" />
+		<configurationType implementation="org.napile.playJava4idea.run.PlayJavaConfigurationType"/>
 	</extensions>
 </idea-plugin>

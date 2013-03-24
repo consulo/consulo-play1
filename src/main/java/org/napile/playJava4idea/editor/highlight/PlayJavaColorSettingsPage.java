@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea.template.base.editor.highlight;
+package org.napile.playJava4idea.editor.highlight;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +24,7 @@ import javax.swing.Icon;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
+import com.intellij.openapi.fileTypes.PlainSyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
 import com.intellij.openapi.options.colors.ColorDescriptor;
@@ -33,7 +34,7 @@ import com.intellij.openapi.options.colors.ColorSettingsPage;
  * @author VISTALL
  * @since 20:26/18.03.13
  */
-public class PlayBaseTemplateColorSettingsPage implements ColorSettingsPage
+public class PlayJavaColorSettingsPage implements ColorSettingsPage
 {
 	@Nullable
 	@Override
@@ -46,14 +47,15 @@ public class PlayBaseTemplateColorSettingsPage implements ColorSettingsPage
 	@Override
 	public SyntaxHighlighter getHighlighter()
 	{
-		return new PlayBaseTemplateSyntaxHighlighter();
+		return new PlainSyntaxHighlighter();
 	}
 
 	@NotNull
 	@Override
 	public String getDemoText()
 	{
-		return "<tag>#</tag>{extends 'User/main.html'/}\n" +
+		return "TEMPLATE\n" +
+				"<tag>#</tag>{extends 'User/main.html'/}\n" +
 				"<tag>#</tag>{set title:'Libraries profile - napile' /}\n" +
 				"\n" +
 				"<html>\n" +
@@ -66,7 +68,9 @@ public class PlayBaseTemplateColorSettingsPage implements ColorSettingsPage
 				"<tag>@@</tag>{AbsoluteAction}\n" +
 				"<tag>%</tag>{ this is script }<tag>%</tag>\n" +
 				"<tag>#</tag>{tag /}\n" +
-				"<tag>&</tag>{'message', arg}";
+				"<tag>&</tag>{'message', arg}\n\n" +
+				"ROUTE\n" +
+				"<methodType>GET</methodType>     /                                       Main.index";
 	}
 
 	@Nullable
@@ -74,7 +78,8 @@ public class PlayBaseTemplateColorSettingsPage implements ColorSettingsPage
 	public Map<String, TextAttributesKey> getAdditionalHighlightingTagToDescriptorMap()
 	{
 		Map<String, TextAttributesKey> map = new HashMap<String, TextAttributesKey>();
-		map.put("tag", PlayBaseTemplateColors.PLAY_TAG_START);
+		map.put("tag", PlayJavaColors.PLAY_TAG_START);
+		map.put("methodType", PlayJavaColors.ROUTE_METHOD);
 		return map;
 	}
 
@@ -82,8 +87,10 @@ public class PlayBaseTemplateColorSettingsPage implements ColorSettingsPage
 	@Override
 	public AttributesDescriptor[] getAttributeDescriptors()
 	{
-		return new AttributesDescriptor[]{
-				new AttributesDescriptor("Play tag start", PlayBaseTemplateColors.PLAY_TAG_START)
+		return new AttributesDescriptor[]
+		{
+				new AttributesDescriptor("Play tag start", PlayJavaColors.PLAY_TAG_START),
+				new AttributesDescriptor("Route method", PlayJavaColors.ROUTE_METHOD)
 		};
 	}
 

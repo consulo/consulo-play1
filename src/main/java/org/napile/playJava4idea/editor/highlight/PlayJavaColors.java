@@ -14,29 +14,18 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea;
+package org.napile.playJava4idea.editor.highlight;
 
-import java.util.regex.Pattern;
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
+import com.intellij.openapi.editor.colors.TextAttributesKey;
 
 /**
  * @author VISTALL
- * @since 16:35/17.03.13
+ * @since 20:28/18.03.13
  */
-public interface PlayJavaConstants
+public interface PlayJavaColors
 {
-	Pattern JAR_PATTERN = Pattern.compile("play-1.\\d(.\\d)?.jar");
+	TextAttributesKey PLAY_TAG_START = TextAttributesKey.createTextAttributesKey("PLAY_TAG_START", DefaultLanguageHighlighterColors.MARKUP_TAG);
 
-	String PLAY_PLAY = "play.Play";
-
-	String PLAY_MVC_CONTROLLER = "play.mvc.Controller";
-
-	String CONF = "conf";
-
-	String ROUTES = "routes";
-
-	String APPLICATION_CONF = "application.conf";
-
-	String CONF__APPLICATION_CONF = CONF + "/" + APPLICATION_CONF;
-
-	String JPDA_PORT = "jpda.port";
+	TextAttributesKey ROUTE_METHOD = TextAttributesKey.createTextAttributesKey("ROUTE_METHOD", DefaultLanguageHighlighterColors.KEYWORD);
 }

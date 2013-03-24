@@ -14,29 +14,30 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea;
+package org.napile.playJava4idea.route.psi;
 
-import java.util.regex.Pattern;
+import org.jetbrains.annotations.NotNull;
+import org.napile.playJava4idea.route.PlayRouteFileType;
+import org.napile.playJava4idea.route.PlayRouteLanguage;
+import com.intellij.extapi.psi.PsiFileBase;
+import com.intellij.openapi.fileTypes.FileType;
+import com.intellij.psi.FileViewProvider;
 
 /**
  * @author VISTALL
- * @since 16:35/17.03.13
+ * @since 22:08/23.03.13
  */
-public interface PlayJavaConstants
+public class PlayRouteFile extends PsiFileBase
 {
-	Pattern JAR_PATTERN = Pattern.compile("play-1.\\d(.\\d)?.jar");
+	public PlayRouteFile(@NotNull FileViewProvider viewProvider)
+	{
+		super(viewProvider, PlayRouteLanguage.INSTANCE);
+	}
 
-	String PLAY_PLAY = "play.Play";
-
-	String PLAY_MVC_CONTROLLER = "play.mvc.Controller";
-
-	String CONF = "conf";
-
-	String ROUTES = "routes";
-
-	String APPLICATION_CONF = "application.conf";
-
-	String CONF__APPLICATION_CONF = CONF + "/" + APPLICATION_CONF;
-
-	String JPDA_PORT = "jpda.port";
+	@NotNull
+	@Override
+	public FileType getFileType()
+	{
+		return PlayRouteFileType.INSTANCE;
+	}
 }

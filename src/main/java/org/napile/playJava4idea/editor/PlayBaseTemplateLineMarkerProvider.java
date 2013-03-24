@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea.template.base.editor;
+package org.napile.playJava4idea.editor;
 
 import java.util.Collection;
 

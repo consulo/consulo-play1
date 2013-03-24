@@ -14,29 +14,21 @@
  * limitations under the License.
  */
 
-package org.napile.playJava4idea;
+package org.napile.playJava4idea.route;
 
-import java.util.regex.Pattern;
+import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.fileTypes.FileTypeConsumer;
+import com.intellij.openapi.fileTypes.FileTypeFactory;
 
 /**
  * @author VISTALL
- * @since 16:35/17.03.13
+ * @since 21:49/23.03.13
  */
-public interface PlayJavaConstants
+public class PlayRouteFileTypeFactory extends FileTypeFactory
 {
-	Pattern JAR_PATTERN = Pattern.compile("play-1.\\d(.\\d)?.jar");
-
-	String PLAY_PLAY = "play.Play";
-
-	String PLAY_MVC_CONTROLLER = "play.mvc.Controller";
-
-	String CONF = "conf";
-
-	String ROUTES = "routes";
-
-	String APPLICATION_CONF = "application.conf";
-
-	String CONF__APPLICATION_CONF = CONF + "/" + APPLICATION_CONF;
-
-	String JPDA_PORT = "jpda.port";
+	@Override
+	public void createFileTypes(@NotNull FileTypeConsumer consumer)
+	{
+		consumer.consume(PlayRouteFileType.INSTANCE, "");
+	}
 }
