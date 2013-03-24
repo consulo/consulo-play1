@@ -17,21 +17,21 @@
 package org.napile.playJava4idea.route;
 
 import org.jetbrains.annotations.NotNull;
+import org.napile.playJava4idea.route.psi.PlayRouteActionElement;
 import org.napile.playJava4idea.route.psi.PlayRouteElementTokenSets;
 import org.napile.playJava4idea.route.psi.PlayRouteElementTypes;
 import org.napile.playJava4idea.route.psi.PlayRouteFile;
+import org.napile.playJava4idea.route.psi.PlayRouteNodes;
 import org.napile.playJava4idea.route.psi.lexer.PlayRouteLexer;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
-import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiParser;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 
@@ -51,21 +51,7 @@ public class PlayRouteParserDefinition implements ParserDefinition
 	@Override
 	public PsiParser createParser(Project project)
 	{
-		return new PsiParser()
-		{
-			@NotNull
-			@Override
-			public ASTNode parse(IElementType root, PsiBuilder builder)
-			{
-				PsiBuilder.Marker marker = builder.mark();
-				while(!builder.eof())
-				{
-					builder.advanceLexer();
-				}
-				marker.done(root);
-				return builder.getTreeBuilt();
-			}
-		};
+		return new PlayRouteParser();
 	}
 
 	@Override
@@ -99,6 +85,10 @@ public class PlayRouteParserDefinition implements ParserDefinition
 	@Override
 	public PsiElement createElement(ASTNode node)
 	{
+		if(node.getElementType() == PlayRouteNodes.ACTION_REF)
+		{
+			return new PlayRouteActionElement(node);
+		}
 		return new ASTWrapperPsiElement(node);
 	}
 
