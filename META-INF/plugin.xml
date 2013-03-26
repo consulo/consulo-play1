@@ -36,6 +36,8 @@
 		<lang.substitutor language="HTML" implementationClass="org.napile.playJava4idea.template.base.PlayHtmlLanguageSubstitutor" />
 		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateParserDefinition" />
 		<lang.commenter language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateCommenter" />
+		<lang.formatter language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.formatter.PlayBaseTemplateFormattingModelBuilder" />
+		<lang.whiteSpaceFormattingStrategy language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.formatter.PlayBaseTemplateWhiteSpaceFormattingStrategy" />
 
 		<lang.parserDefinition language="PLAY-ROUTE" implementationClass="org.napile.playJava4idea.route.PlayRouteParserDefinition" />
 		<lang.syntaxHighlighterFactory key="PLAY-ROUTE" implementationClass="org.napile.playJava4idea.route.editor.highlight.PlayRouteSyntaxHighlighterFactory" />
