@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateSimplyTokens;
 import com.intellij.formatting.Alignment;
 import com.intellij.formatting.Wrap;
 import com.intellij.formatting.templateLanguages.DataLanguageBlockWrapper;
@@ -43,6 +44,6 @@ public class PlayBaseTemplateBlock extends TemplateLanguageBlock
 	@Override
 	protected IElementType getTemplateTextElementType()
 	{
-		return null;
+		return PlayBaseTemplateSimplyTokens.TEMPLATE_TEXT;
 	}
 }
