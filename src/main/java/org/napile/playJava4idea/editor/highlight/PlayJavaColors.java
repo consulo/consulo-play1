@@ -25,7 +25,9 @@ import com.intellij.openapi.editor.colors.TextAttributesKey;
  */
 public interface PlayJavaColors
 {
-	TextAttributesKey PLAY_TAG_START = TextAttributesKey.createTextAttributesKey("PLAY_TAG_START", DefaultLanguageHighlighterColors.MARKUP_TAG);
+	TextAttributesKey TEMPLATE_ELEMENTS = TextAttributesKey.createTextAttributesKey("PLAY_TEMPLATE_ELEMENTS", DefaultLanguageHighlighterColors.MARKUP_TAG);
 
-	TextAttributesKey ROUTE_METHOD = TextAttributesKey.createTextAttributesKey("ROUTE_METHOD", DefaultLanguageHighlighterColors.KEYWORD);
+	TextAttributesKey PLAY_TAG_NAME = TextAttributesKey.createTextAttributesKey("PLAY_TAG_NAME", DefaultLanguageHighlighterColors.KEYWORD);
+
+	TextAttributesKey ROUTE_METHOD = TextAttributesKey.createTextAttributesKey("PLAY_ROUTE_METHOD", DefaultLanguageHighlighterColors.KEYWORD);
 }

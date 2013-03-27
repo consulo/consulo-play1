@@ -29,6 +29,7 @@ public interface PlayBaseTemplateSimplyTokens extends TokenType
 
 	PlayBaseTemplatePrattTokenType LBRACE = new PlayBaseTemplatePrattTokenType("{");
 	PlayBaseTemplatePrattTokenType RBRACE = new PlayBaseTemplatePrattTokenType("}");
+	PlayBaseTemplatePrattTokenType COLON = new PlayBaseTemplatePrattTokenType(":");
 	PlayBaseTemplatePrattTokenType COMMA = new PlayBaseTemplatePrattTokenType(",");
 
 	PlayBaseTemplatePrattTokenType DIV = new PlayBaseTemplatePrattTokenType("/");

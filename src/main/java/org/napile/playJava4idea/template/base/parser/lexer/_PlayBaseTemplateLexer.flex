@@ -23,6 +23,7 @@ LineTerminator = \r|\n|\r\n
 
 "{" {return PlayBaseTemplateTokens.LBRACE;}
 "}" {return PlayBaseTemplateTokens.RBRACE;}
+":" {return PlayBaseTemplateTokens.COLON;}
 "," {return PlayBaseTemplateTokens.COMMA;}
 "/" {return PlayBaseTemplateTokens.DIV;}
 
@@ -36,6 +37,6 @@ LineTerminator = \r|\n|\r\n
 
 '([^'\\]|\\.)*' { return PlayBaseTemplateTokens.STRING; }
 
-{LineTerminator} | [ \t\f] {return PlayBaseTemplateTokens.WHITE_SPACE;}
+{LineTerminator} {return PlayBaseTemplateTokens.WHITE_SPACE;}
 
 . {return PlayBaseTemplateTokens.TEMPLATE_TEXT;}

@@ -31,6 +31,9 @@ public interface PlayBaseTemplateTokens extends PlayBaseTemplateSimplyTokens
 {
 	IElementType OUTER_ELEMENT_TYPE = new IElementType("OUTER_ELEMENT_TYPE", PlayBaseTemplateLanguage.INSTANCE);
 
+	@Deprecated
+	IElementType GROOVY_EXPRESSION_OLD = new PlayBaseTemplateElementType("GROOVY_EXPRESSION_OLD");
+
 	TemplateDataElementType TEMPLATE_DATA = new TemplateDataElementType("TEMPLATE_DATA", PlayBaseTemplateLanguage.INSTANCE, TEMPLATE_TEXT, OUTER_ELEMENT_TYPE);
 
 	IFileElementType PLAY_BASE_TEMPLATE_FILE = new IFileElementType("PLAY_BASE_TEMPLATE_FILE", PlayBaseTemplateLanguage.INSTANCE);
@@ -40,10 +43,29 @@ public interface PlayBaseTemplateTokens extends PlayBaseTemplateSimplyTokens
 
 	PlayBaseTemplateElementType TAG_NAME = new PlayBaseTemplateElementType("TAG_NAME");
 
-	// ${ }
+	// open elements
+	// ${
 	PlayBaseTemplateElementType EXPRESSION_START = new PlayBaseTemplateElementType("EXPRESSION_START");
+	// #{
+	PlayBaseTemplateElementType TAG_START = new PlayBaseTemplateElementType("TAG_START");
+	// %{
+	PlayBaseTemplateElementType SCRIPT_START = new PlayBaseTemplateElementType("SCRIPT_START");
+	// @{
+	PlayBaseTemplateElementType ACTION_START = new PlayBaseTemplateElementType("ACTION_START");
+	// @@{
+	PlayBaseTemplateElementType ABSOLUTE_ACTION_START = new PlayBaseTemplateElementType("ABSOLUTE_ACTION_START");
+	// &{
+	PlayBaseTemplateElementType MESSAGE_START = new PlayBaseTemplateElementType("MESSAGE_START");
+	// *{
+	PlayBaseTemplateElementType COMMENT_START = new PlayBaseTemplateElementType("COMMENT_START");
 
-
-
-	PlayBaseTemplateElementType EXPRESSION_END = new PlayBaseTemplateElementType("EXPRESSION_END");
+	// close elements
+	// }%
+	PlayBaseTemplateElementType SCRIPT_END = new PlayBaseTemplateElementType("SCRIPT_END");
+	// }*
+	PlayBaseTemplateElementType COMMENT_END = new PlayBaseTemplateElementType("COMMENT_END");
+	// }
+	PlayBaseTemplateElementType CLOSE_BRACE = new PlayBaseTemplateElementType("CLOSE_BRACE");
+	// /}
+	PlayBaseTemplateElementType TAG_END = new PlayBaseTemplateElementType("TAG_END");
 }

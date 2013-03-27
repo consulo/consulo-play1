@@ -19,7 +19,6 @@ package org.napile.playJava4idea.template.base;
 import org.jetbrains.annotations.NotNull;
 import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateNodes;
 import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
-import org.napile.playJava4idea.template.base.parser.lexer.PlayBaseTemplatePrattTokenType;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiParser;
@@ -42,67 +41,57 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 		while(!builder.eof())
 		{
 			final IElementType tokenType = builder.getTokenType();
-			if(tokenType == SHARP)
+			if(tokenType == TAG_START)
 			{
-				advanceTag(builder, TAG);
+				advanceTag(builder);
 			}
-			else if(tokenType == PERC)
+			else if(tokenType == EXPRESSION_START)
 			{
-				advanceScript(builder, SCRIPT);
+				advanceSimple(builder, CLOSE_BRACE, EXPRESSION);
 			}
-			else if(tokenType == DOLLAR)
+			else if(tokenType == ACTION_START)
 			{
-				advanceSimple(builder, EXPRESSION);
+				advanceSimple(builder, CLOSE_BRACE, ACTION);
 			}
-			else if(tokenType == AT)
+			else if(tokenType == ABSOLUTE_ACTION_START)
 			{
-				advanceSimple(builder, ACTION);
+				advanceSimple(builder, CLOSE_BRACE, ABSOLUTE_ACTION);
 			}
-			else if(tokenType == ATAT)
+			else if(tokenType == MESSAGE_START)
 			{
-				advanceSimple(builder, ABSOLUTE_ACTION);
+				advanceSimple(builder, CLOSE_BRACE, MESSAGE);
 			}
-			else if(tokenType == AND)
+			else if(tokenType == SCRIPT_START)
 			{
-				advanceSimple(builder, MESSAGE);
+				advanceSimple(builder, SCRIPT_END, SCRIPT);
+			}
+			else if(tokenType == COMMENT_START)
+			{
+				builder.advanceLexer();
+
+				skipUntil(builder, TokenSet.create(COMMENT_END));
 			}
 			else
+			{
 				builder.advanceLexer();
+			}
 		}
 		marker.done(root);
 		return builder.getTreeBuilt();
 	}
 
-	private void advanceSimple(PsiBuilder builder, IElementType token)
+
+	private void advanceTag(PsiBuilder builder)
 	{
 		PsiBuilder.Marker m = builder.mark();
-		builder.advanceLexer(); // start symbol
-		builder.advanceLexer(); // {
+		builder.advanceLexer(); // #{
 
-		skipUntil(builder, TokenSet.create(PlayBaseTemplateTokens.RBRACE));
-
-		if(builder.getTokenType() == RBRACE)
-		{
-			builder.advanceLexer(); // }
-		}
-		else
-		{
-			builder.error(RBRACE.getExpectedText(null));
-		}
-		m.done(token);
-	}
-
-	private void advanceTag(PsiBuilder builder, IElementType done)
-	{
-		PsiBuilder.Marker m = builder.mark();
-		builder.advanceLexer(); // start symbol
-		builder.advanceLexer(); // {
-
+		// close tag
 		if(builder.getTokenType() == DIV)
 		{
 			builder.advanceLexer();
 
-			if(builder.getTokenType() == TEMPLATE_TEXT)
+			if(builder.getTokenType() == TAG_NAME)
 			{
 				builder.advanceLexer();
 			}
@@ -111,24 +100,47 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 				builder.error("Expected tag name");
 			}
 
-			expectOrError(builder, RBRACE);
+			expectOrError(builder, CLOSE_BRACE);
 		}
 		else
 		{
-			skipUntil(builder, TokenSet.create(DIV, RBRACE));
-
-			if(builder.getTokenType() == DIV)
+			if(builder.getTokenType() == TAG_NAME)
 			{
 				builder.advanceLexer();
 			}
+			else
+			{
+				builder.error("Expected tag name");
+			}
 
-			expectOrError(builder, RBRACE);
+			skipUntil(builder, TokenSet.create(CLOSE_BRACE, TAG_END));
+
+			if(builder.getTokenType() != CLOSE_BRACE && builder.getTokenType() != TAG_END)
+			{
+				builder.error("} expected. Found: " + builder.getTokenType());
+			}
+			else
+			{
+				builder.advanceLexer();
+			}
 		}
 
-		m.done(done);
+		m.done(TAG);
 	}
 
-	private static boolean expectOrError(PsiBuilder builder, PlayBaseTemplatePrattTokenType node)
+	private void advanceSimple(PsiBuilder builder, IElementType close, IElementType node)
+	{
+		PsiBuilder.Marker expressionMarker = builder.mark();
+		builder.advanceLexer();
+
+		skipUntil(builder, TokenSet.create(close));
+
+		expectOrError(builder, close);
+
+		expressionMarker.done(node);
+	}
+
+	private static boolean expectOrError(PsiBuilder builder, IElementType node)
 	{
 		if(builder.getTokenType() == node)
 		{
@@ -137,25 +149,9 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 		}
 		else
 		{
-			builder.error(node.getExpectedText(null));
+			builder.error("Expect " + node);
 			return false;
 		}
-	}
-
-	private void advanceScript(PsiBuilder builder, IElementType done)
-	{
-		PsiBuilder.Marker m = builder.mark();
-		builder.advanceLexer(); // start symbol
-		builder.advanceLexer(); // {
-
-		skipUntil(builder, TokenSet.create(RBRACE));
-
-		if(expectOrError(builder, RBRACE))
-		{
-			expectOrError(builder, PERC);
-		}
-
-		m.done(done);
 	}
 
 	private void skipUntil(PsiBuilder builder, TokenSet tokenSet)

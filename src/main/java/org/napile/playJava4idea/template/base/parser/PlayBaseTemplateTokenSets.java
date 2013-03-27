@@ -24,7 +24,7 @@ import com.intellij.psi.tree.TokenSet;
  */
 public interface PlayBaseTemplateTokenSets extends PlayBaseTemplateTokens
 {
-	TokenSet TAG_START_SET = TokenSet.create(DOLLAR, ASTERISK, PERC, SHARP, AND, AT, ATAT);
+	TokenSet TEMPLATE_ELEMENTS = TokenSet.create(EXPRESSION_START, SCRIPT_START, TAG_START, MESSAGE_START, ACTION_START, ABSOLUTE_ACTION_START, CLOSE_BRACE, TAG_END, SCRIPT_END);
 
 	TokenSet STRING_SET = TokenSet.create(STRING);
 

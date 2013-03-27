@@ -26,7 +26,6 @@ import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
 import org.napile.playJava4idea.template.base.parser.lexer.PlayBaseTemplateLexer;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
-import com.intellij.openapi.editor.XmlHighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
@@ -42,12 +41,11 @@ public class PlayBaseTemplateSyntaxHighlighter extends SyntaxHighlighterBase imp
 
 	static
 	{
-		safeMap(map, COMMENT, DefaultLanguageHighlighterColors.LINE_COMMENT);
+		safeMap(map, TokenSet.create(COMMENT, COMMENT_START, COMMENT_END), DefaultLanguageHighlighterColors.LINE_COMMENT);
 		safeMap(map, STRING, DefaultLanguageHighlighterColors.STRING);
 		safeMap(map, COMMA, DefaultLanguageHighlighterColors.COMMA);
-		safeMap(map, TokenSet.create(LBRACE, RBRACE), DefaultLanguageHighlighterColors.BRACES);
-		safeMap(map, PlayBaseTemplateTokenSets.TAG_START_SET, PlayJavaColors.PLAY_TAG_START);
-		safeMap(map, TAG_NAME, XmlHighlighterColors.HTML_TAG_NAME);
+		safeMap(map, PlayBaseTemplateTokenSets.TEMPLATE_ELEMENTS, PlayJavaColors.TEMPLATE_ELEMENTS);
+		safeMap(map, TAG_NAME, PlayJavaColors.PLAY_TAG_NAME);
 	}
 
 	@NotNull

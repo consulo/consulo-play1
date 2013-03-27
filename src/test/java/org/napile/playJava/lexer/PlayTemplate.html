@@ -17,10 +17,20 @@ ${expression}
 
 %{ this is script }%
 
+%{
+
+class A {}
+{
+}
+}
+}%
+
 #{closedTag /}
 
-#{if}
+#{if myVarIsNull}
 
 #{/if}
 
-&{'message', arg}
+&{'message'}
+
+&{'message' + 1, arg}

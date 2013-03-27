@@ -67,7 +67,7 @@ public class PlayJavaColorSettingsPage implements ColorSettingsPage
 				"<tag>@</tag>{Action}\n" +
 				"<tag>@@</tag>{AbsoluteAction}\n" +
 				"<tag>%</tag>{ this is script }<tag>%</tag>\n" +
-				"<tag>#</tag>{tag /}\n" +
+				"<tag>#</tag>{<tagName>tag</tagName> /}\n" +
 				"<tag>&</tag>{'message', arg}\n\n" +
 				"ROUTE\n" +
 				"<methodType>GET</methodType>     /                                       Main.index";
@@ -78,7 +78,8 @@ public class PlayJavaColorSettingsPage implements ColorSettingsPage
 	public Map<String, TextAttributesKey> getAdditionalHighlightingTagToDescriptorMap()
 	{
 		Map<String, TextAttributesKey> map = new HashMap<String, TextAttributesKey>();
-		map.put("tag", PlayJavaColors.PLAY_TAG_START);
+		map.put("tag", PlayJavaColors.TEMPLATE_ELEMENTS);
+		map.put("tagName", PlayJavaColors.PLAY_TAG_NAME);
 		map.put("methodType", PlayJavaColors.ROUTE_METHOD);
 		return map;
 	}
@@ -89,7 +90,8 @@ public class PlayJavaColorSettingsPage implements ColorSettingsPage
 	{
 		return new AttributesDescriptor[]
 		{
-				new AttributesDescriptor("Play tag start", PlayJavaColors.PLAY_TAG_START),
+				new AttributesDescriptor("Play tag start", PlayJavaColors.TEMPLATE_ELEMENTS),
+				new AttributesDescriptor("Play tag name", PlayJavaColors.PLAY_TAG_NAME),
 				new AttributesDescriptor("Route method", PlayJavaColors.ROUTE_METHOD)
 		};
 	}

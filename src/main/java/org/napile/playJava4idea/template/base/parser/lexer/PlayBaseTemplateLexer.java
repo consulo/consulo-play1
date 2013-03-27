@@ -17,6 +17,8 @@
 package org.napile.playJava4idea.template.base.parser.lexer;
 
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.jetbrains.annotations.Nullable;
 import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokenSets;
@@ -33,13 +35,27 @@ import com.intellij.psi.tree.TokenSet;
  */
 public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTemplateTokens, PlayBaseTemplateTokenSets
 {
+	private static final Map<IElementType, IElementType> OPEN_MAPPING = new HashMap<IElementType, IElementType>();
+	static
+	{
+		OPEN_MAPPING.put(DOLLAR, EXPRESSION_START);
+		OPEN_MAPPING.put(PERC, SCRIPT_START);
+		OPEN_MAPPING.put(AND, MESSAGE_START);
+		OPEN_MAPPING.put(AT, ACTION_START);
+		OPEN_MAPPING.put(ATAT, ABSOLUTE_ACTION_START);
+		OPEN_MAPPING.put(SHARP, TAG_START);
+		OPEN_MAPPING.put(ASTERISK, COMMENT_START);
+	}
+
+	private static final TokenSet OPEN_ELEMENT_SET = TokenSet.create(OPEN_MAPPING.keySet().toArray(new IElementType[OPEN_MAPPING.size()]));
+
 	public PlayBaseTemplateLexer()
 	{
 		super(new FlexAdapter(new _PlayBaseTemplateLexer((Reader) null)));
 	}
 
 	@Nullable
-	protected IElementType mergeTokens(Lexer baseLexer, TokenSet until, IElementType intoType)
+	protected IElementType mergeTokensUtil(Lexer baseLexer, TokenSet until, IElementType intoType)
 	{
 		if(skipTokens(baseLexer, until))
 		{
@@ -63,129 +79,55 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 		}
 	}
 
-	protected void mergeWordsUntil(Lexer baseLexer, TokenSet until)
+	private void skipSpaces(Lexer baseLexer)
 	{
 		while(true)
 		{
-			if(baseLexer.getTokenType() == null || until.contains(baseLexer.getTokenType()))
-			{
-				break;
-			}
-
-			else if(baseLexer.getTokenType() == TEMPLATE_TEXT)
-			{
-				int last = baseLexer.getTokenEnd();
-				while(true)
-				{
-					baseLexer.advance();
-
-					if(baseLexer.getTokenType() != TEMPLATE_TEXT)
-					{
-						break;
-					}
-					else
-					{
-						last = baseLexer.getTokenEnd();
-					}
-				}
-
-				addToken(last, TEMPLATE_TEXT);
-			}
-			else
+			if(baseLexer.getTokenType() == WHITE_SPACE)
 			{
 				advanceLexer(baseLexer);
 			}
-		}
-	}
-
-	private boolean wantLeftBrace(Lexer baseLexer, IElementType tokenType)
-	{
-		int end = baseLexer.getTokenEnd();
-		baseLexer.advance();
-
-		if(baseLexer.getTokenType() == LBRACE)
-		{
-			addToken(end, tokenType);
-
-			advanceLexer(baseLexer);
-
-			return true;
-		}
-		else
-		{
-			addToken(end, TEMPLATE_TEXT);
-			return false;
+			else
+			{
+				break;
+			}
 		}
 	}
 
 	@Override
 	protected void lookAhead(Lexer baseLexer)
 	{
-		mergeTokens(baseLexer, TAG_START_SET, TEMPLATE_TEXT);
+		mergeTokensUtil(baseLexer, OPEN_ELEMENT_SET, TEMPLATE_TEXT);
 
-		final IElementType tokenType = baseLexer.getTokenType();
-		if(tokenType == ASTERISK)
+		final IElementType startElementWithBrace = OPEN_MAPPING.get(baseLexer.getTokenType());
+		if(startElementWithBrace != null)
 		{
-			advanceComment(baseLexer);
-		}
-		else if(tokenType == SHARP)
-		{
-			if(wantLeftBrace(baseLexer, tokenType))
+			baseLexer.advance();   // advance first element
+
+			if(baseLexer.getTokenType() == LBRACE)  // this is start element
 			{
-				if(baseLexer.getTokenType() == DIV)
+				advanceAs(baseLexer, startElementWithBrace);
+
+				if(startElementWithBrace == TAG_START)
 				{
-					advanceLexer(baseLexer);
-
-					mergeWordsUntil(baseLexer, TokenSet.create(RBRACE));
-
-					if(baseLexer.getTokenType() == RBRACE)
-					{
-						advanceLexer(baseLexer);
-					}
+					processTag(baseLexer);
 				}
-				else
+				else if(startElementWithBrace == COMMENT_START)
 				{
-					mergeWordsUntil(baseLexer, TokenSet.create(DIV, RBRACE));
-
-					if(baseLexer.getTokenType() == DIV)
-					{
-						advanceLexer(baseLexer);
-					}
-
-					if(baseLexer.getTokenType() == RBRACE)
-					{
-						advanceLexer(baseLexer);
-					}
+					processComment(baseLexer);
+				}
+				else if(startElementWithBrace == EXPRESSION_START || startElementWithBrace == ACTION_START || startElementWithBrace == ABSOLUTE_ACTION_START || startElementWithBrace == MESSAGE_START)
+				{
+					processSimple(baseLexer);
+				}
+				else if(startElementWithBrace == SCRIPT_START)
+				{
+					processScript(baseLexer);
 				}
 			}
-		}
-		else if(tokenType == PERC)
-		{
-			if(wantLeftBrace(baseLexer, tokenType))
+			else
 			{
-				mergeWordsUntil(baseLexer, TokenSet.create(RBRACE));
-
-				if(baseLexer.getTokenType() == RBRACE)
-				{
-					advanceLexer(baseLexer);
-				}
-
-				if(baseLexer.getTokenType() == PERC)
-				{
-					advanceLexer(baseLexer);
-				}
-			}
-		}
-		else if(tokenType == DOLLAR || tokenType == AT || tokenType == ATAT || tokenType == AND)
-		{
-			if(wantLeftBrace(baseLexer, tokenType))
-			{
-				mergeWordsUntil(baseLexer, TokenSet.create(RBRACE));
-
-				if(baseLexer.getTokenType() == RBRACE)
-				{
-					advanceLexer(baseLexer);
-				}
+				addToken(TEMPLATE_TEXT);
 			}
 		}
 		else
@@ -194,40 +136,222 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 		}
 	}
 
-	private void advanceComment(Lexer baseLexer)
+	private void processScript(Lexer baseLexer)
 	{
-		int end = baseLexer.getTokenEnd();
-		baseLexer.advance();
-		if(baseLexer.getTokenType() == LBRACE)
+		boolean addTokenOnEnd = false;
+		while(true)
 		{
-			baseLexer.advance();
-
-			boolean w8End = false;
-			while(true)
+			if(baseLexer.getTokenType() == TEMPLATE_TEXT)
 			{
-				final IElementType tokenType = baseLexer.getTokenType();
-				if(tokenType == null)
-				{
-					break;
-				}
-
-				if(tokenType == RBRACE)
-				{
-					w8End = true;
-				}
+				baseLexer.advance();
+			}
+			else if(baseLexer.getTokenType() == RBRACE)
+			{
+				int tokenStart = baseLexer.getTokenStart();
 
 				baseLexer.advance();
-				if(w8End && baseLexer.getTokenType() == ASTERISK)
+
+				if(baseLexer.getTokenType() == PERC)
+				{
+					addTokenOnEnd = false;
+					addToken(tokenStart, GROOVY_EXPRESSION_OLD);
+
+					advanceAs(baseLexer, SCRIPT_END);
+
+					break;
+				}
+				else
+				{
+					baseLexer.advance();
+					addTokenOnEnd = true;
+				}
+			}
+			else
+			{
+				if(baseLexer.getTokenType() == null)
 				{
 					break;
 				}
+				else
+				{
+					baseLexer.advance();
+					addTokenOnEnd = true;
+				}
 			}
+		}
 
-			addToken(baseLexer.getTokenEnd(), COMMENT);
+		if(addTokenOnEnd)
+		{
+			addToken(GROOVY_EXPRESSION_OLD);
+		}
+	}
+
+	private void processSimple(Lexer baseLexer)
+	{
+		while(true)
+		{
+			if(baseLexer.getTokenType() == TEMPLATE_TEXT)
+			{
+				mergeTemplateText(baseLexer, GROOVY_EXPRESSION_OLD);
+			}
+			else if(baseLexer.getTokenType() == RBRACE)
+			{
+				advanceAs(baseLexer, CLOSE_BRACE);
+
+				break;
+			}
+			else
+			{
+				if(baseLexer.getTokenType() == null)
+				{
+					break;
+				}
+				else
+				{
+					advanceLexer(baseLexer);
+				}
+			}
+		}
+	}
+
+	private void processComment(Lexer baseLexer)
+	{
+		while(true)
+		{
+			if(baseLexer.getTokenType() == TEMPLATE_TEXT)
+			{
+				mergeTemplateText(baseLexer, COMMENT);
+			}
+			else if(baseLexer.getTokenType() == RBRACE)
+			{
+				baseLexer.advance();
+
+				if(baseLexer.getTokenType() == ASTERISK)
+				{
+					advanceAs(baseLexer, COMMENT_END);
+
+					break;
+				}
+				else
+				{
+					advanceAs(baseLexer, COMMENT);
+				}
+			}
+			else
+			{
+				if(baseLexer.getTokenType() == null)
+				{
+					break;
+				}
+				else
+				{
+					advanceAs(baseLexer, COMMENT);
+				}
+			}
+		}
+	}
+
+	private void processTag(Lexer baseLexer)
+	{
+		if(baseLexer.getTokenType() == DIV)
+		{
+			advanceLexer(baseLexer);
+
+			if(processTagName(baseLexer))
+			{
+				skipSpaces(baseLexer);
+
+				if(baseLexer.getTokenType() == RBRACE)
+				{
+					advanceAs(baseLexer, CLOSE_BRACE);
+				}
+			}
 		}
 		else
 		{
-			addToken(end, TEMPLATE_TEXT);
+			processTagName(baseLexer);
+
+			skipSpaces(baseLexer);
+
+			while(true)
+			{
+				if(baseLexer.getTokenType() == TEMPLATE_TEXT)
+				{
+					mergeTemplateText(baseLexer, GROOVY_EXPRESSION_OLD);
+				}
+				else if(baseLexer.getTokenType() == DIV)
+				{
+					baseLexer.advance();
+
+					int tokenStart = baseLexer.getTokenStart();
+
+					if(baseLexer.getTokenType() == RBRACE)
+					{
+						advanceAs(baseLexer, TAG_END);
+
+						break;
+					}
+					else
+					{
+						addToken(tokenStart, DIV);
+
+						advanceLexer(baseLexer);
+					}
+				}
+				else if(baseLexer.getTokenType() == RBRACE)
+				{
+					advanceAs(baseLexer, CLOSE_BRACE);
+
+					break;
+				}
+				else
+				{
+					if(baseLexer.getTokenType() == null)
+					{
+						break;
+					}
+					else
+					{
+						advanceLexer(baseLexer);
+					}
+				}
+			}
 		}
+	}
+
+	private boolean mergeTemplateText(Lexer lexer, IElementType to)
+	{
+		int token = -1;
+		while(true)
+		{
+			if(lexer.getTokenType() == TEMPLATE_TEXT)
+			{
+				token = lexer.getTokenEnd();
+
+				lexer.advance();
+			}
+			else
+			{
+
+				break;
+			}
+		}
+
+		if(token > 0)
+		{
+			addToken(token, to);
+		}
+		return token > 0;
+	}
+
+	private boolean processTagName(Lexer lexer)
+	{
+		skipSpaces(lexer);
+
+		boolean t = mergeTemplateText(lexer, TAG_NAME);
+
+		skipSpaces(lexer);
+
+		return t;
 	}
 }
