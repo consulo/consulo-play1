@@ -37,7 +37,19 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 	@Override
 	public ASTNode parse(IElementType root, PsiBuilder builder)
 	{
+		//builder.setDebugMode(true);
+
 		PsiBuilder.Marker marker = builder.mark();
+
+		parseInner(builder);
+
+		marker.done(root);
+
+		return builder.getTreeBuilt();
+	}
+
+	private void parseInner(PsiBuilder builder)
+	{
 		while(!builder.eof())
 		{
 			final IElementType tokenType = builder.getTokenType();
@@ -76,14 +88,11 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 				builder.advanceLexer();
 			}
 		}
-		marker.done(root);
-		return builder.getTreeBuilt();
 	}
-
 
 	private void advanceTag(PsiBuilder builder)
 	{
-		PsiBuilder.Marker m = builder.mark();
+		PsiBuilder.Marker marker = builder.mark();
 		builder.advanceLexer(); // #{
 
 		// close tag
@@ -115,7 +124,8 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 
 			skipUntil(builder, TokenSet.create(CLOSE_BRACE, TAG_END));
 
-			if(builder.getTokenType() != CLOSE_BRACE && builder.getTokenType() != TAG_END)
+			final IElementType tokenType = builder.getTokenType();
+			if(tokenType != CLOSE_BRACE && tokenType != TAG_END)
 			{
 				builder.error("} expected. Found: " + builder.getTokenType());
 			}
@@ -125,7 +135,7 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 			}
 		}
 
-		m.done(TAG);
+		marker.done(TAG);
 	}
 
 	private void advanceSimple(PsiBuilder builder, IElementType close, IElementType node)
