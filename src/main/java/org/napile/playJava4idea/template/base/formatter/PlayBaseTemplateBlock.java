@@ -21,12 +21,16 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateSimplyTokens;
+import org.napile.playJava4idea.template.base.psi.PlayBaseTemplateFile;
+import org.napile.playJava4idea.template.base.psi.PlayBaseTemplateTag;
 import com.intellij.formatting.Alignment;
+import com.intellij.formatting.Indent;
 import com.intellij.formatting.Wrap;
 import com.intellij.formatting.templateLanguages.DataLanguageBlockWrapper;
 import com.intellij.formatting.templateLanguages.TemplateLanguageBlock;
 import com.intellij.formatting.templateLanguages.TemplateLanguageBlockFactory;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.tree.IElementType;
 
@@ -39,6 +43,20 @@ public class PlayBaseTemplateBlock extends TemplateLanguageBlock
 	protected PlayBaseTemplateBlock(@NotNull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, @NotNull TemplateLanguageBlockFactory blockFactory, @NotNull CodeStyleSettings settings, @Nullable List<DataLanguageBlockWrapper> foreignChildren)
 	{
 		super(node, wrap, alignment, blockFactory, settings, foreignChildren);
+	}
+
+	@Override
+	public Indent getIndent()
+	{
+		final PsiElement psi = getNode().getPsi();
+		if(psi instanceof PlayBaseTemplateTag)
+		{
+			if(!(psi.getParent() instanceof PlayBaseTemplateFile))
+			{
+				return Indent.getNormalIndent();
+			}
+		}
+		return Indent.getNoneIndent();
 	}
 
 	@Override
