@@ -30,6 +30,7 @@ import com.intellij.openapi.editor.XmlHighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.tree.TokenSet;
 
 /**
  * @author VISTALL
@@ -41,15 +42,12 @@ public class PlayBaseTemplateSyntaxHighlighter extends SyntaxHighlighterBase imp
 
 	static
 	{
-		fillMap(map, DefaultLanguageHighlighterColors.LINE_COMMENT, COMMENT);
-		fillMap(map, DefaultLanguageHighlighterColors.STRING, STRING);
-
-		fillMap(map, DefaultLanguageHighlighterColors.COMMA, COMMA);
-		fillMap(map, DefaultLanguageHighlighterColors.BRACES, LBRACE, RBRACE);
-
-		SyntaxHighlighterBase.fillMap(map, PlayJavaColors.PLAY_TAG_START, PlayBaseTemplateTokenSets.TAG_START_SET.getTypes());
-
-		fillMap(map, XmlHighlighterColors.HTML_TAG_NAME, TAG_NAME);
+		safeMap(map, COMMENT, DefaultLanguageHighlighterColors.LINE_COMMENT);
+		safeMap(map, STRING, DefaultLanguageHighlighterColors.STRING);
+		safeMap(map, COMMA, DefaultLanguageHighlighterColors.COMMA);
+		safeMap(map, TokenSet.create(LBRACE, RBRACE), DefaultLanguageHighlighterColors.BRACES);
+		safeMap(map, PlayBaseTemplateTokenSets.TAG_START_SET, PlayJavaColors.PLAY_TAG_START);
+		safeMap(map, TAG_NAME, XmlHighlighterColors.HTML_TAG_NAME);
 	}
 
 	@NotNull
