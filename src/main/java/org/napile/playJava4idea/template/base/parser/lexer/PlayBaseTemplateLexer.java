@@ -26,6 +26,7 @@ import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.lexer.FlexAdapter;
 import com.intellij.lexer.Lexer;
 import com.intellij.lexer.LookAheadLexer;
+import com.intellij.lexer.MergingLexerAdapter;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
 
@@ -51,7 +52,7 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 
 	public PlayBaseTemplateLexer()
 	{
-		super(new FlexAdapter(new _PlayBaseTemplateLexer((Reader) null)));
+		super(new MergingLexerAdapter(new FlexAdapter(new _PlayBaseTemplateLexer((Reader) null)), TokenSet.create(TEMPLATE_TEXT, WHITE_SPACE)));
 	}
 
 	@Nullable
@@ -192,7 +193,7 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 		{
 			if(baseLexer.getTokenType() == TEMPLATE_TEXT)
 			{
-				mergeTemplateText(baseLexer, GROOVY_EXPRESSION_OLD);
+				remap(baseLexer, TEMPLATE_TEXT, GROOVY_EXPRESSION_OLD);
 			}
 			else if(baseLexer.getTokenType() == RBRACE)
 			{
@@ -220,7 +221,7 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 		{
 			if(baseLexer.getTokenType() == TEMPLATE_TEXT)
 			{
-				mergeTemplateText(baseLexer, COMMENT);
+				remap(baseLexer, TEMPLATE_TEXT, GROOVY_EXPRESSION_OLD);
 			}
 			else if(baseLexer.getTokenType() == RBRACE)
 			{
@@ -277,7 +278,7 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 			{
 				if(baseLexer.getTokenType() == TEMPLATE_TEXT)
 				{
-					mergeTemplateText(baseLexer, GROOVY_EXPRESSION_OLD);
+					remap(baseLexer, TEMPLATE_TEXT, GROOVY_EXPRESSION_OLD);
 				}
 				else if(baseLexer.getTokenType() == DIV)
 				{
@@ -319,38 +320,26 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 		}
 	}
 
-	private boolean mergeTemplateText(Lexer lexer, IElementType to)
+	private boolean remap(Lexer base, IElementType need, IElementType to)
 	{
-		int token = -1;
-		while(true)
+		if(base.getTokenType() == need)
 		{
-			if(lexer.getTokenType() == TEMPLATE_TEXT)
-			{
-				token = lexer.getTokenEnd();
-
-				lexer.advance();
-			}
-			else
-			{
-
-				break;
-			}
+			advanceAs(base, to);
+			return true;
 		}
-
-		if(token > 0)
+		else
 		{
-			addToken(token, to);
+			return false;
 		}
-		return token > 0;
 	}
 
-	private boolean processTagName(Lexer lexer)
+	private boolean processTagName(Lexer baseLexer)
 	{
-		skipSpaces(lexer);
+		skipSpaces(baseLexer);
 
-		boolean t = mergeTemplateText(lexer, TAG_NAME);
+		boolean t = remap(baseLexer, TEMPLATE_TEXT, TAG_NAME);
 
-		skipSpaces(lexer);
+		skipSpaces(baseLexer);
 
 		return t;
 	}

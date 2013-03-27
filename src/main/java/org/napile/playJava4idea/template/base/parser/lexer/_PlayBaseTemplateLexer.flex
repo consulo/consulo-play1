@@ -17,9 +17,10 @@ import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
 %eof{ return;
 %eof}
 
-LineTerminator = \r|\n|\r\n
+WHITE_SPACE = \ |\n|\t|\f|\r
 
 %%
+{WHITE_SPACE} {return PlayBaseTemplateTokens.WHITE_SPACE;}
 
 "{" {return PlayBaseTemplateTokens.LBRACE;}
 "}" {return PlayBaseTemplateTokens.RBRACE;}
@@ -36,7 +37,5 @@ LineTerminator = \r|\n|\r\n
 "@" {return PlayBaseTemplateTokens.AT;}
 
 '([^'\\]|\\.)*' { return PlayBaseTemplateTokens.STRING; }
-
-{LineTerminator} {return PlayBaseTemplateTokens.WHITE_SPACE;}
 
 . {return PlayBaseTemplateTokens.TEMPLATE_TEXT;}
