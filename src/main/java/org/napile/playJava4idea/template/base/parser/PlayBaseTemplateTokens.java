@@ -17,6 +17,7 @@
 package org.napile.playJava4idea.template.base.parser;
 
 import org.napile.playJava4idea.template.base.PlayBaseTemplateLanguage;
+import org.napile.playJava4idea.template.base.groovy.PlayBaseTemplateGroovyExpressionElementType;
 import org.napile.playJava4idea.template.base.groovy.file.PlayBaseTemplateGroovyElementType;
 import org.napile.playJava4idea.template.base.parser.lexer.PlayBaseTemplateElementType;
 import com.intellij.psi.templateLanguages.TemplateDataElementType;
@@ -30,11 +31,14 @@ import com.intellij.psi.tree.IFileElementType;
 public interface PlayBaseTemplateTokens extends PlayBaseTemplateSimplyTokens
 {
 	IElementType OUTER_ELEMENT_TYPE = new IElementType("OUTER_ELEMENT_TYPE", PlayBaseTemplateLanguage.INSTANCE);
+	IElementType OUTER_ELEMENT_TYPE2 = new IElementType("OUTER_ELEMENT_TYPE2", PlayBaseTemplateLanguage.INSTANCE);
 
 	@Deprecated
-	IElementType GROOVY_EXPRESSION_OLD = new PlayBaseTemplateElementType("GROOVY_EXPRESSION_OLD");
+	IElementType GROOVY_EXPRESSION_OLD = new PlayBaseTemplateGroovyExpressionElementType("GROOVY_EXPRESSION_OLD");
 
 	TemplateDataElementType TEMPLATE_DATA = new TemplateDataElementType("TEMPLATE_DATA", PlayBaseTemplateLanguage.INSTANCE, TEMPLATE_TEXT, OUTER_ELEMENT_TYPE);
+
+	TemplateDataElementType GROOVY_TEMPLATE_DATA = new TemplateDataElementType("GROOVY_TEMPLATE_DATA", PlayBaseTemplateLanguage.INSTANCE, GROOVY_EXPRESSION_OLD, OUTER_ELEMENT_TYPE2);
 
 	IFileElementType PLAY_BASE_TEMPLATE_FILE = new IFileElementType("PLAY_BASE_TEMPLATE_FILE", PlayBaseTemplateLanguage.INSTANCE);
 	IFileElementType PLAY_BASE_TEMPLATE_GROOVY_FILE = new PlayBaseTemplateGroovyElementType("PLAY_BASE_TEMPLATE_GROOVY_FILE");

@@ -18,6 +18,7 @@ package org.napile.playJava4idea.template.base.groovy;
 
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.plugins.groovy.GroovyFileType;
 import org.jetbrains.plugins.groovy.lang.lexer.GroovyLexer;
 import org.jetbrains.plugins.groovy.lang.parser.GroovyParser;
@@ -26,6 +27,7 @@ import com.intellij.lang.ASTNode;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilderFactory;
 import com.intellij.openapi.project.Project;
+import com.intellij.psi.impl.source.tree.LazyParseablePsiElement;
 import com.intellij.psi.tree.ILazyParseableElementType;
 
 /**
@@ -59,5 +61,12 @@ public class PlayBaseTemplateGroovyExpressionElementType extends ILazyParseableE
 		mark.done(GroovyParserDefinition.GROOVY_FILE);
 
 		return builder.getTreeBuilt().getFirstChildNode();
+	}
+
+	@Nullable
+	@Override
+	public ASTNode createNode(CharSequence text)
+	{
+		return new LazyParseablePsiElement(this, text);
 	}
 }

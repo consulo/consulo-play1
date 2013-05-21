@@ -17,7 +17,6 @@
 package org.napile.playJava4idea.template.base.groovy.file;
 
 import org.jetbrains.plugins.groovy.lang.psi.impl.GroovyFileImpl;
-import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.psi.FileViewProvider;
 
 /**
@@ -30,6 +29,6 @@ public class PlayBaseTemplateGroovyFileImpl extends GroovyFileImpl
 	{
 		super(viewProvider);
 
-		init(PlayBaseTemplateTokens.PLAY_BASE_TEMPLATE_GROOVY_FILE, PlayBaseTemplateTokens.PLAY_BASE_TEMPLATE_GROOVY_FILE);
+		//init(PlayBaseTemplateTokens.PLAY_BASE_TEMPLATE_GROOVY_FILE, PlayBaseTemplateTokens.PLAY_BASE_TEMPLATE_GROOVY_FILE);
 	}
 }

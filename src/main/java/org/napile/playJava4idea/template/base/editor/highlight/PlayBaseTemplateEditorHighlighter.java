@@ -18,8 +18,10 @@ package org.napile.playJava4idea.template.base.editor.highlight;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.plugins.groovy.highlighter.GroovySyntaxHighlighter;
 import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.lang.StdLanguages;
+import com.intellij.openapi.editor.JspHighlighterColors;
 import com.intellij.openapi.editor.colors.EditorColorsScheme;
 import com.intellij.openapi.editor.ex.util.LayerDescriptor;
 import com.intellij.openapi.editor.ex.util.LayeredLexerEditorHighlighter;
@@ -42,5 +44,10 @@ public class PlayBaseTemplateEditorHighlighter extends LayeredLexerEditorHighlig
 		SyntaxHighlighter htmlHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(StdLanguages.HTML, project, virtualFile);
 		LayerDescriptor htmlLayer = new LayerDescriptor(new TemplateDataHighlighterWrapper(htmlHighlighter), "\n");
 		registerLayer(PlayBaseTemplateTokens.TEMPLATE_TEXT, htmlLayer);
+
+		SyntaxHighlighter groovyHighlighter = new GroovySyntaxHighlighter();
+		LayerDescriptor groovyLayer = new LayerDescriptor(groovyHighlighter, "\n", JspHighlighterColors.JSP_SCRIPTING_BACKGROUND);
+
+		registerLayer(PlayBaseTemplateTokens.GROOVY_EXPRESSION_OLD, groovyLayer);
 	}
 }
