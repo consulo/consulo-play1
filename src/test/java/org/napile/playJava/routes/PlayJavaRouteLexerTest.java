@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.napile.playJava.routes;
+package org.consulo.playJava.routes;
 
-import org.napile.playJava4idea.route.psi.PlayRouteElementTypes;
-import org.napile.playJava4idea.route.psi.lexer.PlayRouteLexer;
+import org.consulo.play1.route.psi.PlayRouteElementTypes;
+import org.consulo.play1.route.psi.lexer.PlayRouteLexer;
 import com.intellij.psi.tree.IElementType;
 
 /**

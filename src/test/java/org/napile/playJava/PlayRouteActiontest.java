@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.napile.playJava;
+package org.consulo.playJava;
 
 /**
  * @author VISTALL

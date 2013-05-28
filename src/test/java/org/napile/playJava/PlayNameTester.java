@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.napile.playJava;
+package org.consulo.playJava;
 
-import org.napile.playJava4idea.PlayJavaConstants;
+import org.consulo.play1.PlayJavaConstants;
 
 /**
  * @author VISTALL

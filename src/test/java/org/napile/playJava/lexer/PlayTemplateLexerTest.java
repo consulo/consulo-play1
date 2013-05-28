@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.napile.playJava.lexer;
+package org.consulo.playJava.lexer;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.napile.playJava4idea.template.base.parser.lexer.PlayBaseTemplateLexer;
+import org.consulo.play1.template.base.parser.lexer.PlayBaseTemplateLexer;
 import com.intellij.psi.tree.IElementType;
 
 /**

@@ -15,39 +15,37 @@
   -->
 
 <idea-plugin version="2">
-	<id>org.napile.playJava4idea</id>
-	<name>Play 1.2.x</name>
+	<id>org.consulo.play1</id>
+	<name>Play 1.x.x</name>
 	<version>1.0</version>
-	<vendor email="vistall.valeriy@gmail.com" url="http://napile.org">Napile</vendor>
+	<vendor email="vistall.valeriy@gmail.com">Consulo.org</vendor>
 
 	<depends>org.intellij.groovy</depends>
 	<depends>com.intellij.properties</depends>
 
-	<idea-version since-build="129.000"/>
-
 	<extensions defaultExtensionNs="com.intellij">
-		<facetType implementation="org.napile.playJava4idea.facet.PlayJavaFacetType" />
-
-		<codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.napile.playJava4idea.editor.PlayBaseTemplateLineMarkerProvider" />
-		<colorSettingsPage implementation="org.napile.playJava4idea.editor.highlight.PlayJavaColorSettingsPage" />
-		<editorHighlighterProvider filetype="Play" implementationClass="org.napile.playJava4idea.template.base.editor.highlight.PlayBaseTemplateEditorHighlighterProvider" />
-		<braceMatcher filetype="Play" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateBraceMatcher" />
+		<moduleExtensionProvider key="play1" parent-key="java" implementationClass="org.consulo.play1.module.extension.Play1ModuleExtensionProvider"/>
+		<sdkType implementation="org.consulo.play1.sdk.Play1SdkType" />
+		<codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.consulo.play1.editor.PlayBaseTemplateLineMarkerProvider"/>
+		<colorSettingsPage implementation="org.consulo.play1.editor.highlight.PlayJavaColorSettingsPage"/>
+		<editorHighlighterProvider filetype="Play" implementationClass="org.consulo.play1.template.base.editor.highlight.PlayBaseTemplateEditorHighlighterProvider"/>
+		<braceMatcher filetype="Play" implementationClass="org.consulo.play1.template.base.PlayBaseTemplateBraceMatcher"/>
 		<!--Play Base Template Lang-->
-		<lang.substitutor language="HTML" implementationClass="org.napile.playJava4idea.template.base.PlayHtmlLanguageSubstitutor" />
-		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateParserDefinition" />
-		<lang.commenter language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.PlayBaseTemplateCommenter" />
-		<lang.formatter language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.formatter.PlayBaseTemplateFormattingModelBuilder" />
-		<lang.whiteSpaceFormattingStrategy language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.formatter.PlayBaseTemplateWhiteSpaceFormattingStrategy" />
+		<lang.substitutor language="HTML" implementationClass="org.consulo.play1.template.base.PlayHtmlLanguageSubstitutor"/>
+		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.PlayBaseTemplateParserDefinition"/>
+		<lang.commenter language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.PlayBaseTemplateCommenter"/>
+		<lang.formatter language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.formatter.PlayBaseTemplateFormattingModelBuilder"/>
+		<lang.whiteSpaceFormattingStrategy language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.formatter.PlayBaseTemplateWhiteSpaceFormattingStrategy"/>
 
-		<lang.parserDefinition language="PLAY-ROUTE" implementationClass="org.napile.playJava4idea.route.PlayRouteParserDefinition" />
-		<lang.syntaxHighlighterFactory key="PLAY-ROUTE" implementationClass="org.napile.playJava4idea.route.editor.highlight.PlayRouteSyntaxHighlighterFactory" />
+		<lang.parserDefinition language="PLAY-ROUTE" implementationClass="org.consulo.play1.route.PlayRouteParserDefinition"/>
+		<lang.syntaxHighlighterFactory key="PLAY-ROUTE" implementationClass="org.consulo.play1.route.editor.highlight.PlayRouteSyntaxHighlighterFactory"/>
 		<!--File factories-->
-		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="org.napile.playJava4idea.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory" />
-		<fileTypeFactory implementation="org.napile.playJava4idea.template.base.PlayBaseTemplateFileTypeFactory" />
-		<fileTypeFactory implementation="org.napile.playJava4idea.conf.PlayJavaConfFileTypeFactory" />
-		<fileTypeFactory implementation="org.napile.playJava4idea.route.PlayRouteFileTypeFactory" />
+		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory"/>
+		<fileTypeFactory implementation="org.consulo.play1.template.base.PlayBaseTemplateFileTypeFactory"/>
+		<fileTypeFactory implementation="org.consulo.play1.conf.PlayJavaConfFileTypeFactory"/>
+		<fileTypeFactory implementation="org.consulo.play1.route.PlayRouteFileTypeFactory"/>
 		<!--Runners-->
-		<programRunner implementation="org.napile.playJava4idea.run.PlayJavaGenericDebuggerRunner" />
-		<configurationType implementation="org.napile.playJava4idea.run.PlayJavaConfigurationType"/>
+		<programRunner implementation="org.consulo.play1.run.PlayJavaGenericDebuggerRunner"/>
+		<configurationType implementation="org.consulo.play1.run.PlayJavaConfigurationType"/>
 	</extensions>
 </idea-plugin>
