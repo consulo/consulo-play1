@@ -25,10 +25,10 @@ import org.consulo.play1.route.psi.lexer.PlayRouteLexer;
 import org.jetbrains.annotations.NotNull;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
+import com.intellij.lang.LanguageVersion;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.lang.PsiParser;
 import com.intellij.lexer.Lexer;
-import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
@@ -44,13 +44,13 @@ public class PlayRouteParserDefinition implements ParserDefinition
 {
 	@NotNull
 	@Override
-	public Lexer createLexer(Project project, Module module)
+	public Lexer createLexer(Project project, LanguageVersion languageVersion)
 	{
 		return new PlayRouteLexer();
 	}
 
 	@Override
-	public PsiParser createParser(Project project)
+	public PsiParser createParser(Project project, LanguageVersion languageVersion)
 	{
 		return new PlayRouteParser();
 	}

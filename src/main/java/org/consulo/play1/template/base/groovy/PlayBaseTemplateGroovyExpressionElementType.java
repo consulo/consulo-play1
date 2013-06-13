@@ -24,6 +24,7 @@ import org.jetbrains.plugins.groovy.lang.lexer.GroovyLexer;
 import org.jetbrains.plugins.groovy.lang.parser.GroovyParser;
 import org.jetbrains.plugins.groovy.lang.parser.GroovyParserDefinition;
 import com.intellij.lang.ASTNode;
+import com.intellij.lang.Language;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilderFactory;
 import com.intellij.openapi.project.Project;
@@ -45,7 +46,7 @@ public class PlayBaseTemplateGroovyExpressionElementType extends ILazyParseableE
 	public ASTNode parseContents(ASTNode chameleon)
 	{
 		Project project = chameleon.getTreeParent().getPsi().getProject();
-		PsiBuilder builder = PsiBuilderFactory.getInstance().createBuilder(project, chameleon, new GroovyLexer(), GroovyFileType.GROOVY_LANGUAGE, chameleon.getText());
+		PsiBuilder builder = PsiBuilderFactory.getInstance().createBuilder(project, chameleon, new GroovyLexer(), GroovyFileType.GROOVY_LANGUAGE, Language.UNKNOWN_VERSION, chameleon.getText());
 
 		PsiBuilder.Marker mark = builder.mark();
 		GroovyParser.parseExpression(builder);

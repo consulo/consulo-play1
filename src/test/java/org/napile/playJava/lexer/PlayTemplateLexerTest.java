@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.consulo.playJava.lexer;
+package org.napile.playJava.lexer;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;

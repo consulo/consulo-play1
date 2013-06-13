@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.consulo.playJava.routes;
+package org.napile.playJava.routes;
 
 import org.consulo.play1.route.psi.PlayRouteElementTypes;
 import org.consulo.play1.route.psi.lexer.PlayRouteLexer;

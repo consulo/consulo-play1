@@ -48,8 +48,8 @@ public class PlayBaseTemplateGroovyElementType extends IFileElementType
 		Project project = JavaPsiFacade.getInstance(parentElement.getProject()).getProject();
 
 		Language groovyLanguage = GroovyFileType.GROOVY_LANGUAGE;
-		PsiBuilder builder = PsiBuilderFactory.getInstance().createBuilder(project, chameleon, new GroovyLexer(), groovyLanguage, chameleon.getText());
+		PsiBuilder builder = PsiBuilderFactory.getInstance().createBuilder(project, chameleon, new GroovyLexer(), groovyLanguage, Language.UNKNOWN_VERSION, chameleon.getText());
 
-		return new GroovyParser().parse(this, builder).getFirstChildNode();
+		return new GroovyParser().parse(this, builder, Language.UNKNOWN_VERSION).getFirstChildNode();
 	}
 }

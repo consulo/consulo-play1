@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.consulo.playJava;
+package org.napile.playJava;
 
 import org.consulo.play1.PlayJavaConstants;
 
