@@ -22,13 +22,13 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import org.consulo.module.extension.MutableModuleExtensionWithSdk;
+import org.consulo.module.extension.MutableModuleInheritableNamedPointer;
 import org.consulo.module.extension.ui.ModuleExtensionWithSdkPanel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.roots.ModifiableRootModel;
-import com.intellij.openapi.util.Comparing;
 
 /**
  * @author VISTALL
@@ -46,10 +46,11 @@ public class Play1MutableModuleExtension extends Play1ModuleExtension implements
 		commit(moduleExtension);
 	}
 
+	@NotNull
 	@Override
-	public void setSdk(@Nullable Sdk sdk)
+	public MutableModuleInheritableNamedPointer<Sdk> getInheritableSdk()
 	{
-		mySdkName = sdk == null ? null : sdk.getName();
+		return (MutableModuleInheritableNamedPointer<Sdk>) super.getInheritableSdk();
 	}
 
 	@Nullable
@@ -70,7 +71,7 @@ public class Play1MutableModuleExtension extends Play1ModuleExtension implements
 	@Override
 	public boolean isModified()
 	{
-		return myIsEnabled != moduleExtension.isEnabled() || Comparing.equal(mySdkName, moduleExtension.getSdkName());
+		return isModifiedImpl(moduleExtension);
 	}
 
 	@Override
