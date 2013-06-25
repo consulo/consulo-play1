@@ -62,21 +62,21 @@ public class PlayBaseTemplateParserDefinition implements ParserDefinition
 
 	@NotNull
 	@Override
-	public TokenSet getWhitespaceTokens()
+	public TokenSet getWhitespaceTokens(LanguageVersion languageVersion)
 	{
 		return PlayBaseTemplateTokenSets.WHITESPACE_SET;
 	}
 
 	@NotNull
 	@Override
-	public TokenSet getCommentTokens()
+	public TokenSet getCommentTokens(LanguageVersion languageVersion)
 	{
 		return PlayBaseTemplateTokenSets.COMMENT_SET;
 	}
 
 	@NotNull
 	@Override
-	public TokenSet getStringLiteralElements()
+	public TokenSet getStringLiteralElements(LanguageVersion languageVersion)
 	{
 		return PlayBaseTemplateTokenSets.STRING_SET;
 	}

@@ -63,21 +63,21 @@ public class PlayRouteParserDefinition implements ParserDefinition
 
 	@NotNull
 	@Override
-	public TokenSet getWhitespaceTokens()
+	public TokenSet getWhitespaceTokens(LanguageVersion languageVersion)
 	{
 		return PlayRouteElementTokenSets.WHITESPACE_SET;
 	}
 
 	@NotNull
 	@Override
-	public TokenSet getCommentTokens()
+	public TokenSet getCommentTokens(LanguageVersion languageVersion)
 	{
 		return PlayRouteElementTokenSets.COMMENT_SET;
 	}
 
 	@NotNull
 	@Override
-	public TokenSet getStringLiteralElements()
+	public TokenSet getStringLiteralElements(LanguageVersion languageVersion)
 	{
 		return TokenSet.EMPTY;
 	}
