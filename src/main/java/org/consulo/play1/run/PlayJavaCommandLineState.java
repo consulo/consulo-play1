@@ -75,7 +75,7 @@ public class PlayJavaCommandLineState extends CommandLineState
 			builder.append("play");
 		}
 
-		commandLine.setWorkDirectory(module.getModuleFile().getParent().getPath());
+		commandLine.setWorkDirectory(module.getModuleDirPath());
 		commandLine.setExePath(builder.toString());
 		commandLine.addParameter("run");
 		return new OSProcessHandler(commandLine.createProcess());

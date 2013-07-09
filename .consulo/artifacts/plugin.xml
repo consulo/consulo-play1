@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact name="dist">
-    <output-path>$PROJECT_DIR$/out/artifacts/dist</output-path>
+  <artifact name="plugin">
+    <output-path>$PROJECT_DIR$/out/artifacts/plugin</output-path>
     <root id="root">
-      <element id="directory" name="play1">
+      <element id="directory" name="play">
         <element id="directory" name="lib">
-          <element id="archive" name="play1.jar">
+          <element id="zip-archive" name="play.jar">
             <element id="module-output" name="consulo-play" />
             <element id="directory" name="META-INF">
               <element id="dir-copy" path="$PROJECT_DIR$/META-INF" />

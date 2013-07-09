@@ -16,86 +16,112 @@
 
 package org.consulo.play1.editor;
 
-import java.util.Collection;
-
-import org.jetbrains.annotations.NotNull;
-import org.consulo.play1.PlayJavaUtil;
-import org.consulo.play1.PlayJavaIcons;
-import org.consulo.play1.template.base.psi.PlayBaseTemplateFile;
-import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo;
-import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider;
-import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder;
+import com.intellij.codeHighlighting.Pass;
+import com.intellij.codeInsight.daemon.GutterIconNavigationHandler;
+import com.intellij.codeInsight.daemon.LineMarkerInfo;
+import com.intellij.codeInsight.daemon.LineMarkerProvider;
+import com.intellij.openapi.editor.markup.GutterIconRenderer;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiIdentifier;
-import com.intellij.psi.PsiManager;
-import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiModifier;
+import com.intellij.psi.*;
+import com.intellij.util.ConstantFunction;
+import org.consulo.play1.PlayJavaIcons;
+import org.consulo.play1.PlayJavaUtil;
+import org.consulo.play1.template.base.psi.PlayBaseTemplateFile;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.awt.event.MouseEvent;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author VISTALL
  * @since 23:21/18.03.13
  */
-public class PlayBaseTemplateLineMarkerProvider extends RelatedItemLineMarkerProvider
+public class PlayBaseTemplateLineMarkerProvider implements LineMarkerProvider
 {
-	@Override
-	protected void collectNavigationMarkers(@NotNull PsiElement element, Collection<? super RelatedItemLineMarkerInfo> result)
-	{
-		if(element instanceof PsiIdentifier && element.getParent() instanceof PsiMethod)
-		{
-			PsiMethod method = (PsiMethod) element.getParent();
+  public static final GutterIconNavigationHandler<PsiElement> GUTTER_ICON_NAVIGATION_HANDLER = new GutterIconNavigationHandler<PsiElement>() {
+    @Override
+    public void navigate(MouseEvent mouseEvent, PsiElement psiElement) {
+      PlayBaseTemplateFile templateFile = findTemplateFile(psiElement);
+      if(templateFile != null) {
+        templateFile.navigate(true);
+      }
+    }
+  };
 
-			final PsiClass containingClass = method.getContainingClass();
+  @Nullable
+  @Override
+  public LineMarkerInfo getLineMarkerInfo(@NotNull PsiElement psiElement) {
+    return null;
+  }
 
-			if(PlayJavaUtil.isSuperController(containingClass) && method.hasModifierProperty(PsiModifier.STATIC) && method.hasModifierProperty(PsiModifier.PUBLIC))
-			{
-				assert containingClass != null;
+  @Override
+  public void collectSlowLineMarkers(@NotNull List<PsiElement> psiElements, @NotNull Collection<LineMarkerInfo> lineMarkerInfos) {
+    for (PsiElement element : psiElements) {
+      PlayBaseTemplateFile templateFile = findTemplateFile(element);
+      if(templateFile != null) {
+        LineMarkerInfo<PsiElement> lineMarkerInfo = new LineMarkerInfo<PsiElement>(element, element.getTextRange(), PlayJavaIcons.ICON_13x13, Pass.UPDATE_OVERRIDEN_MARKERS,
+            new ConstantFunction<PsiElement, String>("Navigate to template"), GUTTER_ICON_NAVIGATION_HANDLER, GutterIconRenderer.Alignment.LEFT);
 
-				String qName = StringUtil.notNullize(containingClass.getQualifiedName());
-				qName = qName.replace(".", "/");
+        lineMarkerInfos.add(lineMarkerInfo);
+      }
+    }
+  }
 
-				if(qName.startsWith("controllers"))
-				{
-					qName = qName.replace("controllers", "views");
-				}
+  private static PlayBaseTemplateFile findTemplateFile(PsiElement element) {
+    if(element instanceof PsiIdentifier && element.getParent() instanceof PsiMethod)
+    {
+      PsiMethod method = (PsiMethod) element.getParent();
 
-				final Module moduleForPsiElement = ModuleUtil.findModuleForPsiElement(element);
-				if(moduleForPsiElement == null)
-				{
-					return;
-				}
+      final PsiClass containingClass = method.getContainingClass();
 
-				ModuleRootManager rootManager = ModuleRootManager.getInstance(moduleForPsiElement);
-				PsiManager manager = PsiManager.getInstance(element.getProject());
-				for(VirtualFile file : rootManager.getSourceRoots())
-				{
-					VirtualFile virtualFile = file.findFileByRelativePath(qName);
-					if(virtualFile == null)
-					{
-						continue;
-					}
+      if(PlayJavaUtil.isSuperController(containingClass) && method.hasModifierProperty(PsiModifier.STATIC) && method.hasModifierProperty(PsiModifier.PUBLIC))
+      {
+        assert containingClass != null;
 
-					for(VirtualFile child : virtualFile.getChildren())
-					{
-						if(child.getNameWithoutExtension().equalsIgnoreCase(method.getName()))
-						{
-							PsiFile psiFile = manager.findFile(child);
-							if(psiFile instanceof PlayBaseTemplateFile)
-							{
-								NavigationGutterIconBuilder builder = NavigationGutterIconBuilder.create(PlayJavaIcons.ICON_16x16).setTargets(psiFile);
+        String qName = StringUtil.notNullize(containingClass.getQualifiedName());
+        qName = qName.replace(".", "/");
 
-								result.add(builder.createLineMarkerInfo(element));
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+        if(qName.startsWith("controllers"))
+        {
+          qName = qName.replace("controllers", "views");
+        }
+
+        final Module moduleForPsiElement = ModuleUtil.findModuleForPsiElement(element);
+        if(moduleForPsiElement == null)
+        {
+          return null;
+        }
+
+        ModuleRootManager rootManager = ModuleRootManager.getInstance(moduleForPsiElement);
+        PsiManager manager = PsiManager.getInstance(element.getProject());
+        for(VirtualFile file : rootManager.getSourceRoots())
+        {
+          VirtualFile virtualFile = file.findFileByRelativePath(qName);
+          if(virtualFile == null)
+          {
+            continue;
+          }
+
+          for(VirtualFile child : virtualFile.getChildren())
+          {
+            if(child.getNameWithoutExtension().equalsIgnoreCase(method.getName()))
+            {
+              PsiFile psiFile = manager.findFile(child);
+              if(psiFile instanceof PlayBaseTemplateFile)
+              {
+                return (PlayBaseTemplateFile) psiFile;
+              }
+            }
+          }
+        }
+      }
+    }
+    return null;
+  }
 }

@@ -46,19 +46,13 @@ public class PlayJavaUtil
 			return null;
 		}
 
-		VirtualFile moduleFile = module.getModuleFile();
-		if(moduleFile == null)
+		VirtualFile moduleDir = module.getModuleDir();
+		if(moduleDir == null)
 		{
 			return null;
 		}
 
-		moduleFile = moduleFile.getParent();
-		if(moduleFile == null)
-		{
-			return null;
-		}
-
-		final VirtualFile confVirtualFile = moduleFile.findFileByRelativePath(PlayJavaConstants.CONF__APPLICATION_CONF);
+		final VirtualFile confVirtualFile = moduleDir.findFileByRelativePath(PlayJavaConstants.CONF__APPLICATION_CONF);
 
 		if(confVirtualFile == null || confVirtualFile.getFileType() != PlayJavaConfFileType.INSTANCE)
 		{

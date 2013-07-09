@@ -1,8 +1,8 @@
-package org.napile.playJava4idea.route.psi.lexer;
+package org.consulo.play1.route.psi.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
-import org.napile.playJava4idea.route.psi.PlayRouteElementTypes;
+import org.consulo.play1.route.psi.PlayRouteElementTypes;
 %%
 
 %public

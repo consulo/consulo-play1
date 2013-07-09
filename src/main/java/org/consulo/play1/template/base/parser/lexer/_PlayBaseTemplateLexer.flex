@@ -1,9 +1,9 @@
-package org.napile.playJava4idea.template.base.parser.lexer;
+package org.consulo.play1.template.base.parser.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.util.containers.Stack;
-import org.napile.playJava4idea.template.base.parser.PlayBaseTemplateTokens;
+import org.consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 
 %%
 
