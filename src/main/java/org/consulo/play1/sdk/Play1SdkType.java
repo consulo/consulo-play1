@@ -16,23 +16,18 @@
 
 package org.consulo.play1.sdk;
 
-import java.io.File;
-
-import javax.swing.Icon;
-
+import com.intellij.ide.highlighter.JarArchiveFileType;
+import com.intellij.openapi.projectRoots.*;
+import com.intellij.openapi.roots.OrderRootType;
+import com.intellij.openapi.vfs.ArchiveFileSystem;
 import org.consulo.play1.PlayJavaConstants;
 import org.consulo.play1.PlayJavaIcons;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.intellij.openapi.projectRoots.AdditionalDataConfigurable;
-import com.intellij.openapi.projectRoots.Sdk;
-import com.intellij.openapi.projectRoots.SdkAdditionalData;
-import com.intellij.openapi.projectRoots.SdkModel;
-import com.intellij.openapi.projectRoots.SdkModificator;
-import com.intellij.openapi.projectRoots.SdkType;
-import com.intellij.openapi.roots.OrderRootType;
-import com.intellij.openapi.vfs.JarFileSystem;
+
+import javax.swing.*;
+import java.io.File;
 
 /**
  * @author VISTALL
@@ -70,7 +65,7 @@ public class Play1SdkType extends SdkType
 	public void setupSdkPaths(Sdk sdk)
 	{
 		final SdkModificator sdkModificator = sdk.getSdkModificator();
-		final JarFileSystem jfs = JarFileSystem.getInstance();
+		final ArchiveFileSystem jfs = JarArchiveFileType.INSTANCE.getFileSystem();
 
 		File file = new File(sdk.getHomePath(), "framework");
 		if(!file.exists())
@@ -89,7 +84,7 @@ public class Play1SdkType extends SdkType
 			final String name = child.getName();
 			if(PlayJavaConstants.JAR_PATTERN.matcher(name).find())
 			{
-				sdkModificator.addRoot(jfs.findFileByPath(child.getPath() + JarFileSystem.JAR_SEPARATOR), OrderRootType.CLASSES);
+				sdkModificator.addRoot(jfs.findLocalVirtualFileByPath(child.getPath()), OrderRootType.CLASSES);
 				break;
 			}
 		}

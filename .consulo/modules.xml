@@ -4,8 +4,8 @@
     <modules>
       <module name="consulo-play" dirurl="file://$PROJECT_DIR$">
         <extension id="java" sdk-module-name="" sdk-name="1.6" language-level-module-name="" language-level-name="JDK_1_6" special-dir-location="MODULE_DIR" />
-        <extension id="consulo-plugin" sdk-module-name="" sdk-name="Consulo 1.SNAPSHOT" />
         <extension id="groovy" />
+        <extension id="consulo-plugin" sdk-module-name="" sdk-name="Consulo 1.SNAPSHOT" />
         <content url="file://$MODULE_DIR$">
           <content-folder type="SOURCE" url="file://$MODULE_DIR$/src/main/java" />
           <content-folder type="SOURCE" url="file://$MODULE_DIR$/rsc/main/java" />
@@ -23,7 +23,7 @@
               <root url="jar://$APPLICATION_HOME_DIR$/plugins/java/lib/java-intellilang.jar!/" />
               <root url="jar://$APPLICATION_HOME_DIR$/plugins/java/lib/java.jar!/" />
             </CLASSES>
-            <JAVADOC />
+            <DOCUMENTATION />
             <SOURCES />
           </library>
         </orderEntry>
@@ -35,7 +35,7 @@
               <root url="jar://$APPLICATION_HOME_DIR$/plugins/java-platform/lib/java-rt.jar!/" />
               <root url="jar://$APPLICATION_HOME_DIR$/plugins/java-platform/lib/jdk-annotations.jar!/" />
             </CLASSES>
-            <JAVADOC />
+            <DOCUMENTATION />
             <SOURCES />
           </library>
         </orderEntry>
@@ -49,7 +49,7 @@
               <root url="jar://$APPLICATION_HOME_DIR$/plugins/groovy/lib/groovy-spellchecker.jar!/" />
               <root url="jar://$APPLICATION_HOME_DIR$/plugins/groovy/lib/groovy.jar!/" />
             </CLASSES>
-            <JAVADOC />
+            <DOCUMENTATION />
             <SOURCES />
           </library>
         </orderEntry>
@@ -58,7 +58,7 @@
             <CLASSES>
               <root url="jar://$APPLICATION_HOME_DIR$/plugins/properties/lib/properties.jar!/" />
             </CLASSES>
-            <JAVADOC />
+            <DOCUMENTATION />
             <SOURCES />
           </library>
         </orderEntry>
