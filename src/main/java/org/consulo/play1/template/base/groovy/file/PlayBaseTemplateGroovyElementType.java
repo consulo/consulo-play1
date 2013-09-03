@@ -16,15 +16,13 @@
 
 package org.consulo.play1.template.base.groovy.file;
 
+import com.intellij.lang.*;
+import com.intellij.util.LanguageVersionUtil;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.plugins.groovy.GroovyFileType;
 import org.jetbrains.plugins.groovy.lang.lexer.GroovyLexer;
 import org.jetbrains.plugins.groovy.lang.parser.GroovyParser;
-import com.intellij.lang.ASTNode;
-import com.intellij.lang.Language;
-import com.intellij.lang.PsiBuilder;
-import com.intellij.lang.PsiBuilderFactory;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiElement;
@@ -48,8 +46,9 @@ public class PlayBaseTemplateGroovyElementType extends IFileElementType
 		Project project = JavaPsiFacade.getInstance(parentElement.getProject()).getProject();
 
 		Language groovyLanguage = GroovyFileType.GROOVY_LANGUAGE;
-		PsiBuilder builder = PsiBuilderFactory.getInstance().createBuilder(project, chameleon, new GroovyLexer(), groovyLanguage, Language.UNKNOWN_VERSION, chameleon.getText());
+		LanguageVersion<Language> defaultVersion = LanguageVersionUtil.findDefaultVersion(groovyLanguage);
+		PsiBuilder builder = PsiBuilderFactory.getInstance().createBuilder(project, chameleon, new GroovyLexer(), groovyLanguage, defaultVersion, chameleon.getText());
 
-		return new GroovyParser().parse(this, builder, Language.UNKNOWN_VERSION).getFirstChildNode();
+		return new GroovyParser().parse(this, builder, defaultVersion).getFirstChildNode();
 	}
 }
