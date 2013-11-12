@@ -18,9 +18,11 @@ package org.consulo.play1.run;
 
 import javax.swing.Icon;
 
+import org.consulo.play1.module.extension.Play1ModuleExtension;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.consulo.play1.PlayJavaIcons;
+import org.mustbe.consulo.module.extension.ModuleExtensionHelper;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.ConfigurationType;
 import com.intellij.execution.configurations.RunConfiguration;
@@ -50,6 +52,12 @@ public class PlayJavaConfigurationType implements ConfigurationType
 			public RunConfiguration createTemplateConfiguration(Project project)
 			{
 				return new PlayJavaModuleBasedConfiguration(project, getName(), this);
+			}
+
+			@Override
+			public boolean isApplicable(@NotNull Project project)
+			{
+				return ModuleExtensionHelper.getInstance(project).hasModuleExtension(Play1ModuleExtension.class);
 			}
 		};
 	}
