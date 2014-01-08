@@ -46,13 +46,6 @@ public class Play1ModuleExtensionProvider implements ModuleExtensionProvider<Pla
 
 	@NotNull
 	@Override
-	public Class<Play1ModuleExtension> getImmutableClass()
-	{
-		return Play1ModuleExtension.class;
-	}
-
-	@NotNull
-	@Override
 	public Play1ModuleExtension createImmutable(@NotNull String s, @NotNull Module module)
 	{
 		return new Play1ModuleExtension(s, module);
