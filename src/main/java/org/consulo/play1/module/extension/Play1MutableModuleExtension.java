@@ -16,10 +16,7 @@
 
 package org.consulo.play1.module.extension;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 import org.consulo.module.extension.MutableModuleExtensionWithSdk;
 import org.consulo.module.extension.MutableModuleInheritableNamedPointer;
@@ -36,14 +33,9 @@ import com.intellij.openapi.roots.ModifiableRootModel;
  */
 public class Play1MutableModuleExtension extends Play1ModuleExtension implements MutableModuleExtensionWithSdk<Play1ModuleExtension>
 {
-	@NotNull
-	private final Play1ModuleExtension moduleExtension;
-
-	public Play1MutableModuleExtension(@NotNull String id, @NotNull Module module, @NotNull Play1ModuleExtension moduleExtension)
+	public Play1MutableModuleExtension(@NotNull String id, @NotNull Module module)
 	{
 		super(id, module);
-		this.moduleExtension = moduleExtension;
-		commit(moduleExtension);
 	}
 
 	@NotNull
@@ -57,9 +49,7 @@ public class Play1MutableModuleExtension extends Play1ModuleExtension implements
 	@Override
 	public JComponent createConfigurablePanel(@NotNull ModifiableRootModel modifiableRootModel, @Nullable Runnable runnable)
 	{
-		JPanel panel = new JPanel(new BorderLayout());
-		panel.add(new ModuleExtensionWithSdkPanel(this, runnable), BorderLayout.NORTH);
-		return panel;
+		return wrapToNorth(new ModuleExtensionWithSdkPanel(this, runnable));
 	}
 
 	@Override
@@ -69,14 +59,8 @@ public class Play1MutableModuleExtension extends Play1ModuleExtension implements
 	}
 
 	@Override
-	public boolean isModified()
+	public boolean isModified(@NotNull Play1ModuleExtension moduleExtension)
 	{
 		return isModifiedImpl(moduleExtension);
-	}
-
-	@Override
-	public void commit()
-	{
-		moduleExtension.commit(this);
 	}
 }

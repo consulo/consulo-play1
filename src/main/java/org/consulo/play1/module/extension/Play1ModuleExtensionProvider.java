@@ -53,8 +53,8 @@ public class Play1ModuleExtensionProvider implements ModuleExtensionProvider<Pla
 
 	@NotNull
 	@Override
-	public Play1MutableModuleExtension createMutable(@NotNull String s, @NotNull Module module, @NotNull Play1ModuleExtension moduleExtension)
+	public Play1MutableModuleExtension createMutable(@NotNull String s, @NotNull Module module)
 	{
-		return new Play1MutableModuleExtension(s, module, moduleExtension);
+		return new Play1MutableModuleExtension(s, module);
 	}
 }
