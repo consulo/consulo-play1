@@ -26,9 +26,7 @@ import com.intellij.openapi.util.IconLoader;
  */
 public interface PlayJavaIcons
 {
-	Icon ICON_13x13 = IconLoader.findIcon("/org/consulo/play1/icons/play-13x13.png");
+	Icon PlayLineMarker = IconLoader.findIcon("/org/consulo/play1/icons/playLineMarker.png");
 
-	Icon ICON_16x16 = IconLoader.findIcon("/org/consulo/play1/icons/play-16x16.png");
-
-	Icon ICON_32x32 = IconLoader.findIcon("/org/consulo/play1/icons/play-32x32.png");
+	Icon Play = IconLoader.findIcon("/org/consulo/play1/icons/play.png");
 }

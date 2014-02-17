@@ -51,7 +51,7 @@ public class Play1SdkType extends SdkType
 	@Override
 	public Icon getIcon()
 	{
-		return PlayJavaIcons.ICON_16x16;
+		return PlayJavaIcons.Play;
 	}
 
 	@Nullable

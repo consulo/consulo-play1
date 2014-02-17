@@ -65,7 +65,7 @@ public class PlayBaseTemplateLineMarkerProvider implements LineMarkerProvider
     for (PsiElement element : psiElements) {
       PlayBaseTemplateFile templateFile = findTemplateFile(element);
       if(templateFile != null) {
-        LineMarkerInfo<PsiElement> lineMarkerInfo = new LineMarkerInfo<PsiElement>(element, element.getTextRange(), PlayJavaIcons.ICON_13x13, Pass.UPDATE_OVERRIDEN_MARKERS,
+        LineMarkerInfo<PsiElement> lineMarkerInfo = new LineMarkerInfo<PsiElement>(element, element.getTextRange(), PlayJavaIcons.PlayLineMarker, Pass.UPDATE_OVERRIDEN_MARKERS,
             new ConstantFunction<PsiElement, String>("Navigate to template"), GUTTER_ICON_NAVIGATION_HANDLER, GutterIconRenderer.Alignment.LEFT);
 
         lineMarkerInfos.add(lineMarkerInfo);

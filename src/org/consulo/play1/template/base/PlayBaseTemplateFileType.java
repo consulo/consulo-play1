@@ -62,6 +62,6 @@ public class PlayBaseTemplateFileType extends LanguageFileType
 	@Override
 	public Icon getIcon()
 	{
-		return PlayJavaIcons.ICON_16x16;
+		return PlayJavaIcons.Play;
 	}
 }

@@ -34,7 +34,7 @@ public class Play1ModuleExtensionProvider implements ModuleExtensionProvider<Pla
 	@Override
 	public Icon getIcon()
 	{
-		return PlayJavaIcons.ICON_16x16;
+		return PlayJavaIcons.Play;
 	}
 
 	@NotNull

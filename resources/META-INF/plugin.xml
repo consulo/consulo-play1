@@ -17,7 +17,7 @@
 <idea-plugin version="2">
 	<id>org.consulo.play1</id>
 	<name>Play 1.x.x</name>
-	<version>1.0</version>
+	<version>SNAPSHOT</version>
 	<vendor email="vistall.valeriy@gmail.com">Consulo.org</vendor>
 
 	<depends>org.intellij.groovy</depends>
