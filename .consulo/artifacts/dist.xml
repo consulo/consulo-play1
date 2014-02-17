@@ -6,9 +6,6 @@
         <element id="directory" name="lib">
           <element id="zip-archive" name="play.jar">
             <element id="module-output" name="consulo-play" />
-            <element id="directory" name="META-INF">
-              <element id="dir-copy" path="$PROJECT_DIR$/META-INF" />
-            </element>
             <element id="module-production-resource-output" name="consulo-play" />
           </element>
         </element>
