@@ -24,7 +24,13 @@
 	<depends>com.intellij.properties</depends>
 
 	<extensions defaultExtensionNs="com.intellij">
-		<moduleExtensionProvider key="play1" parent-key="java" implementationClass="org.consulo.play1.module.extension.Play1ModuleExtensionProvider"/>
+		<moduleExtensionProvider key="play1"
+								 parentKey="java"
+								 name="Play 1"
+								 icon="/org/consulo/play1/icons/play.png"
+								 immutableClass="org.consulo.play1.module.extension.Play1ModuleExtension"
+								 mutableClass="org.consulo.play1.module.extension.Play1MutableModuleExtension"/>
+
 		<sdkType implementation="org.consulo.play1.sdk.Play1SdkType" />
 		<codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.consulo.play1.editor.PlayBaseTemplateLineMarkerProvider"/>
 		<colorSettingsPage implementation="org.consulo.play1.editor.highlight.PlayJavaColorSettingsPage"/>
