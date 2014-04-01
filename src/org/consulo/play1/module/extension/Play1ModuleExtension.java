@@ -33,8 +33,9 @@ public class Play1ModuleExtension extends ModuleExtensionWithSdkImpl<Play1Module
 		super(id, module);
 	}
 
+	@NotNull
 	@Override
-	protected Class<? extends SdkType> getSdkTypeClass()
+	public Class<? extends SdkType> getSdkTypeClass()
 	{
 		return Play1SdkType.class;
 	}
