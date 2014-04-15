@@ -20,7 +20,7 @@ import org.consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.plugins.groovy.highlighter.GroovySyntaxHighlighter;
-import com.intellij.lang.StdLanguages;
+import com.intellij.lang.html.HTMLLanguage;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.colors.EditorColorsScheme;
 import com.intellij.openapi.editor.ex.util.LayerDescriptor;
@@ -41,7 +41,7 @@ public class PlayBaseTemplateEditorHighlighter extends LayeredLexerEditorHighlig
 	{
 		super(new PlayBaseTemplateSyntaxHighlighter(), scheme);
 
-		SyntaxHighlighter htmlHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(StdLanguages.HTML, project, virtualFile);
+		SyntaxHighlighter htmlHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(HTMLLanguage.INSTANCE, project, virtualFile);
 		LayerDescriptor htmlLayer = new LayerDescriptor(new TemplateDataHighlighterWrapper(htmlHighlighter), "\n");
 		registerLayer(PlayBaseTemplateTokens.TEMPLATE_TEXT, htmlLayer);
 

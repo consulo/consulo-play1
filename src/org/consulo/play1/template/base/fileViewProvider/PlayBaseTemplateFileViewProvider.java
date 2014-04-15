@@ -20,14 +20,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.consulo.play1.template.base.PlayBaseTemplateLanguage;
+import org.consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.plugins.groovy.GroovyFileType;
-import org.consulo.play1.template.base.PlayBaseTemplateLanguage;
-import org.consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.lang.Language;
 import com.intellij.lang.LanguageParserDefinitions;
-import com.intellij.lang.StdLanguages;
+import com.intellij.lang.html.HTMLLanguage;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.MultiplePsiFilesPerDocumentFileViewProvider;
 import com.intellij.psi.PsiFile;
@@ -69,7 +69,7 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 			return file;
 		}
 
-		throw new UnsupportedOperationException("This is not supported: " + lang);
+		return null;
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 	public Set<Language> getLanguages()
 	{
 		//TODO [VISTALL] uncomment then groovy ill supported
-		return new HashSet<Language>(Arrays.asList(PlayBaseTemplateLanguage.INSTANCE, StdLanguages.HTML, GroovyFileType.GROOVY_LANGUAGE));
+		return new HashSet<Language>(Arrays.asList(PlayBaseTemplateLanguage.INSTANCE, HTMLLanguage.INSTANCE, GroovyFileType.GROOVY_LANGUAGE));
 	}
 
 	@NotNull
@@ -91,7 +91,7 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 	@Override
 	public Language getTemplateDataLanguage()
 	{
-		return StdLanguages.HTML;
+		return HTMLLanguage.INSTANCE;
 	}
 
 	@Override
