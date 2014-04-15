@@ -16,18 +16,20 @@
 
 package org.consulo.play1.sdk;
 
-import com.intellij.ide.highlighter.JarArchiveFileType;
-import com.intellij.openapi.projectRoots.*;
-import com.intellij.openapi.roots.OrderRootType;
-import com.intellij.openapi.vfs.ArchiveFileSystem;
+import java.io.File;
+
+import javax.swing.Icon;
+
 import org.consulo.play1.PlayJavaConstants;
 import org.consulo.play1.PlayJavaIcons;
-import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import javax.swing.*;
-import java.io.File;
+import com.intellij.ide.highlighter.JarArchiveFileType;
+import com.intellij.openapi.projectRoots.Sdk;
+import com.intellij.openapi.projectRoots.SdkModificator;
+import com.intellij.openapi.projectRoots.SdkType;
+import com.intellij.openapi.roots.OrderRootType;
+import com.intellij.openapi.vfs.ArchiveFileSystem;
 
 /**
  * @author VISTALL
@@ -52,13 +54,6 @@ public class Play1SdkType extends SdkType
 	public Icon getIcon()
 	{
 		return PlayJavaIcons.Play;
-	}
-
-	@Nullable
-	@Override
-	public Icon getGroupIcon()
-	{
-		return getIcon();
 	}
 
 	@Override
@@ -149,23 +144,10 @@ public class Play1SdkType extends SdkType
 		return "play";
 	}
 
-	@Nullable
-	@Override
-	public AdditionalDataConfigurable createAdditionalDataConfigurable(SdkModel sdkModel, SdkModificator sdkModificator)
-	{
-		return null;
-	}
-
 	@NotNull
 	@Override
 	public String getPresentableName()
 	{
 		return getName();
-	}
-
-	@Override
-	public void saveAdditionalData(SdkAdditionalData sdkAdditionalData, Element element)
-	{
-
 	}
 }

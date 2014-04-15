@@ -16,6 +16,16 @@
 
 package org.consulo.play1.editor;
 
+import java.awt.event.MouseEvent;
+import java.util.Collection;
+import java.util.List;
+
+import org.consulo.play1.PlayJavaIcons;
+import org.consulo.play1.PlayJavaUtil;
+import org.consulo.play1.template.base.psi.PlayBaseTemplateFile;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.mustbe.consulo.roots.ContentFolderScopes;
 import com.intellij.codeHighlighting.Pass;
 import com.intellij.codeInsight.daemon.GutterIconNavigationHandler;
 import com.intellij.codeInsight.daemon.LineMarkerInfo;
@@ -26,17 +36,14 @@ import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.*;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiIdentifier;
+import com.intellij.psi.PsiManager;
+import com.intellij.psi.PsiMethod;
+import com.intellij.psi.PsiModifier;
 import com.intellij.util.ConstantFunction;
-import org.consulo.play1.PlayJavaIcons;
-import org.consulo.play1.PlayJavaUtil;
-import org.consulo.play1.template.base.psi.PlayBaseTemplateFile;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.awt.event.MouseEvent;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author VISTALL
@@ -100,7 +107,7 @@ public class PlayBaseTemplateLineMarkerProvider implements LineMarkerProvider
 
         ModuleRootManager rootManager = ModuleRootManager.getInstance(moduleForPsiElement);
         PsiManager manager = PsiManager.getInstance(element.getProject());
-        for(VirtualFile file : rootManager.getSourceRoots())
+        for(VirtualFile file : rootManager.getContentFolderFiles(ContentFolderScopes.production()))
         {
           VirtualFile virtualFile = file.findFileByRelativePath(qName);
           if(virtualFile == null)
