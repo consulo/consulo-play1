@@ -24,12 +24,13 @@ import org.consulo.play1.PlayJavaConstants;
 import org.consulo.play1.PlayJavaIcons;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.intellij.ide.highlighter.JarArchiveFileType;
+import com.intellij.openapi.projectRoots.JavaSdk;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.SdkModificator;
 import com.intellij.openapi.projectRoots.SdkType;
 import com.intellij.openapi.roots.OrderRootType;
-import com.intellij.openapi.vfs.ArchiveFileSystem;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.util.ArchiveVfsUtil;
 
 /**
  * @author VISTALL
@@ -60,27 +61,42 @@ public class Play1SdkType extends SdkType
 	public void setupSdkPaths(Sdk sdk)
 	{
 		final SdkModificator sdkModificator = sdk.getSdkModificator();
-		final ArchiveFileSystem jfs = JarArchiveFileType.INSTANCE.getFileSystem();
 
-		File file = new File(sdk.getHomePath(), "framework");
-		if(!file.exists())
-		{
-			return;
-		}
+		VirtualFile homeDirectory = sdk.getHomeDirectory();
+		assert homeDirectory != null;
 
-		final File[] files = file.listFiles();
-		if(files == null)
-		{
-			return;
-		}
+		VirtualFile framework = homeDirectory.findChild("framework");
+		assert framework != null;
 
-		for(File child : files)
+
+		for(VirtualFile virtualFile : framework.getChildren())
 		{
-			final String name = child.getName();
+			final String name = virtualFile.getName();
 			if(PlayJavaConstants.JAR_PATTERN.matcher(name).find())
 			{
-				sdkModificator.addRoot(jfs.findLocalVirtualFileByPath(child.getPath()), OrderRootType.CLASSES);
-				break;
+				VirtualFile archiveRootForLocalFile = ArchiveVfsUtil.getArchiveRootForLocalFile(virtualFile);
+				if(archiveRootForLocalFile != null)
+				{
+					sdkModificator.addRoot(archiveRootForLocalFile, OrderRootType.CLASSES);
+				}
+			}
+			else if(virtualFile.isDirectory())
+			{
+				if(name.equals("lib") || name.equals("lib-test"))
+				{
+					for(VirtualFile file : virtualFile.getChildren())
+					{
+						VirtualFile archiveRootForLocalFile = ArchiveVfsUtil.getArchiveRootForLocalFile(file);
+						if(archiveRootForLocalFile != null)
+						{
+							sdkModificator.addRoot(archiveRootForLocalFile, OrderRootType.CLASSES);
+						}
+					}
+				}
+				else if(name.equals("src"))
+				{
+					sdkModificator.addRoot(virtualFile, OrderRootType.SOURCES);
+				}
 			}
 		}
 		sdkModificator.commitChanges();
@@ -136,6 +152,12 @@ public class Play1SdkType extends SdkType
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public boolean isRootTypeApplicable(OrderRootType type)
+	{
+		return JavaSdk.getInstance().isRootTypeApplicable(type);
 	}
 
 	@Override
