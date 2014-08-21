@@ -29,6 +29,8 @@ import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.SdkModificator;
 import com.intellij.openapi.projectRoots.SdkType;
 import com.intellij.openapi.roots.OrderRootType;
+import com.intellij.openapi.roots.types.BinariesOrderRootType;
+import com.intellij.openapi.roots.types.SourcesOrderRootType;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.util.ArchiveVfsUtil;
 
@@ -77,7 +79,7 @@ public class Play1SdkType extends SdkType
 				VirtualFile archiveRootForLocalFile = ArchiveVfsUtil.getArchiveRootForLocalFile(virtualFile);
 				if(archiveRootForLocalFile != null)
 				{
-					sdkModificator.addRoot(archiveRootForLocalFile, OrderRootType.CLASSES);
+					sdkModificator.addRoot(archiveRootForLocalFile, BinariesOrderRootType.getInstance());
 				}
 			}
 			else if(virtualFile.isDirectory())
@@ -89,13 +91,13 @@ public class Play1SdkType extends SdkType
 						VirtualFile archiveRootForLocalFile = ArchiveVfsUtil.getArchiveRootForLocalFile(file);
 						if(archiveRootForLocalFile != null)
 						{
-							sdkModificator.addRoot(archiveRootForLocalFile, OrderRootType.CLASSES);
+							sdkModificator.addRoot(archiveRootForLocalFile, BinariesOrderRootType.getInstance());
 						}
 					}
 				}
 				else if(name.equals("src"))
 				{
-					sdkModificator.addRoot(virtualFile, OrderRootType.SOURCES);
+					sdkModificator.addRoot(virtualFile, SourcesOrderRootType.getInstance());
 				}
 			}
 		}

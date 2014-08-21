@@ -20,7 +20,7 @@ import org.consulo.module.extension.impl.ModuleExtensionWithSdkImpl;
 import org.consulo.play1.sdk.Play1SdkType;
 import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.projectRoots.SdkType;
-import com.intellij.openapi.roots.ModifiableRootModel;
+import com.intellij.openapi.roots.ModuleRootLayer;
 
 /**
  * @author VISTALL
@@ -28,7 +28,7 @@ import com.intellij.openapi.roots.ModifiableRootModel;
  */
 public class Play1ModuleExtension extends ModuleExtensionWithSdkImpl<Play1ModuleExtension>
 {
-	public Play1ModuleExtension(@NotNull String id, @NotNull ModifiableRootModel module)
+	public Play1ModuleExtension(@NotNull String id, @NotNull ModuleRootLayer module)
 	{
 		super(id, module);
 	}
