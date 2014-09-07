@@ -16,6 +16,10 @@
 
 package org.consulo.play1.run;
 
+import org.consulo.play1.PlayJavaConstants;
+import org.consulo.play1.PlayJavaUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.RemoteConnection;
@@ -25,40 +29,40 @@ import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.lang.properties.IProperty;
 import com.intellij.lang.properties.psi.PropertiesFile;
-import com.intellij.openapi.project.Project;
-import org.consulo.play1.PlayJavaConstants;
-import org.consulo.play1.PlayJavaUtil;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * @author VISTALL
  * @since 19:35/23.03.13
  */
-public class PlayJavaGenericDebuggerRunner extends GenericDebuggerRunner {
-  @Override
-  public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-    return super.canRun(executorId, profile) && profile instanceof PlayJavaModuleBasedConfiguration;
-  }
+public class PlayJavaGenericDebuggerRunner extends GenericDebuggerRunner
+{
+	@Override
+	public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile)
+	{
+		return super.canRun(executorId, profile) && profile instanceof PlayJavaModuleBasedConfiguration;
+	}
 
-  @Nullable
-  @Override
-  protected RunContentDescriptor createContentDescriptor(Project project, RunProfileState state, RunContentDescriptor contentToReuse, ExecutionEnvironment env) throws ExecutionException {
-    final PlayJavaModuleBasedConfiguration runProfile = (PlayJavaModuleBasedConfiguration) env.getRunProfile();
+	@Nullable
+	@Override
+	protected RunContentDescriptor createContentDescriptor(@NotNull RunProfileState state, @NotNull ExecutionEnvironment environment) throws
+			ExecutionException
+	{
+		final PlayJavaModuleBasedConfiguration runProfile = (PlayJavaModuleBasedConfiguration) environment.getRunProfile();
 
-    final PropertiesFile applicationConf = PlayJavaUtil.getApplicationConf(runProfile.getConfigurationModule().getModule());
-    if (applicationConf == null) {
-      throw new ExecutionException(PlayJavaConstants.CONF__APPLICATION_CONF + " not found");
-    }
+		final PropertiesFile applicationConf = PlayJavaUtil.getApplicationConf(runProfile.getConfigurationModule().getModule());
+		if(applicationConf == null)
+		{
+			throw new ExecutionException(PlayJavaConstants.CONF__APPLICATION_CONF + " not found");
+		}
 
-    final IProperty propertyByKey = applicationConf.findPropertyByKey(PlayJavaConstants.JPDA_PORT);
-    if (propertyByKey == null) {
-      throw new ExecutionException(PlayJavaConstants.JPDA_PORT + " key not found");
-    }
+		final IProperty propertyByKey = applicationConf.findPropertyByKey(PlayJavaConstants.JPDA_PORT);
+		if(propertyByKey == null)
+		{
+			throw new ExecutionException(PlayJavaConstants.JPDA_PORT + " key not found");
+		}
 
+		RemoteConnection connection = new RemoteConnection(true, "127.0.0.1", propertyByKey.getValue(), false);
 
-    RemoteConnection connection = new RemoteConnection(true, "127.0.0.1", propertyByKey.getValue(), false);
-
-    return attachVirtualMachine(project, state, contentToReuse, env, connection, true);
-  }
+		return attachVirtualMachine(state, environment, connection, true);
+	}
 }
