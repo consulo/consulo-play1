@@ -47,13 +47,6 @@ public class Play1SdkType extends SdkType
 
 	@Nullable
 	@Override
-	public String suggestHomePath()
-	{
-		return null;
-	}
-
-	@Nullable
-	@Override
 	public Icon getIcon()
 	{
 		return PlayJavaIcons.Play;
