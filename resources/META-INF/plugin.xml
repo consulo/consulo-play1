@@ -18,7 +18,7 @@
 	<id>org.consulo.play1</id>
 	<name>Play 1.x.x</name>
 	<version>SNAPSHOT</version>
-	<vendor email="vistall.valeriy@gmail.com">Consulo.org</vendor>
+	<vendor email="vistall.valeriy@gmail.com">Must-Be.org</vendor>
 
 	<depends>org.intellij.groovy</depends>
 	<depends>com.intellij.properties</depends>
