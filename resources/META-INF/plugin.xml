@@ -1,24 +1,25 @@
 <!--
-  ~ Copyright 2010-2013 napile.org
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~ http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
+  - Copyright 2013-2016 consulo.io
+  -
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  - http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
   -->
 
-<idea-plugin version="2">
-	<id>org.consulo.play1</id>
-	<name>Play 1.x.x</name>
+<idea-plugin>
+	<id>consulo.play</id>
+	<name>Play 1</name>
 	<version>SNAPSHOT</version>
-	<vendor email="vistall.valeriy@gmail.com">Must-Be.org</vendor>
+	<category>Web Frameworks</category>
+	<vendor>consulo.io</vendor>
 
 	<depends>org.intellij.groovy</depends>
 	<depends>com.intellij.properties</depends>
@@ -28,30 +29,30 @@
 								 parentKey="java"
 								 name="Play 1"
 								 icon="/org/consulo/play1/icons/play.png"
-								 immutableClass="org.consulo.play1.module.extension.Play1ModuleExtension"
-								 mutableClass="org.consulo.play1.module.extension.Play1MutableModuleExtension"/>
+								 immutableClass="consulo.play1.module.extension.Play1ModuleExtension"
+								 mutableClass="consulo.play1.module.extension.Play1MutableModuleExtension"/>
 
-		<sdkType implementation="org.consulo.play1.sdk.Play1SdkType" />
-		<codeInsight.lineMarkerProvider language="JAVA" implementationClass="org.consulo.play1.editor.PlayBaseTemplateLineMarkerProvider"/>
-		<colorSettingsPage implementation="org.consulo.play1.editor.highlight.PlayJavaColorSettingsPage"/>
-		<editorHighlighterProvider filetype="Play" implementationClass="org.consulo.play1.template.base.editor.highlight.PlayBaseTemplateEditorHighlighterProvider"/>
-		<braceMatcher filetype="Play" implementationClass="org.consulo.play1.template.base.PlayBaseTemplateBraceMatcher"/>
+		<sdkType implementation="consulo.play1.sdk.Play1SdkType" />
+		<codeInsight.lineMarkerProvider language="JAVA" implementationClass="consulo.play1.editor.PlayBaseTemplateLineMarkerProvider"/>
+		<colorSettingsPage implementation="consulo.play1.editor.highlight.PlayJavaColorSettingsPage"/>
+		<editorHighlighterProvider filetype="Play" implementationClass="consulo.play1.template.base.editor.highlight.PlayBaseTemplateEditorHighlighterProvider"/>
+		<braceMatcher filetype="Play" implementationClass="consulo.play1.template.base.PlayBaseTemplateBraceMatcher"/>
 		<!--Play Base Template Lang-->
-		<lang.substitutor language="HTML" implementationClass="org.consulo.play1.template.base.PlayHtmlLanguageSubstitutor"/>
-		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.PlayBaseTemplateParserDefinition"/>
-		<lang.commenter language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.PlayBaseTemplateCommenter"/>
-		<lang.formatter language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.formatter.PlayBaseTemplateFormattingModelBuilder"/>
-		<lang.whiteSpaceFormattingStrategy language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.formatter.PlayBaseTemplateWhiteSpaceFormattingStrategy"/>
+		<lang.substitutor language="HTML" implementationClass="consulo.play1.template.base.PlayHtmlLanguageSubstitutor"/>
+		<lang.parserDefinition language="PLAY-BASE-TEMPLATE" implementationClass="consulo.play1.template.base.PlayBaseTemplateParserDefinition"/>
+		<lang.commenter language="PLAY-BASE-TEMPLATE" implementationClass="consulo.play1.template.base.PlayBaseTemplateCommenter"/>
+		<lang.formatter language="PLAY-BASE-TEMPLATE" implementationClass="consulo.play1.template.base.formatter.PlayBaseTemplateFormattingModelBuilder"/>
+		<lang.whiteSpaceFormattingStrategy language="PLAY-BASE-TEMPLATE" implementationClass="consulo.play1.template.base.formatter.PlayBaseTemplateWhiteSpaceFormattingStrategy"/>
 
-		<lang.parserDefinition language="PLAY-ROUTE" implementationClass="org.consulo.play1.route.PlayRouteParserDefinition"/>
-		<lang.syntaxHighlighterFactory key="PLAY-ROUTE" implementationClass="org.consulo.play1.route.editor.highlight.PlayRouteSyntaxHighlighterFactory"/>
+		<lang.parserDefinition language="PLAY-ROUTE" implementationClass="consulo.play1.route.PlayRouteParserDefinition"/>
+		<lang.syntaxHighlighterFactory key="PLAY-ROUTE" implementationClass="consulo.play1.route.editor.highlight.PlayRouteSyntaxHighlighterFactory"/>
 		<!--File factories-->
-		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="org.consulo.play1.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory"/>
-		<fileTypeFactory implementation="org.consulo.play1.template.base.PlayBaseTemplateFileTypeFactory"/>
-		<fileTypeFactory implementation="org.consulo.play1.conf.PlayJavaConfFileTypeFactory"/>
-		<fileTypeFactory implementation="org.consulo.play1.route.PlayRouteFileTypeFactory"/>
+		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="consulo.play1.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory"/>
+		<fileTypeFactory implementation="consulo.play1.template.base.PlayBaseTemplateFileTypeFactory"/>
+		<fileTypeFactory implementation="consulo.play1.conf.PlayJavaConfFileTypeFactory"/>
+		<fileTypeFactory implementation="consulo.play1.route.PlayRouteFileTypeFactory"/>
 		<!--Runners-->
-		<programRunner implementation="org.consulo.play1.run.PlayJavaGenericDebuggerRunner"/>
-		<configurationType implementation="org.consulo.play1.run.PlayJavaConfigurationType"/>
+		<programRunner implementation="consulo.play1.run.PlayJavaGenericDebuggerRunner"/>
+		<configurationType implementation="consulo.play1.run.PlayJavaConfigurationType"/>
 	</extensions>
 </idea-plugin>
