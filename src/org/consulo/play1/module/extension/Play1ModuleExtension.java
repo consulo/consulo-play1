@@ -16,11 +16,11 @@
 
 package org.consulo.play1.module.extension;
 
-import org.consulo.module.extension.impl.ModuleExtensionWithSdkImpl;
 import org.consulo.play1.sdk.Play1SdkType;
 import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.projectRoots.SdkType;
-import com.intellij.openapi.roots.ModuleRootLayer;
+import consulo.extension.impl.ModuleExtensionWithSdkImpl;
+import consulo.roots.ModuleRootLayer;
 
 /**
  * @author VISTALL

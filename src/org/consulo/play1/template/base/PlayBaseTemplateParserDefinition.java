@@ -23,17 +23,16 @@ import org.consulo.play1.template.base.parser.lexer.PlayBaseTemplateLexer;
 import org.consulo.play1.template.base.psi.PlayBaseTemplateFile;
 import org.jetbrains.annotations.NotNull;
 import com.intellij.lang.ASTNode;
-import com.intellij.lang.LanguageVersion;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.lang.PsiParser;
 import com.intellij.lexer.Lexer;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
+import consulo.lang.LanguageVersion;
 
 /**
  * @author VISTALL
@@ -43,13 +42,13 @@ public class PlayBaseTemplateParserDefinition implements ParserDefinition
 {
 	@NotNull
 	@Override
-	public Lexer createLexer(Project project, LanguageVersion languageVersion)
+	public Lexer createLexer(LanguageVersion languageVersion)
 	{
 		return new PlayBaseTemplateLexer();
 	}
 
 	@Override
-	public PsiParser createParser(Project project, LanguageVersion languageVersion)
+	public PsiParser createParser(LanguageVersion languageVersion)
 	{
 		return PlayBaseTemplateParser.INSTANCE;
 	}

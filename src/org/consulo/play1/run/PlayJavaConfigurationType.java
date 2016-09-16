@@ -18,17 +18,17 @@ package org.consulo.play1.run;
 
 import javax.swing.Icon;
 
+import org.consulo.play1.PlayJavaIcons;
 import org.consulo.play1.module.extension.Play1ModuleExtension;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.consulo.play1.PlayJavaIcons;
-import org.mustbe.consulo.module.extension.ModuleExtensionHelper;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.ConfigurationType;
 import com.intellij.execution.configurations.RunConfiguration;
 import com.intellij.openapi.extensions.Extensions;
 import com.intellij.openapi.project.Project;
 import com.intellij.util.containers.ContainerUtil;
+import consulo.module.extension.ModuleExtensionHelper;
 
 /**
  * @author VISTALL

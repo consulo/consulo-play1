@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import org.consulo.play1.route.psi.PlayRouteElementTypes;
 import org.consulo.play1.route.psi.PlayRouteNodes;
 import com.intellij.lang.ASTNode;
-import com.intellij.lang.LanguageVersion;
+import consulo.lang.LanguageVersion;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiParser;
 import com.intellij.psi.tree.IElementType;

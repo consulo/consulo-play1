@@ -16,17 +16,21 @@
 
 package org.consulo.play1.template.base.groovy.file;
 
-import com.intellij.lang.*;
-import com.intellij.util.LanguageVersionUtil;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.plugins.groovy.GroovyFileType;
 import org.jetbrains.plugins.groovy.lang.lexer.GroovyLexer;
 import org.jetbrains.plugins.groovy.lang.parser.GroovyParser;
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.Language;
+import com.intellij.lang.PsiBuilder;
+import com.intellij.lang.PsiBuilderFactory;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IFileElementType;
+import consulo.lang.LanguageVersion;
+import consulo.lang.util.LanguageVersionUtil;
 
 /**
  * @author VISTALL

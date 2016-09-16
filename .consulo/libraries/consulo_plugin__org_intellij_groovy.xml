@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="consulo-plugin: org.intellij.groovy">
+    <binaries>
+      <root url="jar://$PROJECT_DIR$/dep/org.intellij.groovy/lib/groovy.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dep/org.intellij.groovy/lib/groovy-rt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dep/org.intellij.groovy/lib/groovy-all-2.0.6.jar!/" />
+    </binaries>
+  </library>
+</component>
