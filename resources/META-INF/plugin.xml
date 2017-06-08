@@ -45,7 +45,7 @@
 		<lang.whiteSpaceFormattingStrategy language="PLAY-BASE-TEMPLATE" implementationClass="consulo.play1.template.base.formatter.PlayBaseTemplateWhiteSpaceFormattingStrategy"/>
 
 		<lang.parserDefinition language="PLAY-ROUTE" implementationClass="consulo.play1.route.PlayRouteParserDefinition"/>
-		<lang.syntaxHighlighterFactory key="PLAY-ROUTE" implementationClass="consulo.play1.route.editor.highlight.PlayRouteSyntaxHighlighterFactory"/>
+		<lang.syntaxHighlighterFactory language="PLAY-ROUTE" implementationClass="consulo.play1.route.editor.highlight.PlayRouteSyntaxHighlighterFactory"/>
 		<!--File factories-->
 		<lang.fileViewProviderFactory language="PLAY-BASE-TEMPLATE" implementationClass="consulo.play1.template.base.fileViewProvider.PlayBaseTemplateFileViewProviderFactory"/>
 		<fileTypeFactory implementation="consulo.play1.template.base.PlayBaseTemplateFileTypeFactory"/>
