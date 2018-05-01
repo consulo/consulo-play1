@@ -41,7 +41,7 @@ public class PlayRouteFileType extends LanguageFileType implements FileTypeIdent
 
 	@Nonnull
 	@Override
-	public String getName()
+	public String getId()
 	{
 		return "Play Route File";
 	}
@@ -50,7 +50,7 @@ public class PlayRouteFileType extends LanguageFileType implements FileTypeIdent
 	@Override
 	public String getDescription()
 	{
-		return getName();
+		return getId();
 	}
 
 	@Nonnull

@@ -90,8 +90,6 @@ public class PlayJavaModuleBasedConfiguration extends ModuleBasedConfiguration<R
 	{
 		super.readExternal(element);
 
-		readModule(element);
-
 		XmlSerializer.deserializeInto(this, element);
 	}
 
@@ -99,8 +97,6 @@ public class PlayJavaModuleBasedConfiguration extends ModuleBasedConfiguration<R
 	public void writeExternal(final Element element) throws WriteExternalException
 	{
 		super.writeExternal(element);
-
-		writeModule(element);
 
 		XmlSerializer.serializeInto(this, element);
 	}

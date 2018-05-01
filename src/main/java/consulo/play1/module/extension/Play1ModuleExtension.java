@@ -16,10 +16,11 @@
 
 package consulo.play1.module.extension;
 
-import consulo.play1.sdk.Play1SdkType;
 import javax.annotation.Nonnull;
+
 import com.intellij.openapi.projectRoots.SdkType;
-import consulo.extension.impl.ModuleExtensionWithSdkImpl;
+import consulo.module.extension.impl.ModuleExtensionWithSdkImpl;
+import consulo.play1.sdk.Play1SdkType;
 import consulo.roots.ModuleRootLayer;
 
 /**

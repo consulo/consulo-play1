@@ -39,7 +39,7 @@ public class PlayBaseTemplateFileType extends LanguageFileType
 
 	@Nonnull
 	@Override
-	public String getName()
+	public String getId()
 	{
 		return "Play";
 	}

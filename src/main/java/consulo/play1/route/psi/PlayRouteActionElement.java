@@ -106,13 +106,6 @@ public class PlayRouteActionElement extends ASTWrapperPsiElement
 					}
 					return null;
 				}
-
-				@Nonnull
-				@Override
-				public Object[] getVariants()
-				{
-					return new Object[0];
-				}
 			}
 		};
 	}

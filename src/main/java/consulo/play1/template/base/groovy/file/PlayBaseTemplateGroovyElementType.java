@@ -16,9 +16,10 @@
 
 package consulo.play1.template.base.groovy.file;
 
-import org.jetbrains.annotations.NonNls;
 import javax.annotation.Nonnull;
-import org.jetbrains.plugins.groovy.GroovyFileType;
+
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.plugins.groovy.GroovyLanguage;
 import org.jetbrains.plugins.groovy.lang.lexer.GroovyLexer;
 import org.jetbrains.plugins.groovy.lang.parser.GroovyParser;
 import com.intellij.lang.ASTNode;
@@ -40,7 +41,7 @@ public class PlayBaseTemplateGroovyElementType extends IFileElementType
 {
 	public PlayBaseTemplateGroovyElementType(@Nonnull @NonNls String debugName)
 	{
-		super(debugName, GroovyFileType.GROOVY_LANGUAGE);
+		super(debugName, GroovyLanguage.INSTANCE);
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class PlayBaseTemplateGroovyElementType extends IFileElementType
 		PsiElement parentElement = chameleon.getPsi();
 		Project project = JavaPsiFacade.getInstance(parentElement.getProject()).getProject();
 
-		Language groovyLanguage = GroovyFileType.GROOVY_LANGUAGE;
+		Language groovyLanguage = GroovyLanguage.INSTANCE;
 		LanguageVersion defaultVersion = LanguageVersionUtil.findDefaultVersion(groovyLanguage);
 		PsiBuilder builder = PsiBuilderFactory.getInstance().createBuilder(project, chameleon, new GroovyLexer(), groovyLanguage, defaultVersion, chameleon.getText());
 

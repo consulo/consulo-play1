@@ -59,7 +59,7 @@ public class PlayJavaConfFileType extends LanguageFileType implements FileTypeId
 
 	@Override
 	@Nonnull
-	public String getName()
+	public String getId()
 	{
 		return "PlayApplicationConf";
 	}

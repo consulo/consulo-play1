@@ -23,9 +23,7 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import consulo.play1.template.base.PlayBaseTemplateLanguage;
-import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
-import org.jetbrains.plugins.groovy.GroovyFileType;
+import org.jetbrains.plugins.groovy.GroovyLanguage;
 import com.intellij.lang.Language;
 import com.intellij.lang.LanguageParserDefinitions;
 import com.intellij.lang.html.HTMLLanguage;
@@ -35,6 +33,8 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.impl.source.PsiFileImpl;
 import com.intellij.psi.templateLanguages.ConfigurableTemplateLanguageFileViewProvider;
+import consulo.play1.template.base.PlayBaseTemplateLanguage;
+import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 
 /**
  * @author VISTALL
@@ -63,7 +63,7 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 			return file;
 		}
 
-		if(lang == GroovyFileType.GROOVY_LANGUAGE)
+		if(lang == GroovyLanguage.INSTANCE)
 		{
 			PsiFileImpl file = (PsiFileImpl) LanguageParserDefinitions.INSTANCE.forLanguage(lang).createFile(this);
 			file.setContentElementType(PlayBaseTemplateTokens.GROOVY_TEMPLATE_DATA);
@@ -78,7 +78,7 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 	public Set<Language> getLanguages()
 	{
 		//TODO [VISTALL] uncomment then groovy ill supported
-		return new HashSet<Language>(Arrays.asList(PlayBaseTemplateLanguage.INSTANCE, HTMLLanguage.INSTANCE, GroovyFileType.GROOVY_LANGUAGE));
+		return new HashSet<Language>(Arrays.asList(PlayBaseTemplateLanguage.INSTANCE, HTMLLanguage.INSTANCE, GroovyLanguage.INSTANCE));
 	}
 
 	@Nonnull
