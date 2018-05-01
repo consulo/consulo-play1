@@ -16,8 +16,6 @@
 
 package consulo.play1.run;
 
-import consulo.play1.PlayJavaConstants;
-import consulo.play1.PlayJavaUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import com.intellij.debugger.impl.GenericDebuggerRunner;
@@ -29,6 +27,8 @@ import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.ui.RunContentDescriptor;
 import com.intellij.lang.properties.IProperty;
 import com.intellij.lang.properties.psi.PropertiesFile;
+import consulo.play1.PlayJavaConstants;
+import consulo.play1.PlayJavaUtil;
 
 /**
  * @author VISTALL
