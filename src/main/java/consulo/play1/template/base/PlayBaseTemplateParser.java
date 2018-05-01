@@ -16,7 +16,7 @@
 
 package consulo.play1.template.base;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import consulo.play1.template.base.parser.PlayBaseTemplateNodes;
 import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.lang.ASTNode;
@@ -34,7 +34,7 @@ public class PlayBaseTemplateParser implements PsiParser, PlayBaseTemplateTokens
 {
 	public static final PsiParser INSTANCE = new PlayBaseTemplateParser();
 
-	@NotNull
+	@Nonnull
 	@Override
 	public ASTNode parse(IElementType root, PsiBuilder builder, LanguageVersion languageVersion)
 	{

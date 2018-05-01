@@ -20,8 +20,8 @@ import javax.swing.Icon;
 
 import consulo.play1.PlayJavaIcons;
 import consulo.play1.module.extension.Play1ModuleExtension;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.ConfigurationType;
 import com.intellij.execution.configurations.RunConfiguration;
@@ -55,7 +55,7 @@ public class PlayJavaConfigurationType implements ConfigurationType
 			}
 
 			@Override
-			public boolean isApplicable(@NotNull Project project)
+			public boolean isApplicable(@Nonnull Project project)
 			{
 				return ModuleExtensionHelper.getInstance(project).hasModuleExtension(Play1ModuleExtension.class);
 			}
@@ -80,7 +80,7 @@ public class PlayJavaConfigurationType implements ConfigurationType
 		return PlayJavaIcons.Play;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public String getId()
 	{

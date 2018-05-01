@@ -16,9 +16,10 @@
 
 package consulo.play1.template.base.groovy;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.plugins.groovy.GroovyFileType;
 import org.jetbrains.plugins.groovy.lang.lexer.GroovyLexer;
 import org.jetbrains.plugins.groovy.lang.parser.GroovyParser;
@@ -37,7 +38,7 @@ import consulo.lang.util.LanguageVersionUtil;
  */
 public class PlayBaseTemplateGroovyExpressionElementType extends ILazyParseableElementType
 {
-	public PlayBaseTemplateGroovyExpressionElementType(@NotNull @NonNls String debugName)
+	public PlayBaseTemplateGroovyExpressionElementType(@Nonnull @NonNls String debugName)
 	{
 		super(debugName);
 	}

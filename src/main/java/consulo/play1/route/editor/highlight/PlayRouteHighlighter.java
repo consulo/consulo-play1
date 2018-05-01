@@ -19,7 +19,7 @@ package consulo.play1.route.editor.highlight;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import consulo.play1.editor.highlight.PlayJavaColors;
 import consulo.play1.route.psi.PlayRouteElementTypes;
 import consulo.play1.route.psi.lexer.PlayRouteLexer;
@@ -43,14 +43,14 @@ public class PlayRouteHighlighter extends SyntaxHighlighterBase implements PlayR
 		elementToKeys.put(METHOD_TYPE, PlayJavaColors.ROUTE_METHOD);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public Lexer getHighlightingLexer()
 	{
 		return new PlayRouteLexer();
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public TextAttributesKey[] getTokenHighlights(IElementType tokenType)
 	{

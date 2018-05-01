@@ -16,7 +16,8 @@
 
 package consulo.play1.route.psi;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import consulo.play1.route.PlayRouteFileType;
 import consulo.play1.route.PlayRouteLanguage;
 import com.intellij.extapi.psi.PsiFileBase;
@@ -29,12 +30,12 @@ import com.intellij.psi.FileViewProvider;
  */
 public class PlayRouteFile extends PsiFileBase
 {
-	public PlayRouteFile(@NotNull FileViewProvider viewProvider)
+	public PlayRouteFile(@Nonnull FileViewProvider viewProvider)
 	{
 		super(viewProvider, PlayRouteLanguage.INSTANCE);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public FileType getFileType()
 	{

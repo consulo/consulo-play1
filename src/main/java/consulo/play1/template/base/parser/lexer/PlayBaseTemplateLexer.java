@@ -20,7 +20,8 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
+
 import consulo.play1.template.base.parser.PlayBaseTemplateTokenSets;
 import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.lexer.FlexAdapter;

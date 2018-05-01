@@ -18,11 +18,13 @@ package consulo.play1.editor;
 
 import java.awt.event.MouseEvent;
 
+import javax.annotation.Nonnull;
+
 import consulo.play1.PlayJavaIcons;
 import consulo.play1.PlayJavaUtil;
 import consulo.play1.template.base.psi.PlayBaseTemplateFile;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 import com.intellij.codeHighlighting.Pass;
 import com.intellij.codeInsight.daemon.GutterIconNavigationHandler;
 import com.intellij.codeInsight.daemon.LineMarkerInfo;
@@ -64,7 +66,7 @@ public class PlayBaseTemplateLineMarkerProvider implements LineMarkerProvider
 
 	@Nullable
 	@Override
-	public LineMarkerInfo getLineMarkerInfo(@NotNull PsiElement psiElement)
+	public LineMarkerInfo getLineMarkerInfo(@Nonnull PsiElement psiElement)
 	{
 		PlayBaseTemplateFile templateFile = findTemplateFile(psiElement);
 		if(templateFile != null)

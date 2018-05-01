@@ -16,12 +16,13 @@
 
 package consulo.play1.template.base;
 
+import javax.annotation.Nonnull;
+
 import consulo.play1.template.base.parser.PlayBaseTemplateTokenSets;
 import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 import consulo.play1.template.base.parser.lexer.PlayBaseTemplateElementType;
 import consulo.play1.template.base.parser.lexer.PlayBaseTemplateLexer;
 import consulo.play1.template.base.psi.PlayBaseTemplateFile;
-import org.jetbrains.annotations.NotNull;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.lang.PsiParser;
@@ -40,7 +41,7 @@ import consulo.lang.LanguageVersion;
  */
 public class PlayBaseTemplateParserDefinition implements ParserDefinition
 {
-	@NotNull
+	@Nonnull
 	@Override
 	public Lexer createLexer(LanguageVersion languageVersion)
 	{
@@ -59,28 +60,28 @@ public class PlayBaseTemplateParserDefinition implements ParserDefinition
 		return PlayBaseTemplateTokens.PLAY_BASE_TEMPLATE_FILE;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public TokenSet getWhitespaceTokens(LanguageVersion languageVersion)
 	{
 		return PlayBaseTemplateTokenSets.WHITESPACE_SET;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public TokenSet getCommentTokens(LanguageVersion languageVersion)
 	{
 		return PlayBaseTemplateTokenSets.COMMENT_SET;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public TokenSet getStringLiteralElements(LanguageVersion languageVersion)
 	{
 		return PlayBaseTemplateTokenSets.STRING_SET;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public PsiElement createElement(ASTNode node)
 	{

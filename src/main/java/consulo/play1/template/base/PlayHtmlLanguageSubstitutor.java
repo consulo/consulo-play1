@@ -16,9 +16,11 @@
 
 package consulo.play1.template.base;
 
+import javax.annotation.Nonnull;
+
 import consulo.play1.module.extension.Play1ModuleExtension;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 import com.intellij.lang.Language;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtilCore;
@@ -35,7 +37,7 @@ public class PlayHtmlLanguageSubstitutor extends LanguageSubstitutor
 {
 	@Nullable
 	@Override
-	public Language getLanguage(@NotNull VirtualFile file, @NotNull Project project)
+	public Language getLanguage(@Nonnull VirtualFile file, @Nonnull Project project)
 	{
 		final Module moduleForFile = ModuleUtilCore.findModuleForFile(file, project);
 		if(moduleForFile == null || ModuleUtilCore.getExtension(moduleForFile, Play1ModuleExtension.class) == null)

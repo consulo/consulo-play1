@@ -19,9 +19,10 @@ package consulo.play1.run;
 import java.util.Arrays;
 import java.util.Collection;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import org.jdom.Element;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
 import com.intellij.execution.configurations.ConfigurationFactory;
@@ -74,7 +75,7 @@ public class PlayJavaModuleBasedConfiguration extends ModuleBasedConfiguration<R
 
 	@Nullable
 	@Override
-	public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment env) throws ExecutionException
+	public RunProfileState getState(@Nonnull Executor executor, @Nonnull ExecutionEnvironment env) throws ExecutionException
 	{
 		final PlayJavaCommandLineState state = new PlayJavaCommandLineState(env);
 

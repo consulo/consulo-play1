@@ -16,7 +16,7 @@
 
 package consulo.play1.run;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.CommandLineState;
 import com.intellij.execution.configurations.GeneralCommandLine;
@@ -40,7 +40,7 @@ public class PlayJavaCommandLineState extends CommandLineState
 		super(environment);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	protected ProcessHandler startProcess() throws ExecutionException
 	{

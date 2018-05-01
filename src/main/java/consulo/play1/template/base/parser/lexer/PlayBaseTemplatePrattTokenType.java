@@ -17,7 +17,7 @@
 package consulo.play1.template.base.parser.lexer;
 
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import consulo.play1.template.base.PlayBaseTemplateLanguage;
 import com.intellij.lang.pratt.PrattTokenType;
 
@@ -27,7 +27,7 @@ import com.intellij.lang.pratt.PrattTokenType;
  */
 public class PlayBaseTemplatePrattTokenType extends PrattTokenType
 {
-	public PlayBaseTemplatePrattTokenType(@NotNull @NonNls String debugName)
+	public PlayBaseTemplatePrattTokenType(@Nonnull @NonNls String debugName)
 	{
 		super(debugName, PlayBaseTemplateLanguage.INSTANCE);
 	}

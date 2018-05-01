@@ -19,10 +19,10 @@ package consulo.play1.editor.highlight;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.swing.Icon;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.PlainSyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
@@ -43,14 +43,14 @@ public class PlayJavaColorSettingsPage implements ColorSettingsPage
 		return null;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public SyntaxHighlighter getHighlighter()
 	{
 		return new PlainSyntaxHighlighter();
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public String getDemoText()
 	{
@@ -84,7 +84,7 @@ public class PlayJavaColorSettingsPage implements ColorSettingsPage
 		return map;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public AttributesDescriptor[] getAttributeDescriptors()
 	{
@@ -96,14 +96,14 @@ public class PlayJavaColorSettingsPage implements ColorSettingsPage
 		};
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public ColorDescriptor[] getColorDescriptors()
 	{
 		return ColorDescriptor.EMPTY_ARRAY;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public String getDisplayName()
 	{

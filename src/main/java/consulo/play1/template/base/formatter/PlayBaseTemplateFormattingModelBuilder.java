@@ -18,8 +18,8 @@ package consulo.play1.template.base.formatter;
 
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import com.intellij.formatting.Alignment;
 import com.intellij.formatting.Wrap;
 import com.intellij.formatting.templateLanguages.DataLanguageBlockWrapper;
@@ -35,7 +35,7 @@ import com.intellij.psi.codeStyle.CodeStyleSettings;
 public class PlayBaseTemplateFormattingModelBuilder extends TemplateLanguageFormattingModelBuilder
 {
 	@Override
-	public TemplateLanguageBlock createTemplateLanguageBlock(@NotNull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, @Nullable List<DataLanguageBlockWrapper> foreignChildren, @NotNull CodeStyleSettings codeStyleSettings)
+	public TemplateLanguageBlock createTemplateLanguageBlock(@Nonnull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, @Nullable List<DataLanguageBlockWrapper> foreignChildren, @Nonnull CodeStyleSettings codeStyleSettings)
 	{
 		return new PlayBaseTemplateBlock(node, wrap, alignment, this, codeStyleSettings, foreignChildren);
 	}

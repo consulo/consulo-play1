@@ -16,8 +16,8 @@
 
 package consulo.play1;
 
-import consulo.play1.conf.PlayJavaConfFileType;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
+
 import com.intellij.lang.properties.psi.PropertiesFile;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
@@ -26,6 +26,7 @@ import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.util.InheritanceUtil;
+import consulo.play1.conf.PlayJavaConfFileType;
 
 /**
  * @author VISTALL

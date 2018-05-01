@@ -16,7 +16,7 @@
 
 package consulo.play1.route;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import consulo.play1.route.psi.PlayRouteElementTypes;
 import consulo.play1.route.psi.PlayRouteNodes;
 import com.intellij.lang.ASTNode;
@@ -31,7 +31,7 @@ import com.intellij.psi.tree.IElementType;
  */
 public class PlayRouteParser implements PsiParser, PlayRouteElementTypes, PlayRouteNodes
 {
-	@NotNull
+	@Nonnull
 	@Override
 	public ASTNode parse(IElementType root, PsiBuilder builder, LanguageVersion languageVersion)
 	{

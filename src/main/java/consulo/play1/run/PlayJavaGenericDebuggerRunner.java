@@ -16,8 +16,9 @@
 
 package consulo.play1.run;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.intellij.debugger.impl.GenericDebuggerRunner;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.RemoteConnection;
@@ -37,14 +38,14 @@ import consulo.play1.PlayJavaUtil;
 public class PlayJavaGenericDebuggerRunner extends GenericDebuggerRunner
 {
 	@Override
-	public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile)
+	public boolean canRun(@Nonnull String executorId, @Nonnull RunProfile profile)
 	{
 		return super.canRun(executorId, profile) && profile instanceof PlayJavaModuleBasedConfiguration;
 	}
 
 	@Nullable
 	@Override
-	protected RunContentDescriptor createContentDescriptor(@NotNull RunProfileState state, @NotNull ExecutionEnvironment environment) throws
+	protected RunContentDescriptor createContentDescriptor(@Nonnull RunProfileState state, @Nonnull ExecutionEnvironment environment) throws
 			ExecutionException
 	{
 		final PlayJavaModuleBasedConfiguration runProfile = (PlayJavaModuleBasedConfiguration) environment.getRunProfile();

@@ -16,7 +16,7 @@
 
 package consulo.play1.template.base.psi;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import consulo.play1.template.base.PlayBaseTemplateFileType;
 import consulo.play1.template.base.PlayBaseTemplateLanguage;
 import com.intellij.extapi.psi.PsiFileBase;
@@ -29,12 +29,12 @@ import com.intellij.psi.FileViewProvider;
  */
 public class PlayBaseTemplateFile extends PsiFileBase
 {
-	public PlayBaseTemplateFile(@NotNull FileViewProvider viewProvider)
+	public PlayBaseTemplateFile(@Nonnull FileViewProvider viewProvider)
 	{
 		super(viewProvider, PlayBaseTemplateLanguage.INSTANCE);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public FileType getFileType()
 	{

@@ -16,7 +16,8 @@
 
 package consulo.play1.template.base.psi;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import com.intellij.lang.ASTNode;
 
 /**
@@ -25,7 +26,7 @@ import com.intellij.lang.ASTNode;
  */
 public class PlayBaseTemplateTag extends PlayBaseTemplateElement
 {
-	public PlayBaseTemplateTag(@NotNull ASTNode node)
+	public PlayBaseTemplateTag(@Nonnull ASTNode node)
 	{
 		super(node);
 	}

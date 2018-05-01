@@ -16,11 +16,11 @@
 
 package consulo.play1.run;
 
+import javax.annotation.Nonnull;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.roots.ui.configuration.ModulesCombobox;
@@ -54,7 +54,7 @@ public class PlayJavaConfigutationEditor extends SettingsEditor<PlayJavaModuleBa
 		s.programParameters = programParametersField.getText();
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	protected JComponent createEditor()
 	{

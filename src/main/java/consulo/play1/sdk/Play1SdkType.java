@@ -18,12 +18,13 @@ package consulo.play1.sdk;
 
 import java.io.File;
 
+import javax.annotation.Nonnull;
 import javax.swing.Icon;
 
 import consulo.play1.PlayJavaConstants;
 import consulo.play1.PlayJavaIcons;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import javax.annotation.Nullable;
 import com.intellij.openapi.projectRoots.JavaSdk;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.SdkModificator;
@@ -161,7 +162,7 @@ public class Play1SdkType extends SdkType
 		return "play";
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public String getPresentableName()
 	{

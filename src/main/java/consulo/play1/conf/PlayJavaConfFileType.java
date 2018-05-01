@@ -18,9 +18,9 @@ package consulo.play1.conf;
 
 import java.nio.charset.Charset;
 
+import javax.annotation.Nonnull;
 import javax.swing.Icon;
 
-import org.jetbrains.annotations.NotNull;
 import consulo.play1.PlayJavaConstants;
 import com.intellij.icons.AllIcons;
 import com.intellij.lang.properties.PropertiesBundle;
@@ -51,27 +51,27 @@ public class PlayJavaConfFileType extends LanguageFileType implements FileTypeId
 	}
 
 	@Override
-	public String getCharset(@NotNull VirtualFile file, final byte[] content)
+	public String getCharset(@Nonnull VirtualFile file, final byte[] content)
 	{
 		Charset charset = EncodingManager.getInstance().getDefaultCharsetForPropertiesFiles(file);
 		return charset == null ? CharsetToolkit.getDefaultSystemCharset().name() : charset.name();
 	}
 
 	@Override
-	@NotNull
+	@Nonnull
 	public String getName()
 	{
 		return "PlayApplicationConf";
 	}
 
 	@Override
-	@NotNull
+	@Nonnull
 	public String getDescription()
 	{
 		return PropertiesBundle.message("properties.files.file.type.description");
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public String getDefaultExtension()
 	{

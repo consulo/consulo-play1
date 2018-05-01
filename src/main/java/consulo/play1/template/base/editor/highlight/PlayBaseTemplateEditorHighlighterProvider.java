@@ -16,8 +16,8 @@
 
 package consulo.play1.template.base.editor.highlight;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import com.intellij.openapi.editor.colors.EditorColorsScheme;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
 import com.intellij.openapi.fileTypes.EditorHighlighterProvider;
@@ -32,7 +32,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 public class PlayBaseTemplateEditorHighlighterProvider implements EditorHighlighterProvider
 {
 	@Override
-	public EditorHighlighter getEditorHighlighter(@Nullable Project project, @NotNull FileType fileType, @Nullable VirtualFile virtualFile, @NotNull EditorColorsScheme colors)
+	public EditorHighlighter getEditorHighlighter(@Nullable Project project, @Nonnull FileType fileType, @Nullable VirtualFile virtualFile, @Nonnull EditorColorsScheme colors)
 	{
 		return new PlayBaseTemplateEditorHighlighter(colors, project, virtualFile);
 	}

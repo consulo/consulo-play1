@@ -20,10 +20,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import consulo.play1.template.base.PlayBaseTemplateLanguage;
 import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.plugins.groovy.GroovyFileType;
 import com.intellij.lang.Language;
 import com.intellij.lang.LanguageParserDefinitions;
@@ -48,7 +49,7 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 
 	@Nullable
 	@Override
-	protected PsiFile createFile(@NotNull Language lang)
+	protected PsiFile createFile(@Nonnull Language lang)
 	{
 		if(lang == getBaseLanguage())
 		{
@@ -73,21 +74,21 @@ public class PlayBaseTemplateFileViewProvider extends MultiplePsiFilesPerDocumen
 	}
 
 	@Override
-	@NotNull
+	@Nonnull
 	public Set<Language> getLanguages()
 	{
 		//TODO [VISTALL] uncomment then groovy ill supported
 		return new HashSet<Language>(Arrays.asList(PlayBaseTemplateLanguage.INSTANCE, HTMLLanguage.INSTANCE, GroovyFileType.GROOVY_LANGUAGE));
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public Language getBaseLanguage()
 	{
 		return PlayBaseTemplateLanguage.INSTANCE;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public Language getTemplateDataLanguage()
 	{

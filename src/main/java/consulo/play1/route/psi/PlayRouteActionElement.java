@@ -16,7 +16,7 @@
 
 package consulo.play1.route.psi;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.JavaPsiFacade;
@@ -35,12 +35,12 @@ import com.intellij.psi.search.GlobalSearchScope;
  */
 public class PlayRouteActionElement extends ASTWrapperPsiElement
 {
-	public PlayRouteActionElement(@NotNull ASTNode node)
+	public PlayRouteActionElement(@Nonnull ASTNode node)
 	{
 		super(node);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public PsiReference[] getReferences()
 	{
@@ -48,7 +48,7 @@ public class PlayRouteActionElement extends ASTWrapperPsiElement
 		{
 			new PsiPolyVariantReferenceBase<PlayRouteActionElement>(this, getTextRange(), false)
 			{
-				@NotNull
+				@Nonnull
 				@Override
 				public ResolveResult[] multiResolve(boolean incompleteCode)
 				{
@@ -107,7 +107,7 @@ public class PlayRouteActionElement extends ASTWrapperPsiElement
 					return null;
 				}
 
-				@NotNull
+				@Nonnull
 				@Override
 				public Object[] getVariants()
 				{

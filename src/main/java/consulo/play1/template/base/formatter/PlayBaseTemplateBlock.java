@@ -18,8 +18,9 @@ package consulo.play1.template.base.formatter;
 
 import java.util.List;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import consulo.play1.template.base.parser.PlayBaseTemplateSimplyTokens;
 import consulo.play1.template.base.psi.PlayBaseTemplateFile;
 import consulo.play1.template.base.psi.PlayBaseTemplateTag;
@@ -40,7 +41,7 @@ import com.intellij.psi.tree.IElementType;
  */
 public class PlayBaseTemplateBlock extends TemplateLanguageBlock
 {
-	protected PlayBaseTemplateBlock(@NotNull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, @NotNull TemplateLanguageBlockFactory blockFactory, @NotNull CodeStyleSettings settings, @Nullable List<DataLanguageBlockWrapper> foreignChildren)
+	protected PlayBaseTemplateBlock(@Nonnull ASTNode node, @Nullable Wrap wrap, @Nullable Alignment alignment, @Nonnull TemplateLanguageBlockFactory blockFactory, @Nonnull CodeStyleSettings settings, @Nullable List<DataLanguageBlockWrapper> foreignChildren)
 	{
 		super(node, wrap, alignment, blockFactory, settings, foreignChildren);
 	}

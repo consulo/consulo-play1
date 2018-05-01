@@ -17,7 +17,7 @@
 package consulo.play1.template.base.groovy.file;
 
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import org.jetbrains.plugins.groovy.GroovyFileType;
 import org.jetbrains.plugins.groovy.lang.lexer.GroovyLexer;
 import org.jetbrains.plugins.groovy.lang.parser.GroovyParser;
@@ -38,7 +38,7 @@ import consulo.lang.util.LanguageVersionUtil;
  */
 public class PlayBaseTemplateGroovyElementType extends IFileElementType
 {
-	public PlayBaseTemplateGroovyElementType(@NotNull @NonNls String debugName)
+	public PlayBaseTemplateGroovyElementType(@Nonnull @NonNls String debugName)
 	{
 		super(debugName, GroovyFileType.GROOVY_LANGUAGE);
 	}

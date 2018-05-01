@@ -16,7 +16,8 @@
 
 package consulo.play1.template.base.formatter;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.text.StringUtil;
@@ -29,7 +30,7 @@ import com.intellij.psi.formatter.WhiteSpaceFormattingStrategyAdapter;
 public class PlayBaseTemplateWhiteSpaceFormattingStrategy extends WhiteSpaceFormattingStrategyAdapter
 {
 	@Override
-	public boolean containsWhitespacesOnly(@NotNull ASTNode node)
+	public boolean containsWhitespacesOnly(@Nonnull ASTNode node)
 	{
 		return node.getElementType() == PlayBaseTemplateTokens.TEMPLATE_TEXT && StringUtil.isEmptyOrSpaces(node.getText());
 	}

@@ -16,10 +16,10 @@
 
 package consulo.play1.module.extension;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.swing.JComponent;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.util.ui.JBUI;
 import consulo.annotations.RequiredDispatchThread;
@@ -34,12 +34,12 @@ import consulo.roots.ModuleRootLayer;
  */
 public class Play1MutableModuleExtension extends Play1ModuleExtension implements MutableModuleExtensionWithSdk<Play1ModuleExtension>
 {
-	public Play1MutableModuleExtension(@NotNull String id, @NotNull ModuleRootLayer module)
+	public Play1MutableModuleExtension(@Nonnull String id, @Nonnull ModuleRootLayer module)
 	{
 		super(id, module);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public MutableModuleInheritableNamedPointer<Sdk> getInheritableSdk()
 	{
@@ -62,7 +62,7 @@ public class Play1MutableModuleExtension extends Play1ModuleExtension implements
 	}
 
 	@Override
-	public boolean isModified(@NotNull Play1ModuleExtension moduleExtension)
+	public boolean isModified(@Nonnull Play1ModuleExtension moduleExtension)
 	{
 		return isModifiedImpl(moduleExtension);
 	}

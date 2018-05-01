@@ -19,7 +19,7 @@ package consulo.play1.template.base.editor.highlight;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import consulo.play1.editor.highlight.PlayJavaColors;
 import consulo.play1.template.base.parser.PlayBaseTemplateTokenSets;
 import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
@@ -48,14 +48,14 @@ public class PlayBaseTemplateSyntaxHighlighter extends SyntaxHighlighterBase imp
 		safeMap(map, TAG_NAME, PlayJavaColors.PLAY_TAG_NAME);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public Lexer getHighlightingLexer()
 	{
 		return new PlayBaseTemplateLexer();
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public TextAttributesKey[] getTokenHighlights(IElementType tokenType)
 	{

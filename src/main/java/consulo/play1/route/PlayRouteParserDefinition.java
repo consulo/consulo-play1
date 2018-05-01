@@ -22,7 +22,7 @@ import consulo.play1.route.psi.PlayRouteElementTypes;
 import consulo.play1.route.psi.PlayRouteFile;
 import consulo.play1.route.psi.PlayRouteNodes;
 import consulo.play1.route.psi.lexer.PlayRouteLexer;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
@@ -41,7 +41,7 @@ import consulo.lang.LanguageVersion;
  */
 public class PlayRouteParserDefinition implements ParserDefinition
 {
-	@NotNull
+	@Nonnull
 	@Override
 	public Lexer createLexer(LanguageVersion languageVersion)
 	{
@@ -60,28 +60,28 @@ public class PlayRouteParserDefinition implements ParserDefinition
 		return PlayRouteElementTypes.FILE_ELEMENT_TYPE;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public TokenSet getWhitespaceTokens(LanguageVersion languageVersion)
 	{
 		return PlayRouteElementTokenSets.WHITESPACE_SET;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public TokenSet getCommentTokens(LanguageVersion languageVersion)
 	{
 		return PlayRouteElementTokenSets.COMMENT_SET;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public TokenSet getStringLiteralElements(LanguageVersion languageVersion)
 	{
 		return TokenSet.EMPTY;
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public PsiElement createElement(ASTNode node)
 	{

@@ -16,7 +16,8 @@
 
 package consulo.play1.route.editor.highlight;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import com.intellij.openapi.fileTypes.SingleLazyInstanceSyntaxHighlighterFactory;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 
@@ -26,7 +27,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter;
  */
 public class PlayRouteSyntaxHighlighterFactory extends SingleLazyInstanceSyntaxHighlighterFactory
 {
-	@NotNull
+	@Nonnull
 	@Override
 	protected SyntaxHighlighter createHighlighter()
 	{

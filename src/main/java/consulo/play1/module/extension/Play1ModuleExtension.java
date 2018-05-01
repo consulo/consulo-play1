@@ -17,7 +17,7 @@
 package consulo.play1.module.extension;
 
 import consulo.play1.sdk.Play1SdkType;
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 import com.intellij.openapi.projectRoots.SdkType;
 import consulo.extension.impl.ModuleExtensionWithSdkImpl;
 import consulo.roots.ModuleRootLayer;
@@ -28,12 +28,12 @@ import consulo.roots.ModuleRootLayer;
  */
 public class Play1ModuleExtension extends ModuleExtensionWithSdkImpl<Play1ModuleExtension>
 {
-	public Play1ModuleExtension(@NotNull String id, @NotNull ModuleRootLayer module)
+	public Play1ModuleExtension(@Nonnull String id, @Nonnull ModuleRootLayer module)
 	{
 		super(id, module);
 	}
 
-	@NotNull
+	@Nonnull
 	@Override
 	public Class<? extends SdkType> getSdkTypeClass()
 	{

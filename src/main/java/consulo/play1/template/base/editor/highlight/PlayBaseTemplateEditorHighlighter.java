@@ -17,8 +17,8 @@
 package consulo.play1.template.base.editor.highlight;
 
 import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.jetbrains.plugins.groovy.highlighter.GroovySyntaxHighlighter;
 import com.intellij.lang.html.HTMLLanguage;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
@@ -37,7 +37,7 @@ import com.intellij.psi.templateLanguages.TemplateDataHighlighterWrapper;
  */
 public class PlayBaseTemplateEditorHighlighter extends LayeredLexerEditorHighlighter
 {
-	public PlayBaseTemplateEditorHighlighter(@NotNull EditorColorsScheme scheme, @Nullable Project project, @Nullable VirtualFile virtualFile)
+	public PlayBaseTemplateEditorHighlighter(@Nonnull EditorColorsScheme scheme, @Nullable Project project, @Nullable VirtualFile virtualFile)
 	{
 		super(new PlayBaseTemplateSyntaxHighlighter(), scheme);
 

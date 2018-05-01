@@ -16,7 +16,8 @@
 
 package consulo.play1.template.base.psi;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 
@@ -26,7 +27,7 @@ import com.intellij.lang.ASTNode;
  */
 public class PlayBaseTemplateElement extends ASTWrapperPsiElement
 {
-	public PlayBaseTemplateElement(@NotNull ASTNode node)
+	public PlayBaseTemplateElement(@Nonnull ASTNode node)
 	{
 		super(node);
 	}

@@ -18,8 +18,9 @@ package consulo.play1.template.base.parser.lexer;
 
 import java.lang.reflect.Constructor;
 
+import javax.annotation.Nonnull;
+
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
 import consulo.play1.template.base.PlayBaseTemplateLanguage;
 import consulo.play1.template.base.psi.PlayBaseTemplateElement;
 import com.intellij.lang.ASTNode;
@@ -34,12 +35,12 @@ public class PlayBaseTemplateElementType extends IElementType
 {
 	private final Constructor<? extends PlayBaseTemplateElement> constructor;
 
-	public PlayBaseTemplateElementType(@NotNull @NonNls String debugName)
+	public PlayBaseTemplateElementType(@Nonnull @NonNls String debugName)
 	{
 		this(debugName, PlayBaseTemplateElement.class);
 	}
 
-	public PlayBaseTemplateElementType(@NotNull @NonNls String debugName, Class<? extends PlayBaseTemplateElement> clazz)
+	public PlayBaseTemplateElementType(@Nonnull @NonNls String debugName, Class<? extends PlayBaseTemplateElement> clazz)
 	{
 		super(debugName, PlayBaseTemplateLanguage.INSTANCE);
 

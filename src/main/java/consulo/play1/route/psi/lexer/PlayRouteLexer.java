@@ -19,7 +19,8 @@ package consulo.play1.route.psi.lexer;
 
 import java.io.Reader;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
+
 import consulo.play1.route.psi.PlayRouteElementTypes;
 import com.intellij.lexer.FlexAdapter;
 import com.intellij.lexer.Lexer;

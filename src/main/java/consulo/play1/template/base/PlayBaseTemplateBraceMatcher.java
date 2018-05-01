@@ -16,8 +16,8 @@
 
 package consulo.play1.template.base;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import com.intellij.codeInsight.highlighting.PairedBraceMatcherAdapter;
 import com.intellij.lang.BracePair;
 import com.intellij.lang.PairedBraceMatcher;
@@ -41,7 +41,7 @@ public class PlayBaseTemplateBraceMatcher extends PairedBraceMatcherAdapter
 			}
 
 			@Override
-			public boolean isPairedBracesAllowedBeforeType(@NotNull IElementType lbraceType, @Nullable IElementType contextType)
+			public boolean isPairedBracesAllowedBeforeType(@Nonnull IElementType lbraceType, @Nullable IElementType contextType)
 			{
 				return true;
 			}

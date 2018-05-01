@@ -16,7 +16,8 @@
 
 package consulo.play1.template.base.fileViewProvider;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
+
 import com.intellij.lang.Language;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.FileViewProvider;
@@ -30,7 +31,7 @@ import com.intellij.psi.PsiManager;
 public class PlayBaseTemplateFileViewProviderFactory implements FileViewProviderFactory
 {
 	@Override
-	public FileViewProvider createFileViewProvider(@NotNull VirtualFile file, Language language, @NotNull PsiManager manager, boolean physical)
+	public FileViewProvider createFileViewProvider(@Nonnull VirtualFile file, Language language, @Nonnull PsiManager manager, boolean physical)
 	{
 		return new PlayBaseTemplateFileViewProvider(manager, file, physical);
 	}
