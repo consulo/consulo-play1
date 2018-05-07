@@ -21,7 +21,6 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.Icon;
 
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.PlainSyntaxHighlighter;
@@ -36,13 +35,6 @@ import com.intellij.openapi.options.colors.ColorSettingsPage;
  */
 public class PlayJavaColorSettingsPage implements ColorSettingsPage
 {
-	@Nullable
-	@Override
-	public Icon getIcon()
-	{
-		return null;
-	}
-
 	@Nonnull
 	@Override
 	public SyntaxHighlighter getHighlighter()

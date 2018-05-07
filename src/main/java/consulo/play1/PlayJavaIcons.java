@@ -16,9 +16,8 @@
 
 package consulo.play1;
 
-import javax.swing.Icon;
-
 import com.intellij.openapi.util.IconLoader;
+import consulo.ui.image.Image;
 
 /**
  * @author VISTALL
@@ -26,7 +25,7 @@ import com.intellij.openapi.util.IconLoader;
  */
 public interface PlayJavaIcons
 {
-	Icon PlayLineMarker = IconLoader.findIcon("/icons/playLineMarker.png");
+	Image PlayLineMarker = IconLoader.findIcon("/icons/playLineMarker.png");
 
-	Icon Play = IconLoader.findIcon("/icons/play.png");
+	Image Play = IconLoader.findIcon("/icons/play.png");
 }

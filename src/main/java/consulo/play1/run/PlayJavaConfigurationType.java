@@ -29,6 +29,7 @@ import com.intellij.openapi.extensions.Extensions;
 import com.intellij.openapi.project.Project;
 import com.intellij.util.containers.ContainerUtil;
 import consulo.module.extension.ModuleExtensionHelper;
+import consulo.ui.image.Image;
 
 /**
  * @author VISTALL
@@ -75,7 +76,7 @@ public class PlayJavaConfigurationType implements ConfigurationType
 	}
 
 	@Override
-	public Icon getIcon()
+	public Image getIcon()
 	{
 		return PlayJavaIcons.Play;
 	}

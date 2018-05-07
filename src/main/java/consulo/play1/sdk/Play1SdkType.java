@@ -19,20 +19,19 @@ package consulo.play1.sdk;
 import java.io.File;
 
 import javax.annotation.Nonnull;
-import javax.swing.Icon;
-
-import consulo.play1.PlayJavaConstants;
-import consulo.play1.PlayJavaIcons;
-
 import javax.annotation.Nullable;
+
 import com.intellij.openapi.projectRoots.JavaSdk;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.SdkModificator;
 import com.intellij.openapi.projectRoots.SdkType;
 import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.vfs.VirtualFile;
+import consulo.play1.PlayJavaConstants;
+import consulo.play1.PlayJavaIcons;
 import consulo.roots.types.BinariesOrderRootType;
 import consulo.roots.types.SourcesOrderRootType;
+import consulo.ui.image.Image;
 import consulo.vfs.util.ArchiveVfsUtil;
 
 /**
@@ -48,7 +47,7 @@ public class Play1SdkType extends SdkType
 
 	@Nullable
 	@Override
-	public Icon getIcon()
+	public Image getIcon()
 	{
 		return PlayJavaIcons.Play;
 	}

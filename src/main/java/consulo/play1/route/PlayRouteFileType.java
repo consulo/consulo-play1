@@ -17,14 +17,14 @@
 package consulo.play1.route;
 
 import javax.annotation.Nonnull;
-import javax.swing.Icon;
-
 import javax.annotation.Nullable;
-import consulo.play1.PlayJavaConstants;
+
 import com.intellij.icons.AllIcons;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import com.intellij.openapi.fileTypes.ex.FileTypeIdentifiableByVirtualFile;
 import com.intellij.openapi.vfs.VirtualFile;
+import consulo.play1.PlayJavaConstants;
+import consulo.ui.image.Image;
 
 /**
  * @author VISTALL
@@ -62,7 +62,7 @@ public class PlayRouteFileType extends LanguageFileType implements FileTypeIdent
 
 	@Nullable
 	@Override
-	public Icon getIcon()
+	public Image getIcon()
 	{
 		return AllIcons.Hierarchy.Class;
 	}

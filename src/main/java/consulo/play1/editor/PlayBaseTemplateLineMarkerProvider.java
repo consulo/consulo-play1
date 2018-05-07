@@ -19,12 +19,8 @@ package consulo.play1.editor;
 import java.awt.event.MouseEvent;
 
 import javax.annotation.Nonnull;
-
-import consulo.play1.PlayJavaIcons;
-import consulo.play1.PlayJavaUtil;
-import consulo.play1.template.base.psi.PlayBaseTemplateFile;
-
 import javax.annotation.Nullable;
+
 import com.intellij.codeHighlighting.Pass;
 import com.intellij.codeInsight.daemon.GutterIconNavigationHandler;
 import com.intellij.codeInsight.daemon.LineMarkerInfo;
@@ -43,6 +39,10 @@ import com.intellij.psi.PsiManager;
 import com.intellij.psi.PsiMethod;
 import com.intellij.psi.PsiModifier;
 import com.intellij.util.ConstantFunction;
+import consulo.awt.TargetAWT;
+import consulo.play1.PlayJavaIcons;
+import consulo.play1.PlayJavaUtil;
+import consulo.play1.template.base.psi.PlayBaseTemplateFile;
 import consulo.roots.ContentFolderScopes;
 
 /**
@@ -72,7 +72,7 @@ public class PlayBaseTemplateLineMarkerProvider implements LineMarkerProvider
 		if(templateFile != null)
 		{
 
-			return new LineMarkerInfo<>(psiElement, psiElement.getTextRange(), PlayJavaIcons.PlayLineMarker, Pass.LINE_MARKERS,
+			return new LineMarkerInfo<>(psiElement, psiElement.getTextRange(), TargetAWT.to(PlayJavaIcons.PlayLineMarker), Pass.LINE_MARKERS,
 					new ConstantFunction<>("Navigate to template"), GUTTER_ICON_NAVIGATION_HANDLER, GutterIconRenderer.Alignment.LEFT);
 		}
 		return null;

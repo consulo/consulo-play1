@@ -19,9 +19,7 @@ package consulo.play1.conf;
 import java.nio.charset.Charset;
 
 import javax.annotation.Nonnull;
-import javax.swing.Icon;
 
-import consulo.play1.PlayJavaConstants;
 import com.intellij.icons.AllIcons;
 import com.intellij.lang.properties.PropertiesBundle;
 import com.intellij.lang.properties.PropertiesLanguage;
@@ -30,6 +28,8 @@ import com.intellij.openapi.fileTypes.ex.FileTypeIdentifiableByVirtualFile;
 import com.intellij.openapi.vfs.CharsetToolkit;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.encoding.EncodingManager;
+import consulo.play1.PlayJavaConstants;
+import consulo.ui.image.Image;
 
 /**
  * @author VISTALL
@@ -45,7 +45,7 @@ public class PlayJavaConfFileType extends LanguageFileType implements FileTypeId
 	}
 
 	@Override
-	public Icon getIcon()
+	public Image getIcon()
 	{
 		return AllIcons.FileTypes.Properties;
 	}
