@@ -1,16 +1,16 @@
 package consulo.play1.route.psi.lexer;
 
-import com.intellij.lexer.FlexLexer;
+import com.intellij.lexer.LexerBase;
 import com.intellij.psi.tree.IElementType;
 import consulo.play1.route.psi.PlayRouteElementTypes;
 %%
 
 %public
 %class _PlayRouteLexer
-%implements FlexLexer
+%extends LexerBase
 %final
 %unicode
-%function advance
+%function advanceImpl
 %type IElementType
 %eof{ return;
 %eof}

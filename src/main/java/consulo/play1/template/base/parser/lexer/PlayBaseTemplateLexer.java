@@ -16,20 +16,18 @@
 
 package consulo.play1.template.base.parser.lexer;
 
-import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import consulo.play1.template.base.parser.PlayBaseTemplateTokenSets;
-import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
-import com.intellij.lexer.FlexAdapter;
 import com.intellij.lexer.Lexer;
 import com.intellij.lexer.LookAheadLexer;
 import com.intellij.lexer.MergingLexerAdapter;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
+import consulo.play1.template.base.parser.PlayBaseTemplateTokenSets;
+import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 
 /**
  * @author VISTALL
@@ -53,7 +51,7 @@ public class PlayBaseTemplateLexer extends LookAheadLexer implements PlayBaseTem
 
 	public PlayBaseTemplateLexer()
 	{
-		super(new MergingLexerAdapter(new FlexAdapter(new _PlayBaseTemplateLexer((Reader) null)), TokenSet.create(TEMPLATE_TEXT, WHITE_SPACE)));
+		super(new MergingLexerAdapter(new _PlayBaseTemplateLexer(), TokenSet.create(TEMPLATE_TEXT, WHITE_SPACE)));
 	}
 
 	@Nullable

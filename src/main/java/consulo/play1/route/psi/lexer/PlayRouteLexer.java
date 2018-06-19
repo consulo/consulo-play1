@@ -16,17 +16,13 @@
 
 package consulo.play1.route.psi.lexer;
 
-
-import java.io.Reader;
-
 import javax.annotation.Nullable;
 
-import consulo.play1.route.psi.PlayRouteElementTypes;
-import com.intellij.lexer.FlexAdapter;
 import com.intellij.lexer.Lexer;
 import com.intellij.lexer.LookAheadLexer;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
+import consulo.play1.route.psi.PlayRouteElementTypes;
 
 /**
  * @author VISTALL
@@ -45,7 +41,7 @@ public class PlayRouteLexer extends LookAheadLexer implements PlayRouteElementTy
 
 	public PlayRouteLexer()
 	{
-		super(new FlexAdapter(new _PlayRouteLexer((Reader) null)));
+		super(new _PlayRouteLexer());
 	}
 
 	@Nullable

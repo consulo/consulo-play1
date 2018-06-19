@@ -1,6 +1,6 @@
 package consulo.play1.template.base.parser.lexer;
 
-import com.intellij.lexer.FlexLexer;
+import com.intellij.lexer.LexerBase;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.util.containers.Stack;
 import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
@@ -9,10 +9,10 @@ import consulo.play1.template.base.parser.PlayBaseTemplateTokens;
 
 %public
 %class _PlayBaseTemplateLexer
-%implements FlexLexer
+%extends LexerBase
 %final
 %unicode
-%function advance
+%function advanceImpl
 %type IElementType
 %eof{ return;
 %eof}
