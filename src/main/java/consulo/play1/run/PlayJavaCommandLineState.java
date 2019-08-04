@@ -16,18 +16,19 @@
 
 package consulo.play1.run;
 
-import javax.annotation.Nonnull;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.CommandLineState;
 import com.intellij.execution.configurations.GeneralCommandLine;
-import com.intellij.execution.process.OSProcessHandler;
 import com.intellij.execution.process.ProcessHandler;
+import com.intellij.execution.process.ProcessHandlerFactory;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.util.SystemInfo;
 import consulo.play1.module.extension.Play1ModuleExtension;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author VISTALL
@@ -78,6 +79,6 @@ public class PlayJavaCommandLineState extends CommandLineState
 		commandLine.setWorkDirectory(module.getModuleDirPath());
 		commandLine.setExePath(builder.toString());
 		commandLine.addParameter("run");
-		return new OSProcessHandler(commandLine);
+		return ProcessHandlerFactory.getInstance().createProcessHandler(commandLine);
 	}
 }

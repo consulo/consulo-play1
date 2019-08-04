@@ -16,20 +16,16 @@
 
 package consulo.play1.run;
 
-import javax.swing.Icon;
-
-import consulo.play1.PlayJavaIcons;
-import consulo.play1.module.extension.Play1ModuleExtension;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import com.intellij.execution.configurations.ConfigurationFactory;
 import com.intellij.execution.configurations.ConfigurationType;
 import com.intellij.execution.configurations.RunConfiguration;
-import com.intellij.openapi.extensions.Extensions;
 import com.intellij.openapi.project.Project;
-import com.intellij.util.containers.ContainerUtil;
 import consulo.module.extension.ModuleExtensionHelper;
+import consulo.play1.PlayJavaIcons;
+import consulo.play1.module.extension.Play1ModuleExtension;
 import consulo.ui.image.Image;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author VISTALL
@@ -37,10 +33,10 @@ import consulo.ui.image.Image;
  */
 public class PlayJavaConfigurationType implements ConfigurationType
 {
-	@Nullable
+	@Nonnull
 	public static PlayJavaConfigurationType getInstance()
 	{
-		return ContainerUtil.findInstance(Extensions.getExtensions(CONFIGURATION_TYPE_EP), PlayJavaConfigurationType.class);
+		return CONFIGURATION_TYPE_EP.findExtensionOrFail(PlayJavaConfigurationType.class);
 	}
 
 	private final ConfigurationFactory configurationFactory;

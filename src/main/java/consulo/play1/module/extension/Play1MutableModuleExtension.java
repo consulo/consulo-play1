@@ -16,17 +16,17 @@
 
 package consulo.play1.module.extension;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.swing.JComponent;
-
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.util.ui.JBUI;
-import consulo.annotations.RequiredDispatchThread;
 import consulo.extension.ui.ModuleExtensionSdkBoxBuilder;
 import consulo.module.extension.MutableModuleExtensionWithSdk;
 import consulo.module.extension.MutableModuleInheritableNamedPointer;
 import consulo.roots.ModuleRootLayer;
+import consulo.ui.RequiredUIAccess;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.swing.*;
 
 /**
  * @author VISTALL
@@ -46,13 +46,12 @@ public class Play1MutableModuleExtension extends Play1ModuleExtension implements
 		return (MutableModuleInheritableNamedPointer<Sdk>) super.getInheritableSdk();
 	}
 
-	@RequiredDispatchThread
+	@RequiredUIAccess
 	@Nullable
 	@Override
 	public JComponent createConfigurablePanel(@Nullable Runnable runnable)
 	{
-		return JBUI.Panels.verticalPanel().addComponent(ModuleExtensionSdkBoxBuilder.createAndDefine(this, runnable)
-				.build());
+		return JBUI.Panels.verticalPanel().addComponent(ModuleExtensionSdkBoxBuilder.createAndDefine(this, runnable).build());
 	}
 
 	@Override
