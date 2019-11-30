@@ -14,7 +14,7 @@
   - limitations under the License.
   -->
 
-<idea-plugin>
+<consulo-plugin>
 	<id>consulo.play</id>
 	<name>Play 1</name>
 	<version>SNAPSHOT</version>
@@ -55,4 +55,4 @@
 		<programRunner implementation="consulo.play1.run.PlayJavaGenericDebuggerRunner"/>
 		<configurationType implementation="consulo.play1.run.PlayJavaConfigurationType"/>
 	</extensions>
-</idea-plugin>
+</consulo-plugin>
