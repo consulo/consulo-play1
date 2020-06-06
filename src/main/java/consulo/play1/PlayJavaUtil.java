@@ -25,6 +25,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiManager;
+import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.InheritanceUtil;
 import consulo.play1.conf.PlayJavaConfFileType;
 
@@ -68,6 +69,6 @@ public class PlayJavaUtil
 	{
 		JavaPsiFacade facade = JavaPsiFacade.getInstance(project);
 
-		return facade.findClass(className, module.getModuleWithDependenciesAndLibrariesScope(false));
+		return facade.findClass(className, GlobalSearchScope.moduleWithDependenciesAndLibrariesScope(module, false));
 	}
 }
