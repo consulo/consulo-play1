@@ -23,6 +23,7 @@ import javax.swing.*;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.util.ui.JBUI;
 import consulo.disposer.Disposable;
+import consulo.extension.ui.ModuleExtensionBundleBoxBuilder;
 import consulo.extension.ui.ModuleExtensionSdkBoxBuilder;
 import consulo.module.extension.MutableModuleExtensionWithSdk;
 import consulo.module.extension.MutableModuleInheritableNamedPointer;
@@ -37,7 +38,7 @@ import consulo.ui.layout.VerticalLayout;
  * @author VISTALL
  * @since 15:48/28.05.13
  */
-public class Play1MutableModuleExtension extends Play1ModuleExtension implements MutableModuleExtensionWithSdk<Play1ModuleExtension>, SwingMutableModuleExtension
+public class Play1MutableModuleExtension extends Play1ModuleExtension implements MutableModuleExtensionWithSdk<Play1ModuleExtension>
 {
 	public Play1MutableModuleExtension(@Nonnull String id, @Nonnull ModuleRootLayer module)
 	{
@@ -56,15 +57,9 @@ public class Play1MutableModuleExtension extends Play1ModuleExtension implements
 	@Override
 	public Component createConfigurationComponent(@Nonnull Disposable disposable, @Nonnull Runnable runnable)
 	{
-		return VerticalLayout.create().add(Label.create("Unsupported platform"));
-	}
-
-	@RequiredUIAccess
-	@Nullable
-	@Override
-	public JComponent createConfigurablePanel(@Nonnull Disposable disposable, @Nonnull Runnable runnable)
-	{
-		return JBUI.Panels.verticalPanel().addComponent(ModuleExtensionSdkBoxBuilder.createAndDefine(this, runnable).build());
+		VerticalLayout layout = VerticalLayout.create();
+		layout.add(ModuleExtensionBundleBoxBuilder.createAndDefine(this, disposable, runnable).build());
+		return layout;
 	}
 
 	@Override
