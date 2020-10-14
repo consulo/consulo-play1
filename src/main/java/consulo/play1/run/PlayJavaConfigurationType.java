@@ -21,7 +21,7 @@ import com.intellij.execution.configurations.ConfigurationType;
 import com.intellij.execution.configurations.RunConfiguration;
 import com.intellij.openapi.project.Project;
 import consulo.module.extension.ModuleExtensionHelper;
-import consulo.play1.PlayJavaIcons;
+import consulo.play1.icon.Play1IconGroup;
 import consulo.play1.module.extension.Play1ModuleExtension;
 import consulo.ui.image.Image;
 
@@ -74,7 +74,7 @@ public class PlayJavaConfigurationType implements ConfigurationType
 	@Override
 	public Image getIcon()
 	{
-		return PlayJavaIcons.Play;
+		return Play1IconGroup.play();
 	}
 
 	@Nonnull

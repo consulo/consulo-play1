@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.fileTypes.LanguageFileType;
-import consulo.play1.PlayJavaIcons;
+import consulo.play1.icon.Play1IconGroup;
 import consulo.ui.image.Image;
 
 /**
@@ -62,6 +62,6 @@ public class PlayBaseTemplateFileType extends LanguageFileType
 	@Override
 	public Image getIcon()
 	{
-		return PlayJavaIcons.Play;
+		return Play1IconGroup.play();
 	}
 }

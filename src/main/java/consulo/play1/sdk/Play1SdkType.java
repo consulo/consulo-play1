@@ -28,7 +28,7 @@ import com.intellij.openapi.projectRoots.SdkType;
 import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.vfs.VirtualFile;
 import consulo.play1.PlayJavaConstants;
-import consulo.play1.PlayJavaIcons;
+import consulo.play1.icon.Play1IconGroup;
 import consulo.roots.types.BinariesOrderRootType;
 import consulo.roots.types.SourcesOrderRootType;
 import consulo.ui.image.Image;
@@ -49,7 +49,7 @@ public class Play1SdkType extends SdkType
 	@Override
 	public Image getIcon()
 	{
-		return PlayJavaIcons.Play;
+		return Play1IconGroup.play();
 	}
 
 	@Override

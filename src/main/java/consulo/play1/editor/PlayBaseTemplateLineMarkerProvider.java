@@ -39,8 +39,8 @@ import com.intellij.psi.PsiManager;
 import com.intellij.psi.PsiMethod;
 import com.intellij.psi.PsiModifier;
 import com.intellij.util.ConstantFunction;
-import consulo.play1.PlayJavaIcons;
 import consulo.play1.PlayJavaUtil;
+import consulo.play1.icon.Play1IconGroup;
 import consulo.play1.template.base.psi.PlayBaseTemplateFile;
 import consulo.roots.ContentFolderScopes;
 
@@ -71,7 +71,7 @@ public class PlayBaseTemplateLineMarkerProvider implements LineMarkerProvider
 		if(templateFile != null)
 		{
 
-			return new LineMarkerInfo<>(psiElement, psiElement.getTextRange(), PlayJavaIcons.PlayLineMarker, Pass.LINE_MARKERS,
+			return new LineMarkerInfo<>(psiElement, psiElement.getTextRange(), Play1IconGroup.playLineMarker(), Pass.LINE_MARKERS,
 					new ConstantFunction<>("Navigate to template"), GUTTER_ICON_NAVIGATION_HANDLER, GutterIconRenderer.Alignment.LEFT);
 		}
 		return null;
