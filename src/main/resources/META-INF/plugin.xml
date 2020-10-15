@@ -28,7 +28,7 @@
 		<moduleExtensionProvider key="play1"
 								 parentKey="java"
 								 name="Play 1"
-								 icon="/icons/play.png"
+								 icon="consulo.play1.Play1IconGroup@play"
 								 immutableClass="consulo.play1.module.extension.Play1ModuleExtension"
 								 mutableClass="consulo.play1.module.extension.Play1MutableModuleExtension"/>
 
