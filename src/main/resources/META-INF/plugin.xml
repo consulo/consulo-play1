@@ -21,6 +21,11 @@
 	<category>Web Frameworks</category>
 	<vendor>consulo.io</vendor>
 
+	<tags>
+		<tag>web.framework</tag>
+		<tag>web.server</tag>
+	</tags>
+
 	<depends>org.intellij.groovy</depends>
 	<depends>com.intellij.properties</depends>
 
